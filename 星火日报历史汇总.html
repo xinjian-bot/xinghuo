@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星火历史日报汇总</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C9T7FPDT2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-6C9T7FPDT2');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .bento-card {
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .section-title {
+            font-weight: 800;
+            font-size: 2.25rem;
+            color: #000000;
+            margin-bottom: 2rem;
+        }
+
+        .daily-report-item {
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin-bottom: 1rem;
+        }
+
+        .daily-report-item:hover {
+            box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.08), 0 3px 6px -3px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+            border-color: #ef4444;
+            /* 红色主题色，对应星火 */
+        }
+
+        .report-container {
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            padding-right: 7.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 640px) {
+            .report-container {
+                padding-right: 9rem;
+            }
+        }
+
+        .report-container:hover {
+            box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.08), 0 3px 6px -3px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+            border-color: #ef4444;
+            /* 红色主题色 */
+        }
+
+        .report-title-link {
+            color: #ef4444;
+            /* 红色主题色 */
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: color 0.2s ease;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .report-title-link:hover {
+            color: #b91c1c;
+            text-decoration: underline;
+        }
+
+        .report-date-info {
+            color: #6b7280;
+            font-size: 0.875rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .report-date-info i {
+            margin-right: 0.5rem;
+            color: #ef4444;
+            /* 红色主题色 */
+        }
+
+        .view-details-btn {
+            background-color: #fef2f2;
+            /* 红色背景淡色 */
+            color: #b91c1c;
+            /* 红色深色文字 */
+            border: 1px solid #fecaca;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .view-details-btn:hover {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border-color: #fca5a5;
+        }
+
+        .view-details-btn i {
+            margin-right: 0.5rem;
+            color: #b91c1c;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #ef4444;
+            /* 红色主题色 */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error-message {
+            display: none;
+            color: #dc2626;
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        /* 下拉选择器选中时的样式 */
+        select:focus {
+            outline: none;
+            border-color: #ef4444;
+            /* 红色主题色 */
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        /* 下拉选项样式 */
+        select option {
+            background-color: white;
+            color: black;
+        }
+
+        select option:checked {
+            background-color: #ef4444;
+            /* 红色主题色 */
+            color: white;
+        }
+
+        /* 针对星火主题的额外文字颜色类 */
+        .text-theme-red {
+            color: #ef4444;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black min-h-screen">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- 页面头部 -->
+        <header class="w-full mb-8">
+            <div class="bento-card p-8">
+                <div class="text-center">
+                    <h1 class="text-5xl font-black text-black mb-6">
+                        星火历史日报汇总
+                    </h1>
+                    <div
+                        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-history mr-2 text-theme-red"></i>
+                            <span>历史日报检索</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-calendar-alt mr-2 text-theme-red"></i>
+                            <span>2026年1月8日起</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 日期选择区域 -->
+        <section class="date-selector-card w-full mb-8">
+            <div class="bento-card p-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="yearSelector" class="block text-sm font-semibold text-gray-800 mb-2">
+                            <i class="fas fa-calendar mr-2 text-theme-red"></i>
+                            选择年份
+                        </label>
+                        <select id="yearSelector"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors">
+                            <option value="">请选择年份</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="monthSelector" class="block text-sm font-semibold text-gray-800 mb-2">
+                            <i class="fas fa-calendar-days mr-2 text-theme-red"></i>
+                            选择月份
+                        </label>
+                        <select id="monthSelector"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
+                            disabled>
+                            <option value="">请先选择年份</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 错误提示区域 -->
+        <div id="error-message" class="error-message">
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                <span id="error-text">加载数据时出现错误，请稍后重试。</span>
+            </div>
+        </div>
+
+        <!-- 日报链接展示区域 -->
+        <section class="report-list-card w-full mb-12">
+            <div class="bento-card p-6">
+                <div id="reports-header" class="mb-6" style="display: none;">
+                    <h2 class="section-title">
+                        <span id="selected-period">所选时期</span> 的日报
+                    </h2>
+                    <div class="flex items-center text-gray-600 mb-4">
+                        <i class="fas fa-file-alt mr-2 text-theme-red"></i>
+                        <span>共找到 <span id="reports-count" class="font-semibold text-theme-red">0</span> 份日报</span>
+                    </div>
+                </div>
+
+                <div id="reportLinksContainer" class="min-h-[200px]">
+                    <div class="text-center text-gray-500 py-8">
+                        <i class="fas fa-info-circle text-2xl mb-2"></i>
+                        <p>请选择年份和月份以查看日报</p>
+                    </div>
+                </div>
+
+                <!-- 空状态提示 -->
+                <div id="empty-state" class="text-center py-12" style="display: none;">
+                    <div class="bento-card p-8">
+                        <i class="fas fa-calendar-times text-gray-400 text-4xl mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">暂无日报数据</h3>
+                        <p class="text-gray-500">所选时间段内没有找到相关的日报记录</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 使用说明区域 -->
+        <section class="w-full mb-12">
+            <div class="bento-card p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                    <i class="fas fa-info-circle mr-2 text-theme-red"></i>
+                    使用说明
+                </h3>
+                <div class="space-y-3 text-sm text-gray-700">
+                    <div class="flex items-start">
+                        <i class="fas fa-search mr-2 text-theme-red mt-0.5"></i>
+                        <span>使用上方的年份和月份选择器来筛选查看特定时期的日报</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-link mr-2 text-theme-red mt-0.5"></i>
+                        <span>点击日报标题即可跳转到对应的详细日报页面</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 常量定义
+        // 修改点：前缀改为星火群日报
+        const REPORT_FILENAME_PREFIX = "星火群日报_";
+        const REPORT_FILENAME_SUFFIX = ".html";
+
+        // 修改点：起始日期改为 2026年1月8日
+        const START_YEAR = 2026;
+        const START_MONTH_FOR_START_YEAR = 1; // 1月，1-indexed
+        const START_DAY_FOR_START_YEAR = 8; // 8日
+
+        // 全局变量
+        let yearSelector, monthSelector, reportLinksContainer;
+
+        // DOM 元素初始化
+        document.addEventListener('DOMContentLoaded', function () {
+            yearSelector = document.getElementById('yearSelector');
+            monthSelector = document.getElementById('monthSelector');
+            reportLinksContainer = document.getElementById('reportLinksContainer');
+
+            // 获取当前日期并初始化页面
+            const today = getToday();
+            populateYearSelector(today.year);
+
+            // 事件监听器
+            yearSelector.addEventListener('change', handleYearChange);
+            monthSelector.addEventListener('change', handleMonthChange);
+        });
+
+        // 辅助函数：获取今天的日期
+        function getToday() {
+            const now = new Date();
+            return {
+                year: now.getFullYear(),
+                month: now.getMonth() + 1, // 1-indexed
+                day: now.getDate()
+            };
+        }
+
+        // 辅助函数：获取指定年月的天数
+        function daysInMonth(year, month) {
+            return new Date(year, month, 0).getDate();
+        }
+
+        // 辅助函数：获取星期几的中文名称
+        function getWeekdayName(year, month, day) {
+            const date = new Date(year, month - 1, day);
+            // month is 0-indexed in Date constructor
+            const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            return weekdays[date.getDay()];
+        }
+
+        // 计算期数的函数（从2026年1月8日开始计数）
+        function calculateIssueNumber(year, month, day) {
+            // 修改点：起始日期改为 2026年1月8日
+            const startDate = new Date(2026, 1 - 1, 8); // 2026年1月8日为第1期
+            const targetDate = new Date(year, month - 1, day);
+
+            // 计算日期差值（毫秒）然后转换为天数
+            const diffTime = Math.abs(targetDate - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            return diffDays + 1; // +1 因为起始日为第1期
+        }
+
+        // 填充年份选择器
+        function populateYearSelector(currentSystemYear) {
+            yearSelector.innerHTML = ''; // 移除默认的"请选择年份"选项
+
+            // 如果系统时间还没到2026，至少显示起始年份
+            const endYear = Math.max(START_YEAR, currentSystemYear);
+
+            for (let year = START_YEAR; year <= endYear; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year + '年';
+                yearSelector.appendChild(option);
+            }
+
+            // 默认选中当前年份（如果是未来年份则选起始年份）
+            yearSelector.value = (currentSystemYear >= START_YEAR) ? currentSystemYear : START_YEAR;
+            populateMonthSelector(parseInt(yearSelector.value), currentSystemYear, getToday().month);
+        }
+
+        // 填充月份选择器
+        function populateMonthSelector(selectedYear, currentSystemYear, currentSystemMonth) {
+            monthSelector.innerHTML = '';
+            monthSelector.disabled = false;
+
+            let startMonth, endMonth;
+
+            if (selectedYear == START_YEAR) {
+                startMonth = START_MONTH_FOR_START_YEAR;
+                // 如果当前就是起始年，且系统时间也在这一年，则截止到当前月
+                // 如果系统时间比起始年还早（理论上不应发生，除非穿越），则显示到12月（测试用）
+                if (selectedYear == currentSystemYear) {
+                    endMonth = currentSystemMonth;
+                } else if (selectedYear > currentSystemYear) {
+                    // 选了未来年份？实际上不会进入这里，因为yearSelector控制了
+                    endMonth = 12;
+                } else {
+                    // 选了过去年份（但START_YEAR已经是2026了，所以这里是处理未来的历史数据）
+                    endMonth = 12;
+                }
+            } else if (selectedYear > START_YEAR && selectedYear < currentSystemYear) {
+                startMonth = 1;
+                endMonth = 12;
+            } else if (selectedYear == currentSystemYear && selectedYear > START_YEAR) {
+                startMonth = 1;
+                endMonth = currentSystemMonth;
+            } else {
+                // Fallback
+                startMonth = 1;
+                endMonth = 12;
+            }
+
+            // 修正：如果计算出的结束月份小于开始月份（例如现在是2026年1月2日，但起始是1月8日，或者当前月份小于起始月份），
+            // 依然至少显示起始月份，方便用户查看（虽然可能没数据）
+            if (endMonth < startMonth) endMonth = startMonth;
+
+            for (let month = startMonth; month <= endMonth; month++) {
+                const option = document.createElement('option');
+                option.value = month;
+                option.textContent = month + '月';
+                monthSelector.appendChild(option);
+            }
+
+            // 默认选中适当的月份
+            if (selectedYear == currentSystemYear) {
+                // 如果当前月份在列表里，选当前月，否则选最后一个
+                if (currentSystemMonth >= startMonth) {
+                    monthSelector.value = currentSystemMonth;
+                } else {
+                    monthSelector.value = endMonth;
+                }
+            } else {
+                monthSelector.value = endMonth;
+            }
+
+            // 加载对应的日报
+            if (monthSelector.value) {
+                fetchAndDisplayReports(selectedYear, parseInt(monthSelector.value));
+            }
+        }
+
+        // 年份选择变化处理
+        function handleYearChange() {
+            const selectedYear = parseInt(yearSelector.value);
+            if (selectedYear) {
+                const today = getToday();
+                populateMonthSelector(selectedYear, today.year, today.month);
+            } else {
+                monthSelector.innerHTML = '<option value="">请先选择年份</option>';
+                monthSelector.disabled = true;
+                showDefaultMessage();
+            }
+        }
+
+        // 月份选择变化处理
+        function handleMonthChange() {
+            const selectedYear = parseInt(yearSelector.value);
+            const selectedMonth = parseInt(monthSelector.value);
+
+            if (selectedYear && selectedMonth) {
+                fetchAndDisplayReports(selectedYear, selectedMonth);
+            }
+        }
+
+        // 检查链接是否存在
+        async function checkLinkExists(url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                return response.ok; // 状态码在 200-299 范围内
+            } catch (error) {
+                // 在跨域或其他网络错误情况下，可能无法准确判断，这里假设失败
+                // 注意：在本地打开html文件时，跨域限制可能导致无法检测同目录文件
+                return false;
+            }
+        }
+
+        // 获取并展示日报
+        async function fetchAndDisplayReports(year, month) {
+            // 清空容器并显示加载状态
+            reportLinksContainer.innerHTML = `
+                <div class="text-center text-gray-500 py-8">
+                    <div class="loading-spinner mx-auto mb-3"></div>
+                    <p>正在检查日报文件...</p>
+                </div>
+            `;
+
+            const today = getToday();
+
+            // 确定日期范围
+            let dayStart, dayEnd;
+
+            if (year == START_YEAR && month == START_MONTH_FOR_START_YEAR) {
+                dayStart = START_DAY_FOR_START_YEAR;
+            } else {
+                dayStart = 1;
+            }
+
+            if (year == today.year && month == today.month) {
+                dayEnd = today.day;
+            } else {
+                dayEnd = daysInMonth(year, month);
+            }
+
+            // 如果还没到起始日期，直接显示无数据
+            if (dayStart > dayEnd && year == today.year && month == today.month) {
+                // 隐藏报告头部信息
+                const reportsHeader = document.getElementById('reports-header');
+                if (reportsHeader) {
+                    reportsHeader.style.display = 'none';
+                }
+                reportLinksContainer.innerHTML = `
+                    <div class="text-center text-gray-500 py-8">
+                        <i class="fas fa-hourglass-start text-2xl mb-2"></i>
+                        <p>该月份日报尚未开始更新</p>
+                        <p class="text-sm mt-1">起始日期为 ${START_YEAR}年${START_MONTH_FOR_START_YEAR}月${START_DAY_FOR_START_YEAR}日</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // 创建检查任务数组
+            const checkTasks = [];
+            const dateInfos = [];
+
+            for (let day = dayStart; day <= dayEnd; day++) {
+                const dateStr = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+                const url = `${REPORT_FILENAME_PREFIX}${dateStr}${REPORT_FILENAME_SUFFIX}`;
+
+                dateInfos.push({
+                    date: dateStr,
+                    url: url,
+                    day: day,
+                    year: year,
+                    month: month,
+                    // 修改点：文案改为星火
+                    displayText: `星火群日报 ${year}年${month}月${day}日`,
+                    weekday: getWeekdayName(year, month, day),
+                    date_display_full: `${year}年${month}月${day}日${getWeekdayName(year, month, day)}`,
+                    issueNumber: calculateIssueNumber(year, month, day)
+                });
+
+                checkTasks.push(checkLinkExists(url));
+            }
+
+            try {
+                // 并发检查所有链接
+                const results = await Promise.all(checkTasks);
+
+                // 收集存在的日报链接
+                const existingReports = [];
+                for (let i = 0; i < results.length; i++) {
+                    if (results[i]) {
+                        existingReports.push(dateInfos[i]);
+                    }
+                }
+
+                // 按日期倒序排列（最新的在上面）
+                existingReports.sort((a, b) => b.day - a.day);
+
+                // 显示结果
+                if (existingReports.length > 0) {
+                    // 显示报告头部信息
+                    const reportsHeader = document.getElementById('reports-header');
+                    const selectedPeriod = document.getElementById('selected-period');
+                    const reportsCount = document.getElementById('reports-count');
+
+                    if (reportsHeader && selectedPeriod && reportsCount) {
+                        selectedPeriod.textContent = `${year}年${month}月`;
+                        reportsCount.textContent = existingReports.length;
+                        reportsHeader.style.display = 'block';
+                    }
+
+                    // 修改点：列表项文案改为星火
+                    reportLinksContainer.innerHTML = existingReports.map(report => `
+                        <div class="report-container">
+                            <a href="${report.url}" class="report-title-link" target="_blank">
+                                星火 ${report.year}.${report.month}.${report.day}
+                            </a>
+                            <div class="report-date-info">
+                                <i class="fas fa-calendar-day"></i>
+                                <span>${report.weekday} 第${report.issueNumber}期</span>
+                            </div>
+                            <a href="${report.url}" class="view-details-btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>查看详情</span>
+                            </a>
+                        </div>
+                    `).join('');
+                } else {
+                    // 隐藏报告头部信息
+                    const reportsHeader = document.getElementById('reports-header');
+                    if (reportsHeader) {
+                        reportsHeader.style.display = 'none';
+                    }
+
+                    reportLinksContainer.innerHTML = `
+                        <div class="text-center text-gray-500 py-8">
+                            <i class="fas fa-calendar-times text-2xl mb-2"></i>
+                            <p>该月份暂无日报</p>
+                            <p class="text-sm mt-1">请选择其他月份或等待新日报上传</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('检查日报链接时出错:', error);
+
+                // 隐藏报告头部信息
+                const reportsHeader = document.getElementById('reports-header');
+                if (reportsHeader) {
+                    reportsHeader.style.display = 'none';
+                }
+
+                reportLinksContainer.innerHTML = `
+                    <div class="text-center text-red-500 py-8">
+                        <i class="fas fa-exclamation-triangle text-2xl mb-2"></i>
+                        <p>加载日报列表时出现错误</p>
+                        <p class="text-sm mt-1">请稍后重试</p>
+                    </div>
+                `;
+            }
+        }
+
+        // 显示默认消息
+        function showDefaultMessage() {
+            const reportsHeader = document.getElementById('reports-header');
+            if (reportsHeader) {
+                reportsHeader.style.display = 'none';
+            }
+
+            reportLinksContainer.innerHTML = `
+                <div class="text-center text-gray-500 py-8">
+                    <i class="fas fa-info-circle text-2xl mb-2"></i>
+                    <p>请选择年份和月份以查看日报</p>
+                </div>
+            `;
+        }
+
+        // 页面加载完成后的初始化
+        window.addEventListener('load', function () {
+            // 如果有默认选中的年份和月份，自动加载日报
+            if (yearSelector.value && monthSelector.value) {
+                fetchAndDisplayReports(parseInt(yearSelector.value), parseInt(monthSelector.value));
+            }
+        });
+    </script>
+    <div
+        style="text-align:center; font-size:14px; color:#888; padding:20px 0; margin-top:20px; border-top:1px solid #eee;">
+        <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#888; text-decoration:none;">
+            赣ICP备2024051762号-2
+        </a>
+    </div>
+    <div style="text-align:center; font-size:14px; color:#888; padding:10px 0;">
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36060202000451" rel="noreferrer" target="_blank"
+            style="color:#888; text-decoration:none; display:inline-flex; align-items:center; gap:5px;">
+            <img src="beian.png" alt="公安备案" style="width:20px; height:20px;">
+            <span>赣公网安备36060202000451号</span>
+        </a>
+    </div>
+</body>
+
+</html>
