@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新茧社群 - 破茧成蝶，以己为薪</title>
+    <meta name="description" content="新茧社群，致力于打破信息茧房，连接有价值的认知与伙伴。">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <style>
+        /* 引入字体：Inter(西文), Noto Sans SC(正文), ZCOOL XiaoWei(装饰) - 均可免费商用 */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=ZCOOL+XiaoWei&display=swap');
+
+        * {
+            font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+        }
+
+        .font-serif-cn {
+            font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        body {
+            background-color: #f8faff;
+            color: #1f2937;
+            scroll-behavior: smooth;
+        }
+
+        .text-brand {
+            color: #4D6BFE;
+        }
+
+        .bg-brand {
+            background-color: #4D6BFE;
+        }
+
+        .bento-card {
+            background-color: #ffffff;
+            border: 1px solid #eef2ff;
+            border-radius: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(77, 107, 254, 0.1);
+            border-color: #dbeafe;
+        }
+
+        /* 日历样式 */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.35rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #4b5563;
+            background-color: #f9fafb;
+        }
+
+        /* 可点击状态样式 (排除空白、未来、开始日期之前的) */
+        .calendar-day:hover:not(.empty):not(.disabled) {
+            background-color: #4D6BFE;
+            color: white;
+            box-shadow: 0 4px 10px rgba(77, 107, 254, 0.25);
+        }
+
+        .calendar-day.today {
+            border: 2px solid #4D6BFE;
+            color: #4D6BFE;
+            font-weight: 700;
+            background-color: #eff6ff;
+        }
+
+        /* 不可点击状态（未来日期 或 早于起始日期的历史） */
+        .calendar-day.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background-color: transparent;
+        }
+
+        .calendar-day.empty {
+            background-color: transparent;
+            cursor: default;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+        }
+
+        /* 装饰性引用符号 */
+        .quote-icon {
+            position: absolute;
+            color: rgba(77, 107, 254, 0.08);
+            font-size: 8rem;
+            line-height: 1;
+            z-index: 0;
+            font-family: serif;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- 顶部导航 -->
+    <nav class="w-full py-5 px-4 sm:px-8 max-w-7xl mx-auto flex justify-between items-center z-50 relative">
+        <div class="flex items-center gap-3">
+            <!-- 蝴蝶图标：更换为更具象、优美的蝴蝶形状 -->
+            <!-- 新茧 Logo -->
+            <img src="新茧logo.png" alt="新茧 Logo"
+                class="w-10 h-10 object-contain rounded-xl shadow-lg shadow-blue-500/20">
+            <span class="text-2xl font-black tracking-tight text-brand">新茧</span>
+        </div>
+        <!-- 已删除右上角的历史日报按钮，使界面更简洁 -->
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-10">
+
+        <!-- 第一部分：Hero + 日历 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+
+            <!-- 左侧：Slogan 与 今日入口 (占 7 列) -->
+            <div class="lg:col-span-7 flex flex-col h-full">
+                <div class="bento-card p-8 sm:p-10 hero-gradient flex-grow flex flex-col justify-center relative">
+                    <!-- 背景装饰 -->
+                    <div
+                        class="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/3">
+                    </div>
+
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-brand text-xs font-bold w-fit mb-6 relative z-10 border border-blue-100">
+                        <span class="relative flex h-2 w-2">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                        </span>
+                        每日持续更新
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl font-black text-slate-900 leading-[1.15] mb-6 relative z-10">
+                        打破信息茧房<br>
+                        <span class="text-brand">重塑认知边界</span>
+                    </h1>
+                    <p class="text-slate-700 text-lg leading-relaxed mb-8 max-w-xl relative z-10">
+                        在这里，我们记录每日的火花碰撞，沉淀关于职场、技术、生活与成长的真实智慧。不只是茧房，更是破茧成蝶的起点。
+                    </p>
+                    <div class="flex flex-wrap gap-4 relative z-10">
+                        <a href="#" id="latest-report-btn"
+                            class="px-8 py-3.5 rounded-xl bg-brand text-white font-bold shadow-lg shadow-blue-500/30 hover:bg-blue-700 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2">
+                            <i class="fas fa-book-open"></i> 阅读昨日日报
+                        </a>
+                        <a href="https://ima.qq.com/wiki/?shareId=93cada8e9515204c3072f540619fb8dcd24fe1a9446493aa29cc06ce04b20821"
+                            target="_blank"
+                            class="px-8 py-3.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200 hover:bg-slate-50 transition-all flex items-center gap-2">
+                            <i class="fas fa-brain text-brand"></i> 访问 AI 知识库
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：交互式日历 (占 5 列) -->
+            <div class="lg:col-span-5 h-full">
+                <div class="bento-card p-6 h-full flex flex-col bg-white">
+                    <div class="flex justify-between items-center mb-5">
+                        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                            <i class="far fa-calendar-check text-brand"></i> 日报时光机
+                        </h2>
+                        <div
+                            class="relative flex items-center gap-1 bg-slate-50 rounded-lg p-1 border border-slate-100">
+                            <button id="prevMonth"
+                                class="w-7 h-7 flex items-center justify-center rounded hover:bg-white hover:shadow-sm text-slate-500 transition-all">
+                                <i class="fas fa-chevron-left text-xs"></i>
+                            </button>
+                            <span id="currentDateDisplay"
+                                class="text-xs font-bold text-slate-700 w-20 text-center font-mono pt-0.5 cursor-pointer hover:text-brand hover:bg-white rounded transition-colors select-none"></span>
+                            <button id="nextMonth"
+                                class="w-7 h-7 flex items-center justify-center rounded hover:bg-white hover:shadow-sm text-slate-500 transition-all">
+                                <i class="fas fa-chevron-right text-xs"></i>
+                            </button>
+                            <!-- 年月选择弹出层已移至 body 底部以避免遮挡 -->
+                        </div>
+                    </div>
+
+                    <!-- 星期头 -->
+                    <div class="grid grid-cols-7 gap-1 mb-2 text-center">
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Sun</div>
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Mon</div>
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Tue</div>
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Wed</div>
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Thu</div>
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Fri</div>
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Sat</div>
+                    </div>
+
+                    <!-- 日历格子容器 -->
+                    <div id="calendar-days" class="calendar-grid flex-grow content-start">
+                        <!-- JS 自动填充 -->
+                    </div>
+
+                    <div class="mt-4 pt-4 border-t border-slate-100 text-right">
+                        <a href="https://www.xinjianhub.cn/%E6%96%B0%E8%8C%A7%E5%8E%86%E5%8F%B2%E6%97%A5%E6%8A%A5%E6%B1%87%E6%80%BB.html"
+                            class="text-xs text-slate-400 hover:text-brand transition-colors">
+                            查看完整日报列表 <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二部分：新茧初衷 (三列布局) -->
+        <div class="space-y-6">
+            <h2 class="text-2xl font-black text-slate-900 flex items-center gap-3">
+                <span class="w-1.5 h-8 bg-brand rounded-full"></span>
+                新茧，何意？
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 卡片 1: 茧 -->
+                <div class="bento-card p-8 relative overflow-hidden group">
+                    <div class="quote-icon top-4 right-4">茧</div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">织茧 · 成长</h3>
+                        <p class="text-slate-700 text-[15px] leading-8 font-serif-cn">
+                            茧，不只是茧房。<br>
+                            两耳不闻窗外事，是为了向圣贤学习。<br>
+                            所以织茧，只为努力成长。<br>
+                            待到破茧，不仅羽化成蝶，<br>
+                            更要以虫之身，入云为龙。
+                        </p>
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+                <!-- 卡片 2: 新 (原新 -> 薪) -->
+                <div class="bento-card p-8 relative overflow-hidden group">
+                    <div class="quote-icon top-4 right-4">薪</div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">劈砍 · 革命</h3>
+                        <p class="text-slate-700 text-[15px] leading-8 font-serif-cn">
+                            新，本意是劈砍。<br>
+                            左边是辛（镰刀），右边是斤（斧头）。<br>
+                            敢教日月换新天。<br>
+                            我们不但善于破坏一个旧世界，<br>
+                            我们还将善于建设一个新世界。<br>
+                            不断自我革命，以适合革命的需要。
+                        </p>
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+                <!-- 卡片 3: 火 (原薪 -> 火) -->
+                <div class="bento-card p-8 relative overflow-hidden group">
+                    <div class="quote-icon top-4 right-4">火</div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">薪火 · 照亮</h3>
+                        <p class="text-slate-700 text-[15px] leading-8 font-serif-cn">
+                            新字引申出创新，加草头为薪（柴火）。<br>
+                            茧，也是虫上加了草头。<br>
+                            愿我们破茧之日，也能以己为薪。<br>
+                            燃烧自己，照亮世界——<br>
+                            <span class="text-brand font-bold">华夏腾飞世界时，共产赤旗插遍日。</span>
+                        </p>
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三部分：社群资源 (Grid 布局) -->
+        <div id="resources" class="space-y-6">
+            <h2 class="text-2xl font-black text-slate-900 flex items-center gap-3">
+                <span class="w-1.5 h-8 bg-brand rounded-full"></span>
+                社群数字资产
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 资源 1: IMA 知识库 (AI 干货) - 唯一保留二维码 -->
+                <div class="bento-card p-0 flex flex-col overflow-hidden group h-full">
+                    <div class="w-full h-48 bg-slate-100 relative overflow-hidden">
+                        <img src="【新茧知识库】知识码.png" alt="新茧知识库二维码"
+                            class="absolute inset-0 w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500">
+                        <div
+                            class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-slate-700 shadow-sm">
+                            AI 知识库</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            <i class="fas fa-robot text-brand"></i> 新茧知识库
+                        </h3>
+                        <p class="text-slate-500 text-xs mb-2 flex-grow leading-relaxed">
+                            存放每日生成的“新茧日报”文件。支持AI问答检索，方便快速查找历史干货。
+                        </p>
+                        <div class="mt-auto">
+                            <p class="text-xs text-red-400 mb-6 bg-red-50 p-2 rounded">* 申请时请注明您在新茧群的微信号</p>
+                            <!-- 修改：按钮统一为蓝色 (bg-brand) -->
+                            <a href="https://ima.qq.com/wiki/?shareId=93cada8e9515204c3072f540619fb8dcd24fe1a9446493aa29cc06ce04b20821"
+                                target="_blank"
+                                class="w-full py-2.5 rounded-lg bg-brand text-white text-sm font-bold text-center block hover:bg-blue-600 shadow-md shadow-blue-500/20 transition-all transform hover:-translate-y-0.5">
+                                立即访问
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 资源 2: 新茧资料库 (文档/书) - 图标回归 -->
+                <div class="bento-card p-0 flex flex-col overflow-hidden group h-full">
+                    <!-- 增加白色圆形背景，让图标更显眼 -->
+                    <div class="w-full h-48 bg-indigo-50 relative overflow-hidden flex items-center justify-center">
+                        <div
+                            class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-folder-open text-4xl text-indigo-500"></i>
+                        </div>
+                        <div
+                            class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-slate-700 shadow-sm">
+                            文档资料</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            <i class="fas fa-file-alt text-indigo-500"></i> 新茧资料库
+                        </h3>
+                        <p class="text-slate-500 text-xs mb-2 flex-grow leading-relaxed">
+                            用于放置群内同志们分享的书籍等文件资料，支持下载。
+                        </p>
+                        <div class="mt-auto">
+                            <p class="text-xs text-red-400 mb-6 bg-red-50 p-2 rounded">* 申请时请注明您在新茧群的微信号</p>
+                            <!-- 修改：按钮统一为蓝色 (bg-brand) -->
+                            <a href="https://kdocs.cn/join/gh5s0kd" target="_blank"
+                                class="w-full py-2.5 rounded-lg bg-brand text-white text-sm font-bold text-center block hover:bg-blue-600 shadow-md shadow-blue-500/20 transition-all transform hover:-translate-y-0.5">
+                                加入协作
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 资源 3: 篝火/丰镐 (聊天记录) - 图标回归 -->
+                <div class="bento-card p-0 flex flex-col overflow-hidden group h-full">
+                    <!-- 增加白色圆形背景，让图标更显眼 -->
+                    <div class="w-full h-48 bg-orange-50 relative overflow-hidden flex items-center justify-center">
+                        <div
+                            class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-fire text-4xl text-orange-500"></i>
+                        </div>
+                        <div
+                            class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-slate-700 shadow-sm">
+                            聊天归档</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            <i class="fas fa-comments text-orange-500"></i> 篝火 · 丰镐
+                        </h3>
+                        <p class="text-slate-500 text-xs mb-4 flex-grow leading-relaxed">
+                            聊天记录原始归档。这里原汁原味地记录了社群的点滴日常与深度讨论。
+                        </p>
+                        <div class="mt-auto">
+                            <!-- 修改：登录提示换行，颜色减淡 -->
+                            <div class="mb-3 bg-orange-50 p-2 rounded border border-orange-100">
+                                <p class="text-[10px] text-slate-500 font-medium flex items-center">
+                                    <i class="fas fa-exclamation-circle text-orange-400 mr-1.5"></i> 登录提示：
+                                </p>
+                                <p class="text-xs text-slate-600 font-bold pl-4 mt-0.5">
+                                    篝火账号与「丰镐」通用
+                                </p>
+                            </div>
+                            <div class="flex gap-2">
+                                <!-- 修改：主按钮为蓝色 (bg-brand) -->
+                                <a href="https://bbs.lavayou.cn/t/topic/396" target="_blank"
+                                    class="flex-1 py-2.5 rounded-lg bg-brand text-white text-sm font-bold text-center block hover:bg-blue-600 shadow-md shadow-blue-500/20 transition-all transform hover:-translate-y-0.5">
+                                    查看记录
+                                </a>
+                                <!-- 修改：次按钮为白色描边 -->
+                                <a href="https://i.lavayou.cn" target="_blank"
+                                    class="flex-1 py-2.5 rounded-lg bg-white border border-slate-200 text-slate-600 text-sm font-bold text-center block hover:border-brand hover:text-brand transition-all transform hover:-translate-y-0.5">
+                                    注册丰镐
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 底部备案信息 -->
+    <footer class="w-full py-10 border-t border-slate-200 bg-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex justify-center items-center gap-2 mb-4">
+                <i class="fas fa-butterfly text-brand"></i>
+                <span class="font-bold text-slate-700">新茧社群</span>
+            </div>
+            <p class="text-slate-400 text-xs mb-4">破茧成蝶 · 认知升级 · 共同成长</p>
+
+            <!-- 备案信息区域 -->
+            <div id="compliance-footer">
+                <div style="text-align:center; font-size:14px; color:#888; padding:5px 0;">
+                    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#888; text-decoration:none;">
+                        赣ICP备2024051762号-2
+                    </a>
+                </div>
+                <div style="text-align:center; font-size:14px; color:#888; padding:10px 0;">
+                    <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36060202000451" rel="noreferrer"
+                        target="_blank"
+                        style="color:#888; text-decoration:none; display:inline-flex; align-items:center; gap:5px;">
+                        <img src="beian.png" alt="公安备案" style="width:20px; height:20px;">
+                        <span>赣公网安备36060202000451号</span>
+                    </a>
+                </div>
+            </div>
+    </footer>
+
+    <!-- 全局日期选择器 (Fixed定位，防止被遮挡) -->
+    <div id="date-picker-popup"
+        class="hidden fixed bg-white rounded-2xl shadow-2xl border border-slate-100 p-4 z-[100] w-[280px] animate-in fade-in zoom-in-95 duration-200">
+        <!-- 头部：显示年份，点击切换 -->
+        <div class="flex justify-between items-center mb-3 px-1">
+            <button id="picker-header-btn"
+                class="text-lg font-black text-slate-800 hover:text-brand transition-colors flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-slate-50">
+                <!-- JS 填充年份 -->
+            </button>
+            <div class="text-xs text-slate-400 font-medium">跳转至</div>
+        </div>
+
+        <!-- 内容区域：月份或年份网格 -->
+        <div id="picker-content">
+            <!-- JS 填充 -->
+        </div>
+    </div>
+
+    <style>
+        /* 自定义滚动条 */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</body>
+
+<!-- JavaScript 逻辑 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const calendarDays = document.getElementById('calendar-days');
+        const currentDateDisplay = document.getElementById('currentDateDisplay');
+        const prevMonthBtn = document.getElementById('prevMonth');
+        const nextMonthBtn = document.getElementById('nextMonth');
+        const latestReportBtn = document.getElementById('latest-report-btn');
+
+        // 1. 设置起始日期：2025年5月17日
+        const startDate = new Date(2025, 4, 17); // 注意：月份 4 代表 5月
+
+        // 默认显示当前日期
+        const today = new Date();
+        // 将时分秒归零，只比较日期
+        today.setHours(0, 0, 0, 0);
+        startDate.setHours(0, 0, 0, 0);
+
+        let currentYear = today.getFullYear();
+        let currentMonth = today.getMonth();
+
+        // 辅助函数：检测 URL 是否有效
+        async function checkUrlAvailability(url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                return response.ok;
+            } catch (error) {
+                console.warn('URL check failed:', url, error);
+                return false;
+            }
+        }
+
+        function renderCalendar(year, month) {
+            calendarDays.innerHTML = '';
+            currentDateDisplay.textContent = `${year}.${String(month + 1).padStart(2, '0')}`;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // 填充空白
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.classList.add('calendar-day', 'empty');
+                calendarDays.appendChild(emptyDiv);
+            }
+
+            // 填充日期
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.classList.add('calendar-day');
+                dayDiv.textContent = day;
+
+                const thisDate = new Date(year, month, day);
+                thisDate.setHours(0, 0, 0, 0);
+
+                const isToday = thisDate.getTime() === today.getTime();
+                const isFuture = thisDate > today;
+                // 2. 增加判断：是否早于起始日期
+                const isBeforeStart = thisDate < startDate;
+
+                // 构造文件名：新茧群日报_YYYY-MM-DD.html
+                const formatMonth = String(month + 1).padStart(2, '0');
+                const formatDay = String(day).padStart(2, '0');
+                const dateStr = `${year}-${formatMonth}-${formatDay}`;
+                const targetUrl = `https://www.xinjianhub.cn/%E6%96%B0%E8%8C%A7%E7%BE%A4%E6%97%A5%E6%8A%A5_${dateStr}.html`;
+
+                if (isToday) {
+                    dayDiv.classList.add('today');
+                    // 默认：不可点击，提示次日更新
+                    dayDiv.classList.add('disabled');
+                    dayDiv.title = "今日日报将于次日更新";
+
+                    // 异步检测：如果今日日报已上传，则激活
+                    checkUrlAvailability(targetUrl).then(isAvailable => {
+                        if (isAvailable) {
+                            dayDiv.classList.remove('disabled');
+                            dayDiv.title = `阅读 ${dateStr} 日报`;
+                            dayDiv.onclick = () => {
+                                window.location.href = targetUrl;
+                            };
+                        }
+                    });
+
+                } else if (isFuture || isBeforeStart) {
+                    // 3. 将早于起始日期的也设为 disabled (不可点击)
+                    dayDiv.classList.add('disabled');
+                } else {
+                    dayDiv.onclick = () => {
+                        window.location.href = targetUrl;
+                    };
+                    dayDiv.title = `阅读 ${dateStr} 日报`;
+                }
+
+                calendarDays.appendChild(dayDiv);
+            }
+        }
+
+        renderCalendar(currentYear, currentMonth);
+
+        prevMonthBtn.addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+            renderCalendar(currentYear, currentMonth);
+        });
+
+        nextMonthBtn.addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+            renderCalendar(currentYear, currentMonth);
+        });
+
+        // --- 新版日期选择器逻辑 (Windows日历风格) ---
+        const datePickerPopup = document.getElementById('date-picker-popup');
+        const pickerHeaderBtn = document.getElementById('picker-header-btn'); // 显示年份，点击切换到年份视图
+        const pickerContent = document.getElementById('picker-content');
+
+        let pickerYear = currentYear;
+        let currentView = 'month'; // 'month' or 'year'
+
+        // 切换显示
+        currentDateDisplay.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (datePickerPopup.classList.contains('hidden')) {
+                openDatePicker();
+            } else {
+                closeDatePicker();
+            }
+        });
+
+        // 点击头部年份：切换视图
+        pickerHeaderBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (currentView === 'month') {
+                switchView('year');
+            } else {
+                switchView('month');
+            }
+        });
+
+        // 点击外部关闭
+        document.addEventListener('click', (e) => {
+            if (!datePickerPopup.contains(e.target) && e.target !== currentDateDisplay) {
+                closeDatePicker();
+            }
+        });
+
+        // 窗口大小改变时重新定位或关闭
+        window.addEventListener('resize', closeDatePicker);
+
+        function openDatePicker() {
+            pickerYear = currentYear; // 重置为当前日历年份
+            currentView = 'month'; // 默认显示月份视图
+
+            // 计算位置 (Fixed定位解决遮挡)
+            const rect = currentDateDisplay.getBoundingClientRect();
+            // 弹窗宽度约 280px，尝试居中对齐
+            let left = rect.left + (rect.width / 2) - 140;
+            let top = rect.bottom + 8;
+
+            // 边界检查
+            if (left < 10) left = 10;
+            if (left + 280 > window.innerWidth) left = window.innerWidth - 290;
+
+            datePickerPopup.style.left = `${left}px`;
+            datePickerPopup.style.top = `${top}px`;
+
+            updateHeader();
+            renderContent();
+            datePickerPopup.classList.remove('hidden');
+        }
+
+        function closeDatePicker() {
+            datePickerPopup.classList.add('hidden');
+        }
+
+        function switchView(view) {
+            currentView = view;
+            updateHeader();
+            renderContent();
+        }
+
+        function updateHeader() {
+            // 头部只显示年份，点击可切换
+            pickerHeaderBtn.textContent = `${pickerYear}年`;
+            // 添加视觉反馈：如果是年份视图，高亮头部
+            if (currentView === 'year') {
+                pickerHeaderBtn.classList.add('text-brand');
+            } else {
+                pickerHeaderBtn.classList.remove('text-brand');
+            }
+        }
+
+        function renderContent() {
+            pickerContent.innerHTML = '';
+
+            if (currentView === 'month') {
+                renderMonthView();
+            } else {
+                renderYearView();
+            }
+        }
+
+        function renderMonthView() {
+            pickerContent.className = "grid grid-cols-4 gap-3 p-2";
+            const months = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
+
+            months.forEach((mStr, index) => {
+                const btn = document.createElement('button');
+                btn.textContent = mStr;
+                // 标记当前选中的月份 (如果年份也匹配)
+                const isSelected = (index === currentMonth && pickerYear === currentYear);
+
+                btn.className = `text-sm py-3 rounded-lg transition-all font-medium ${isSelected
+                    ? 'bg-brand text-white shadow-md shadow-blue-500/20'
+                    : 'bg-slate-50 text-slate-600 hover:bg-blue-50 hover:text-brand'}`;
+
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    // 确认选择：更新日历并关闭
+                    currentYear = pickerYear;
+                    currentMonth = index;
+                    renderCalendar(currentYear, currentMonth);
+                    closeDatePicker();
+                };
+                pickerContent.appendChild(btn);
+            });
+        }
+
+        function renderYearView() {
+            pickerContent.className = "grid grid-cols-4 gap-2 p-1 max-h-[240px] overflow-y-auto custom-scrollbar";
+            // 年份范围：2025 - 2049
+            const startYear = 2025;
+            const endYear = 2049;
+
+            for (let y = startYear; y <= endYear; y++) {
+                const btn = document.createElement('button');
+                btn.textContent = y;
+                const isSelected = (y === pickerYear);
+
+                btn.className = `text-sm py-2 rounded-lg transition-all font-medium ${isSelected
+                    ? 'bg-brand text-white shadow-md shadow-blue-500/20'
+                    : 'bg-white text-slate-600 hover:bg-slate-50 hover:text-brand border border-slate-100'}`;
+
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    pickerYear = y;
+                    // 选择年份后，自动切回月份视图
+                    switchView('month');
+                };
+                pickerContent.appendChild(btn);
+            }
+
+            // 自动滚动到选中年份
+            setTimeout(() => {
+                const selectedBtn = Array.from(pickerContent.children).find(b => b.textContent == pickerYear);
+                if (selectedBtn) {
+                    selectedBtn.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                }
+            }, 10);
+        }
+
+        // 绑定昨日日报按钮
+        if (latestReportBtn) {
+            const yesterday = new Date(today);
+            yesterday.setDate(today.getDate() - 1);
+
+            const y = yesterday.getFullYear();
+            const m = String(yesterday.getMonth() + 1).padStart(2, '0');
+            const d = String(yesterday.getDate()).padStart(2, '0');
+            const dateStr = `${y}-${m}-${d}`;
+            // 同样修改为绝对路径
+            latestReportBtn.href = `https://www.xinjianhub.cn/%E6%96%B0%E8%8C%A7%E7%BE%A4%E6%97%A5%E6%8A%A5_${dateStr}.html`;
+        }
+    });
+</script>
+</body>
+
+</html>
