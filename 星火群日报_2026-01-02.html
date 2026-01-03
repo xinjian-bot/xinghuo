@@ -1282,6 +1282,10 @@
                 { id: 'section-daily-picks', icon: 'fa-gem' }
             ];
 
+            // 中文数字转换
+            const chineseNumbers = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+            let sectionCounter = 0;
+
             configs.forEach(config => {
                 const section = document.getElementById(config.id);
                 if (!section) return;
@@ -1289,13 +1293,18 @@
                 const titleEl = section.querySelector('.section-title');
                 const title = titleEl ? titleEl.textContent.trim() : config.id;
 
+                // 递增计数器并添加中文序号
+                const chineseNumber = chineseNumbers[sectionCounter];
+                const titleWithNumber = `${chineseNumber}、 ${title}`;
+                sectionCounter++;
+
                 const itemWrapper = document.createElement('div');
                 itemWrapper.className = 'directory-item';
 
                 const entryBtn = document.createElement('button');
                 entryBtn.className = 'directory-entry';
                 entryBtn.setAttribute('data-target', config.id);
-                entryBtn.innerHTML = `<span class="directory-icon"><i class="fas ${config.icon}"></i></span><span>${title}</span>`;
+                entryBtn.innerHTML = `<span class="directory-icon"><i class="fas ${config.icon}"></i></span><span>${titleWithNumber}</span>`;
                 itemWrapper.appendChild(entryBtn);
 
                 const subHeadings = section.querySelectorAll('.bento-card h4');
