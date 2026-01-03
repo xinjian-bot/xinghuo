@@ -1127,17 +1127,17 @@
 
             prevBtns.forEach(btn => {
                 btn.disabled = !prevExists;
-                if (prevExists) btn.onclick = () => window.location.href = `星火日报_${prevDateStr}.html`;
+                if (prevExists) btn.onclick = () => window.location.href = `星火群日报_${prevDateStr}.html`;
             });
             nextBtns.forEach(btn => {
                 btn.disabled = !nextExists;
-                if (nextExists) btn.onclick = () => window.location.href = `星火日报_${nextDateStr}.html`;
+                if (nextExists) btn.onclick = () => window.location.href = `星火群日报_${nextDateStr}.html`;
             });
         }
 
         async function checkReportExists(date) {
             try {
-                const res = await fetch(`星火日报_${date}.html`, { method: 'HEAD' });
+                const res = await fetch(`星火群日报_${date}.html`, { method: 'HEAD' });
                 return res.ok;
             } catch { return false; }
         }
