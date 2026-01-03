@@ -533,11 +533,8 @@
             // 确定日期范围
             let dayStart, dayEnd;
 
-            if (year == START_YEAR && month == START_MONTH_FOR_START_YEAR) {
-                dayStart = START_DAY_FOR_START_YEAR;
-            } else {
-                dayStart = 1;
-            }
+            // 始终从每月1号开始检查，支持查询任何历史日报
+            dayStart = 1;
 
             if (year == today.year && month == today.month) {
                 dayEnd = today.day;
@@ -580,7 +577,7 @@
                     displayText: `星火群日报 ${year}年${month}月${day}日`,
                     weekday: getWeekdayName(year, month, day),
                     date_display_full: `${year}年${month}月${day}日${getWeekdayName(year, month, day)}`,
-                    issueNumber: calculateIssueNumber(year, month, day)
+                    issueNumber: 0 // 后续动态计算
                 });
 
                 checkTasks.push(checkLinkExists(url));
@@ -598,7 +595,19 @@
                     }
                 }
 
-                // 按日期倒序排列（最新的在上面）
+                // 按日期正序排列，然后分配期数
+                existingReports.sort((a, b) => {
+                    const dateA = new Date(a.year, a.month - 1, a.day);
+                    const dateB = new Date(b.year, b.month - 1, b.day);
+                    return dateA - dateB;
+                });
+
+                // 按顺序分配期数（第1份日报=第1期）
+                existingReports.forEach((report, index) => {
+                    report.issueNumber = index + 1;
+                });
+
+                // 再按日期倒序排列用于显示（最新的在上面）
                 existingReports.sort((a, b) => b.day - a.day);
 
                 // 显示结果
