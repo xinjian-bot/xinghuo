@@ -425,36 +425,19 @@
             monthSelector.innerHTML = '';
             monthSelector.disabled = false;
 
-            let startMonth, endMonth;
+            let startMonth = 1; // 始终从1月开始
+            let endMonth;
 
-            if (selectedYear == START_YEAR) {
-                startMonth = START_MONTH_FOR_START_YEAR;
-                // 如果当前就是起始年，且系统时间也在这一年，则截止到当前月
-                // 如果系统时间比起始年还早（理论上不应发生，除非穿越），则显示到12月（测试用）
-                if (selectedYear == currentSystemYear) {
-                    endMonth = currentSystemMonth;
-                } else if (selectedYear > currentSystemYear) {
-                    // 选了未来年份？实际上不会进入这里，因为yearSelector控制了
-                    endMonth = 12;
-                } else {
-                    // 选了过去年份（但START_YEAR已经是2026了，所以这里是处理未来的历史数据）
-                    endMonth = 12;
-                }
-            } else if (selectedYear > START_YEAR && selectedYear < currentSystemYear) {
-                startMonth = 1;
-                endMonth = 12;
-            } else if (selectedYear == currentSystemYear && selectedYear > START_YEAR) {
-                startMonth = 1;
+            if (selectedYear == currentSystemYear) {
+                // 当前年份：显示到当前月
                 endMonth = currentSystemMonth;
+            } else if (selectedYear < currentSystemYear) {
+                // 过去年份：显示全年
+                endMonth = 12;
             } else {
-                // Fallback
-                startMonth = 1;
+                // 未来年份（理论上不会进入）
                 endMonth = 12;
             }
-
-            // 修正：如果计算出的结束月份小于开始月份（例如现在是2026年1月2日，但起始是1月8日，或者当前月份小于起始月份），
-            // 依然至少显示起始月份，方便用户查看（虽然可能没数据）
-            if (endMonth < startMonth) endMonth = startMonth;
 
             for (let month = startMonth; month <= endMonth; month++) {
                 const option = document.createElement('option');
