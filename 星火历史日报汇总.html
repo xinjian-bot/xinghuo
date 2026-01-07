@@ -242,7 +242,7 @@
                         </div>
                         <div class="flex items-center text-gray-700">
                             <i class="fas fa-calendar-alt mr-2 text-theme-red"></i>
-                            <span>2026年1月8日起</span>
+                            <span>2026年1月1日起</span>
                         </div>
                     </div>
                 </div>
@@ -388,15 +388,15 @@
             return weekdays[date.getDay()];
         }
 
-        // 计算期数的函数（从2026年1月8日开始计数）
+        // 计算期数的函数（从2026年1月1日开始计数，支持跨月份累计）
         function calculateIssueNumber(year, month, day) {
-            // 修改点：起始日期改为 2026年1月8日
-            const startDate = new Date(2026, 1 - 1, 8); // 2026年1月8日为第1期
+            // 起始日期：2026年1月1日为第1期
+            const startDate = new Date(2026, 0, 1); // 注意：月份从0开始，0=1月
             const targetDate = new Date(year, month - 1, day);
 
             // 计算日期差值（毫秒）然后转换为天数
-            const diffTime = Math.abs(targetDate - startDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const diffTime = targetDate - startDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
             return diffDays + 1; // +1 因为起始日为第1期
         }
@@ -583,9 +583,9 @@
                     return dateA - dateB;
                 });
 
-                // 按顺序分配期数（第1份日报=第1期）
-                existingReports.forEach((report, index) => {
-                    report.issueNumber = index + 1;
+                // 使用 calculateIssueNumber 计算跨月份累计期数
+                existingReports.forEach((report) => {
+                    report.issueNumber = calculateIssueNumber(report.year, report.month, report.day);
                 });
 
                 // 再按日期倒序排列用于显示（最新的在上面）
