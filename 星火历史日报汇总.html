@@ -4,693 +4,724 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>星火历史日报汇总</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C9T7FPDT2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-6C9T7FPDT2');
-    </script>
+    <title>星火 - 星星之火，可以燎原</title>
+    <meta name="description" content="星火社群，聚星火重燃，再向燎原之时。">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        /* 引入字体：Inter(西文), Noto Sans SC(正文), LXGW WenKai(装饰) - 均免费商用 */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        @import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css');
 
         * {
-            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+        }
+
+        .font-serif-cn {
+            font-family: 'LXGW WenKai', 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
         }
 
         body {
-            background-color: #ffffff;
-            color: #000000;
+            background-color: #fff1f2;
+            /* 极淡的红色背景 */
+            color: #1f2937;
+            scroll-behavior: smooth;
+        }
+
+        /* 主题色定义：#ef4444 (Tailwind red-500) */
+        .text-brand {
+            color: #ef4444;
+        }
+
+        .bg-brand {
+            background-color: #ef4444;
+        }
+
+        .border-brand {
+            border-color: #ef4444;
+        }
+
+        .hover-text-brand:hover {
+            color: #ef4444;
         }
 
         .bento-card {
             background-color: #ffffff;
-            border: 1px solid #e9e9eb;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #ffe4e6;
+            /* red-100 */
+            border-radius: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.05), 0 2px 4px -1px rgba(239, 68, 68, 0.05);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
         }
 
         .bento-card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(239, 68, 68, 0.15);
+            border-color: #fecaca;
+            /* red-200 */
         }
 
-        .section-title {
-            font-weight: 800;
-            font-size: 2.25rem;
-            color: #000000;
-            margin-bottom: 2rem;
+        /* 日历样式 */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.35rem;
         }
 
-        .daily-report-item {
-            background-color: #ffffff;
-            border: 1px solid #e9e9eb;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            margin-bottom: 1rem;
-        }
-
-        .daily-report-item:hover {
-            box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.08), 0 3px 6px -3px rgba(0, 0, 0, 0.06);
-            transform: translateY(-2px);
-            border-color: #ef4444;
-            /* 红色主题色，对应星火 */
-        }
-
-        .report-container {
-            background-color: #ffffff;
-            border: 1px solid #e9e9eb;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            padding-right: 7.5rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        /* 移动端优化 */
-        @media (max-width: 640px) {
-            .report-container {
-                padding-right: 9rem;
-            }
-        }
-
-        .report-container:hover {
-            box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.08), 0 3px 6px -3px rgba(0, 0, 0, 0.06);
-            transform: translateY(-2px);
-            border-color: #ef4444;
-            /* 红色主题色 */
-        }
-
-        .report-title-link {
-            color: #ef4444;
-            /* 红色主题色 */
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.125rem;
-            transition: color 0.2s ease;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .report-title-link:hover {
-            color: #b91c1c;
-            text-decoration: underline;
-        }
-
-        .report-date-info {
-            color: #6b7280;
-            font-size: 0.875rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
+        .calendar-day {
+            aspect-ratio: 1;
             display: flex;
             align-items: center;
-        }
-
-        .report-date-info i {
-            margin-right: 0.5rem;
-            color: #ef4444;
-            /* 红色主题色 */
-        }
-
-        .view-details-btn {
-            background-color: #fef2f2;
-            /* 红色背景淡色 */
-            color: #b91c1c;
-            /* 红色深色文字 */
-            border: 1px solid #fecaca;
+            justify-content: center;
             border-radius: 0.5rem;
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
             font-weight: 500;
-            display: inline-flex;
-            align-items: center;
+            font-size: 0.85rem;
+            cursor: pointer;
             transition: all 0.2s ease;
-            text-decoration: none;
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
+            color: #4b5563;
+            background-color: #fff9fa;
         }
 
-        .view-details-btn:hover {
-            background-color: #fee2e2;
-            color: #991b1b;
-            border-color: #fca5a5;
-        }
-
-        .view-details-btn i {
-            margin-right: 0.5rem;
-            color: #b91c1c;
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #ef4444;
-            /* 红色主题色 */
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .error-message {
-            display: none;
-            color: #dc2626;
-            background-color: #fef2f2;
-            border: 1px solid #fecaca;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-
-        .error-message.active {
-            display: block;
-        }
-
-        select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 0.5rem center;
-            background-repeat: no-repeat;
-            background-size: 1.5em 1.5em;
-            padding-right: 2.5rem;
-        }
-
-        /* 下拉选择器选中时的样式 */
-        select:focus {
-            outline: none;
-            border-color: #ef4444;
-            /* 红色主题色 */
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-        }
-
-        /* 下拉选项样式 */
-        select option {
-            background-color: white;
-            color: black;
-        }
-
-        select option:checked {
+        /* 可点击状态样式 */
+        .calendar-day:hover:not(.empty):not(.disabled) {
             background-color: #ef4444;
-            /* 红色主题色 */
             color: white;
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
         }
 
-        /* 针对星火主题的额外文字颜色类 */
-        .text-theme-red {
+        .calendar-day.today {
+            border: 2px solid #ef4444;
             color: #ef4444;
+            font-weight: 700;
+            background-color: #fef2f2;
+            /* red-50 */
+        }
+
+        /* 不可点击状态 */
+        .calendar-day.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background-color: transparent;
+        }
+
+        .calendar-day.empty {
+            background-color: transparent;
+            cursor: default;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+        }
+
+        /* 装饰性引用符号 */
+        .quote-icon {
+            position: absolute;
+            color: rgba(239, 68, 68, 0.06);
+            font-size: 8rem;
+            line-height: 1;
+            z-index: 0;
+            font-family: serif;
+            user-select: none;
+            right: 1rem;
+            top: 1rem;
+        }
+
+        /* 按钮动效 */
+        .btn-brand {
+            background-color: #ef4444;
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn-brand:hover {
+            background-color: #dc2626;
+            /* red-600 */
+            transform: translateY(-1px);
+            box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
         }
     </style>
 </head>
 
-<body class="bg-white text-black min-h-screen">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+<body class="min-h-screen flex flex-col">
 
-        <!-- 页面头部 -->
-        <header class="w-full mb-8">
-            <div class="bento-card p-8">
-                <div class="text-center">
-                    <h1 class="text-5xl font-black text-black mb-6">
-                        星火历史日报汇总
-                    </h1>
+    <!-- 顶部导航 -->
+    <nav class="w-full py-5 px-4 sm:px-8 max-w-7xl mx-auto flex justify-between items-center z-50 relative">
+        <div class="flex items-center gap-3">
+            <!-- 火苗图标 -->
+            <div
+                class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center shadow-lg shadow-red-500/20 text-brand">
+                <i class="fas fa-fire text-xl"></i>
+            </div>
+            <!-- 修改1：名称改为“星火” -->
+            <span class="text-2xl font-black tracking-tight text-slate-800">星火</span>
+        </div>
+        <!-- 右侧预留，保持简洁 -->
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-10">
+
+        <!-- 第一部分：Hero + 日历 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+
+            <!-- 左侧：Slogan (占 7 列) -->
+            <div class="lg:col-span-7 flex flex-col h-full">
+                <div class="bento-card p-8 sm:p-10 hero-gradient flex-grow flex flex-col justify-center relative">
+                    <!-- 背景装饰：红色光晕 -->
                     <div
-                        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg">
-                        <div class="flex items-center text-gray-700">
-                            <i class="fas fa-history mr-2 text-theme-red"></i>
-                            <span>历史日报检索</span>
-                        </div>
-                        <div class="flex items-center text-gray-700">
-                            <i class="fas fa-calendar-alt mr-2 text-theme-red"></i>
-                            <span>2026年1月1日起</span>
-                        </div>
+                        class="absolute top-0 right-0 w-64 h-64 bg-red-100 rounded-full blur-3xl opacity-40 -translate-y-1/2 translate-x-1/3">
+                    </div>
+
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-brand text-xs font-bold w-fit mb-6 relative z-10 border border-red-100">
+                        <span class="relative flex h-2 w-2">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                        </span>
+                        星火重燃 · 每日更新
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl font-black text-slate-900 leading-[1.2] mb-6 relative z-10">
+                        一点微光映寒夜<br>
+                        <span class="text-brand">再向燎原之时</span>
+                    </h1>
+                    <p class="text-slate-700 text-lg leading-relaxed mb-8 max-w-xl relative z-10 font-serif-cn">
+                        教员说：星星之火，可以燎原。<br>
+                        纵使前火暂熄，此星再聚仍向燎原，<br>
+                        此刻虽是微薄之力，其势亦将蓬勃生长。
+                    </p>
+                    <div class="flex flex-wrap gap-4 relative z-10">
+                        <a href="#" id="latest-report-btn"
+                            class="px-8 py-3.5 rounded-xl btn-brand font-bold shadow-lg flex items-center gap-2">
+                            <i class="fas fa-book-open"></i> 阅读昨日日报
+                        </a>
+                        <!-- 修改2：直接跳转WPS链接 -->
+                        <a href="https://kdocs.cn/join/gkma9uv" target="_blank"
+                            class="px-8 py-3.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200 hover:bg-red-50 hover:border-red-200 hover:text-brand transition-all flex items-center gap-2">
+                            <i class="fas fa-folder-open text-brand"></i> 进入资料库
+                        </a>
                     </div>
                 </div>
             </div>
-        </header>
 
-        <!-- 日期选择区域 -->
-        <section class="date-selector-card w-full mb-8">
-            <div class="bento-card p-6">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label for="yearSelector" class="block text-sm font-semibold text-gray-800 mb-2">
-                            <i class="fas fa-calendar mr-2 text-theme-red"></i>
-                            选择年份
-                        </label>
-                        <select id="yearSelector"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors">
-                            <option value="">请选择年份</option>
-                        </select>
+            <!-- 右侧：交互式日历 (占 5 列) -->
+            <div class="lg:col-span-5 h-full">
+                <div class="bento-card p-6 h-full flex flex-col bg-white">
+                    <div class="flex justify-between items-center mb-5">
+                        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                            <i class="far fa-calendar-alt text-brand"></i> 日报时光机
+                        </h2>
+                        <div
+                            class="relative flex items-center gap-1 bg-slate-50 rounded-lg p-1 border border-slate-100">
+                            <button id="prevMonth"
+                                class="w-7 h-7 flex items-center justify-center rounded hover:bg-white hover:shadow-sm text-slate-500 transition-all">
+                                <i class="fas fa-chevron-left text-xs"></i>
+                            </button>
+                            <span id="currentDateDisplay"
+                                class="text-xs font-bold text-slate-700 w-20 text-center font-mono pt-0.5 cursor-pointer hover:text-brand hover:bg-white rounded transition-colors select-none"></span>
+                            <button id="nextMonth"
+                                class="w-7 h-7 flex items-center justify-center rounded hover:bg-white hover:shadow-sm text-slate-500 transition-all">
+                                <i class="fas fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div>
-                        <label for="monthSelector" class="block text-sm font-semibold text-gray-800 mb-2">
-                            <i class="fas fa-calendar-days mr-2 text-theme-red"></i>
-                            选择月份
-                        </label>
-                        <select id="monthSelector"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
-                            disabled>
-                            <option value="">请先选择年份</option>
-                        </select>
+
+                    <!-- 星期头 -->
+                    <div class="grid grid-cols-7 gap-1 mb-2 text-center">
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Sun</div>
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Mon</div>
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Tue</div>
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Wed</div>
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Thu</div>
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Fri</div>
+                        <div class="text-[10px] font-bold text-slate-300 uppercase">Sat</div>
+                    </div>
+
+                    <!-- 日历格子容器 -->
+                    <div id="calendar-days" class="calendar-grid flex-grow content-start">
+                        <!-- JS 自动填充 -->
+                    </div>
+
+                    <div class="mt-4 pt-4 border-t border-slate-100 text-right">
+                        <a href="https://xh.xinjianhub.cn/%E6%98%9F%E7%81%AB%E5%8E%86%E5%8F%B2%E6%97%A5%E6%8A%A5%E6%B1%87%E6%80%BB.html"
+                            target="_blank"
+                            class="text-xs text-slate-400 hover:text-brand transition-colors font-medium">
+                            查看历史日报汇总 <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- 错误提示区域 -->
-        <div id="error-message" class="error-message">
-            <div class="flex items-center">
-                <i class="fas fa-exclamation-triangle mr-2"></i>
-                <span id="error-text">加载数据时出现错误，请稍后重试。</span>
             </div>
         </div>
 
-        <!-- 日报链接展示区域 -->
-        <section class="report-list-card w-full mb-12">
-            <div class="bento-card p-6">
-                <div id="reports-header" class="mb-6" style="display: none;">
-                    <h2 class="section-title">
-                        <span id="selected-period">所选时期</span> 的日报
-                    </h2>
-                    <div class="flex items-center text-gray-600 mb-4">
-                        <i class="fas fa-file-alt mr-2 text-theme-red"></i>
-                        <span>共找到 <span id="reports-count" class="font-semibold text-theme-red">0</span> 份日报</span>
+        <!-- 第二部分：星火理念 (三列布局) -->
+        <div class="space-y-6">
+            <h2 class="text-2xl font-black text-slate-900 flex items-center gap-3">
+                <span class="w-1.5 h-8 bg-brand rounded-full"></span>
+                星火燎原，何意？
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 卡片 1: 星 -->
+                <div class="bento-card p-8 relative overflow-hidden group">
+                    <div class="quote-icon">星</div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center mb-4 text-yellow-500">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">微光 · 指引</h3>
+                        <p class="text-slate-600 text-[15px] leading-7 font-serif-cn">
+                            星，本意是光芒。<br>
+                            夜空中的点点辉光，虽小，<br>
+                            却穿透亘古长夜，指引方向，<br>
+                            重育燎原之望。
+                        </p>
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                     </div>
                 </div>
 
-                <div id="reportLinksContainer" class="min-h-[200px]">
-                    <div class="text-center text-gray-500 py-8">
-                        <i class="fas fa-info-circle text-2xl mb-2"></i>
-                        <p>请选择年份和月份以查看日报</p>
+                <!-- 卡片 2: 火 -->
+                <div class="bento-card p-8 relative overflow-hidden group">
+                    <div class="quote-icon">火</div>
+                    <div class="relative z-10">
+                        <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center mb-4 text-brand">
+                            <i class="fas fa-fire-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">薪火 · 传承</h3>
+                        <p class="text-slate-600 text-[15px] leading-7 font-serif-cn">
+                            星火为种，今成燎原新焰。<br>
+                            先辈曾以星火燎原改变大地。<br>
+                            如今我们传递火种，回应时代之召。<br>
+                            相互砥砺，守护不灭的理想之火。
+                        </p>
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                     </div>
                 </div>
 
-                <!-- 空状态提示 -->
-                <div id="empty-state" class="text-center py-12" style="display: none;">
-                    <div class="bento-card p-8">
-                        <i class="fas fa-calendar-times text-gray-400 text-4xl mb-4"></i>
-                        <h3 class="text-xl font-semibold text-gray-700 mb-2">暂无日报数据</h3>
-                        <p class="text-gray-500">所选时间段内没有找到相关的日报记录</p>
+                <!-- 卡片 3: 燎原 -->
+                <div class="bento-card p-8 relative overflow-hidden group">
+                    <div class="quote-icon">原</div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center mb-4 text-orange-500">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">燎原 · 新生</h3>
+                        <p class="text-slate-600 text-[15px] leading-7 font-serif-cn">
+                            待到燎原，不仅驱散黑暗，<br>
+                            更要以光为刃，燃尽腐朽，锻造新生。<br>
+                            <span class="text-brand font-bold mt-2 block">最终相会于，<br>华夏腾飞世界时，共产赤旗插遍日。</span>
+                        </p>
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- 使用说明区域 -->
-        <section class="w-full mb-12">
-            <div class="bento-card p-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                    <i class="fas fa-info-circle mr-2 text-theme-red"></i>
-                    使用说明
-                </h3>
-                <div class="space-y-3 text-sm text-gray-700">
-                    <div class="flex items-start">
-                        <i class="fas fa-search mr-2 text-theme-red mt-0.5"></i>
-                        <span>使用上方的年份和月份选择器来筛选查看特定时期的日报</span>
+        <!-- 第三部分：资料库资源 -->
+        <div id="resources" class="space-y-6">
+            <h2 class="text-2xl font-black text-slate-900 flex items-center gap-3">
+                <span class="w-1.5 h-8 bg-brand rounded-full"></span>
+                星火基地
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 资源 1: WPS 资料库 -->
+                <div class="bento-card p-0 flex flex-col overflow-hidden group h-full">
+                    <div class="w-full h-40 bg-red-50 relative overflow-hidden flex items-center justify-center">
+                        <div
+                            class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-file-word text-4xl text-brand"></i>
+                        </div>
+                        <div
+                            class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-slate-700 shadow-sm">
+                            核心资产</div>
                     </div>
-                    <div class="flex items-start">
-                        <i class="fas fa-link mr-2 text-theme-red mt-0.5"></i>
-                        <span>点击日报标题即可跳转到对应的详细日报页面</span>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            星火资料库 (WPS)
+                        </h3>
+                        <p class="text-slate-500 text-sm mb-4 flex-grow leading-relaxed">
+                            这里是我们思想扎根的土壤。我们没有复杂的系统，但有一颗共同协作的心。<br>
+                            邀请你加入，一起整理、沉淀、分享有价值的文档。
+                        </p>
+                        <div class="mt-auto">
+                            <!-- 修改3：增加备注说明，按钮文案修改 -->
+                            <div class="bg-red-50 border border-red-100 rounded-lg p-2.5 mb-3">
+                                <p class="text-xs text-red-500 font-medium">
+                                    <i class="fas fa-info-circle mr-1"></i> 申请时请注明您在星火群的微信号/昵称
+                                </p>
+                            </div>
+                            <a href="https://kdocs.cn/join/gkma9uv" target="_blank"
+                                class="w-full py-3 rounded-xl btn-brand text-sm font-bold text-center block shadow-lg shadow-red-500/20">
+                                <i class="fas fa-external-link-alt mr-1"></i> 立即访问
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 资源 2: 历史日报汇总 -->
+                <div class="bento-card p-0 flex flex-col overflow-hidden group h-full">
+                    <!-- 修改4：视觉美化 (琥珀色主题)，文案修改，按钮修改 -->
+                    <div class="w-full h-40 bg-amber-50 relative overflow-hidden flex items-center justify-center">
+                        <div
+                            class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-history text-4xl text-amber-500"></i>
+                        </div>
+                        <div
+                            class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-slate-700 shadow-sm">
+                            历史归档</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            历史日报汇总
+                        </h3>
+                        <p class="text-slate-500 text-sm mb-4 flex-grow leading-relaxed">
+                            岁月流转，星火长存。每一份日报都是思想的沉淀，点击查看过往的智慧结晶，见证我们共同走过的路。
+                        </p>
+                        <div class="mt-auto">
+                            <!-- 为了布局对齐，增加一个空的占位高度，或者直接放按钮 -->
+                            <div class="h-[42px] mb-3"></div> <!-- 简单的占位以保持按钮对齐 -->
+                            <a href="https://xh.xinjianhub.cn/%E6%98%9F%E7%81%AB%E5%8E%86%E5%8F%B2%E6%97%A5%E6%8A%A5%E6%B1%87%E6%80%BB.html"
+                                target="_blank"
+                                class="w-full py-3 rounded-xl bg-white border border-slate-200 text-slate-700 hover:border-amber-400 hover:text-amber-600 text-sm font-bold text-center block transition-all">
+                                立即查看
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 资源 3: 聊天记录归档（篝火·丰镐） -->
+                <div class="bento-card p-0 flex flex-col overflow-hidden group h-full">
+                    <div class="w-full h-40 bg-orange-50 relative overflow-hidden flex items-center justify-center">
+                        <div
+                            class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-fire text-4xl text-orange-500"></i>
+                        </div>
+                        <div
+                            class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-slate-700 shadow-sm">
+                            聊天归档</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            <i class="fas fa-comments text-orange-500"></i> 篝火 · 丰镐
+                        </h3>
+                        <p class="text-slate-500 text-sm mb-4 flex-grow leading-relaxed">
+                            星火群聊天记录汇总。在这里检索和回顾群内曾经的精彩讨论与智慧碰撞。
+                        </p>
+                        <div class="mt-auto">
+                            <!-- 登录提示 -->
+                            <div class="mb-3 bg-orange-50 p-2 rounded border border-orange-100">
+                                <p class="text-[10px] text-slate-500 font-medium flex items-center">
+                                    <i class="fas fa-exclamation-circle text-orange-400 mr-1.5"></i> 登录提示：
+                                </p>
+                                <p class="text-xs text-slate-600 font-bold pl-4 mt-0.5">
+                                    篝火账号与「丰镐」通用
+                                </p>
+                            </div>
+                            <div class="flex gap-2">
+                                <a href="https://bbs.lavayou.cn/t/topic/859" target="_blank"
+                                    class="flex-1 py-2.5 rounded-lg btn-brand text-sm font-bold text-center block shadow-md shadow-red-500/20">
+                                    查看记录
+                                </a>
+                                <a href="https://i.lavayou.cn" target="_blank"
+                                    class="flex-1 py-2.5 rounded-lg bg-white border border-slate-200 text-slate-600 text-sm font-bold text-center block hover:border-brand hover:text-brand transition-all">
+                                    注册丰镐
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+
+    </main>
+
+    <!-- 底部 -->
+    <footer class="w-full py-10 border-t border-red-100 bg-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex justify-center items-center gap-2 mb-4">
+                <i class="fas fa-fire text-brand"></i>
+                <span class="font-bold text-slate-700">星火</span>
+            </div>
+            <p class="text-slate-400 text-xs mb-4">聚微芒 · 传火种 · 向燎原</p>
+
+            <!-- 备案信息区域 -->
+            <div id="compliance-footer">
+                <div style="text-align:center; font-size:14px; color:#888; padding:5px 0;">
+                    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#888; text-decoration:none;">
+                        赣ICP备2024051762号-2
+                    </a>
+                </div>
+                <div style="text-align:center; font-size:14px; color:#888; padding:10px 0;">
+                    <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36060202000451" rel="noreferrer"
+                        target="_blank"
+                        style="color:#888; text-decoration:none; display:inline-flex; align-items:center; gap:5px;">
+                        <img src="beian.png" alt="公安备案" style="width:20px; height:20px;">
+                        <span>赣公网安备36060202000451号</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 全局日期选择器 (Fixed定位) -->
+    <div id="date-picker-popup"
+        class="hidden fixed bg-white rounded-2xl shadow-2xl border border-slate-100 p-4 z-[100] w-[280px] animate-in fade-in zoom-in-95 duration-200">
+        <div class="flex justify-between items-center mb-3 px-1">
+            <button id="picker-header-btn"
+                class="text-lg font-black text-slate-800 hover:text-brand transition-colors flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-slate-50">
+                <!-- JS 填充 -->
+            </button>
+            <div class="text-xs text-slate-400 font-medium">跳转至</div>
+        </div>
+        <div id="picker-content">
+            <!-- JS 填充 -->
+        </div>
     </div>
 
-    <script>
-        // 常量定义
-        // 修改点：前缀改为星火群日报
-        const REPORT_FILENAME_PREFIX = "星火群日报_";
-        const REPORT_FILENAME_SUFFIX = ".html";
+</body>
 
-        // 起始年份（年份选择器从此年开始）
-        const START_YEAR = 2026;
+<!-- JavaScript 逻辑 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const calendarDays = document.getElementById('calendar-days');
+        const currentDateDisplay = document.getElementById('currentDateDisplay');
+        const prevMonthBtn = document.getElementById('prevMonth');
+        const nextMonthBtn = document.getElementById('nextMonth');
+        const latestReportBtn = document.getElementById('latest-report-btn');
 
-        // 全局变量
-        let yearSelector, monthSelector, reportLinksContainer;
+        // 设置起始日期
+        const startDate = new Date(2024, 0, 1);
 
-        // DOM 元素初始化
-        document.addEventListener('DOMContentLoaded', function () {
-            yearSelector = document.getElementById('yearSelector');
-            monthSelector = document.getElementById('monthSelector');
-            reportLinksContainer = document.getElementById('reportLinksContainer');
+        // 默认显示当前日期
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        startDate.setHours(0, 0, 0, 0);
 
-            // 获取当前日期并初始化页面
-            const today = getToday();
-            populateYearSelector(today.year);
+        let currentYear = today.getFullYear();
+        let currentMonth = today.getMonth();
 
-            // 事件监听器
-            yearSelector.addEventListener('change', handleYearChange);
-            monthSelector.addEventListener('change', handleMonthChange);
-        });
-
-        // 辅助函数：获取今天的日期
-        function getToday() {
-            const now = new Date();
-            return {
-                year: now.getFullYear(),
-                month: now.getMonth() + 1, // 1-indexed
-                day: now.getDate()
-            };
+        // 辅助函数：生成日报链接
+        function generateReportLink(dateObj) {
+            const y = dateObj.getFullYear();
+            const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const d = String(dateObj.getDate()).padStart(2, '0');
+            const dateStr = `${y}-${m}-${d}`;
+            return `https://xh.xinjianhub.cn/%E6%98%9F%E7%81%AB%E7%BE%A4%E6%97%A5%E6%8A%A5_${dateStr}.html`;
         }
 
-        // 辅助函数：获取指定年月的天数
-        function daysInMonth(year, month) {
-            return new Date(year, month, 0).getDate();
-        }
-
-        // 辅助函数：获取星期几的中文名称
-        function getWeekdayName(year, month, day) {
-            const date = new Date(year, month - 1, day);
-            // month is 0-indexed in Date constructor
-            const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-            return weekdays[date.getDay()];
-        }
-
-        // 计算期数的函数（从2026年1月8日开始计数）
-        function calculateIssueNumber(year, month, day) {
-            // 修改点：起始日期改为 2026年1月8日
-            const startDate = new Date(2026, 1 - 1, 8); // 2026年1月8日为第1期
-            const targetDate = new Date(year, month - 1, day);
-
-            // 计算日期差值（毫秒）然后转换为天数
-            const diffTime = Math.abs(targetDate - startDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-            return diffDays + 1; // +1 因为起始日为第1期
-        }
-
-        // 填充年份选择器
-        function populateYearSelector(currentSystemYear) {
-            yearSelector.innerHTML = ''; // 移除默认的"请选择年份"选项
-
-            // 如果系统时间还没到2026，至少显示起始年份
-            const endYear = Math.max(START_YEAR, currentSystemYear);
-
-            for (let year = START_YEAR; year <= endYear; year++) {
-                const option = document.createElement('option');
-                option.value = year;
-                option.textContent = year + '年';
-                yearSelector.appendChild(option);
-            }
-
-            // 默认选中当前年份（如果是未来年份则选起始年份）
-            yearSelector.value = (currentSystemYear >= START_YEAR) ? currentSystemYear : START_YEAR;
-            populateMonthSelector(parseInt(yearSelector.value), currentSystemYear, getToday().month);
-        }
-
-        // 填充月份选择器
-        function populateMonthSelector(selectedYear, currentSystemYear, currentSystemMonth) {
-            monthSelector.innerHTML = '';
-            monthSelector.disabled = false;
-
-            let startMonth = 1; // 始终从1月开始
-            let endMonth;
-
-            if (selectedYear == currentSystemYear) {
-                // 当前年份：显示到当前月
-                endMonth = currentSystemMonth;
-            } else if (selectedYear < currentSystemYear) {
-                // 过去年份：显示全年
-                endMonth = 12;
-            } else {
-                // 未来年份（理论上不会进入）
-                endMonth = 12;
-            }
-
-            for (let month = startMonth; month <= endMonth; month++) {
-                const option = document.createElement('option');
-                option.value = month;
-                option.textContent = month + '月';
-                monthSelector.appendChild(option);
-            }
-
-            // 默认选中适当的月份
-            if (selectedYear == currentSystemYear) {
-                // 如果当前月份在列表里，选当前月，否则选最后一个
-                if (currentSystemMonth >= startMonth) {
-                    monthSelector.value = currentSystemMonth;
-                } else {
-                    monthSelector.value = endMonth;
-                }
-            } else {
-                monthSelector.value = endMonth;
-            }
-
-            // 加载对应的日报
-            if (monthSelector.value) {
-                fetchAndDisplayReports(selectedYear, parseInt(monthSelector.value));
-            }
-        }
-
-        // 年份选择变化处理
-        function handleYearChange() {
-            const selectedYear = parseInt(yearSelector.value);
-            if (selectedYear) {
-                const today = getToday();
-                populateMonthSelector(selectedYear, today.year, today.month);
-            } else {
-                monthSelector.innerHTML = '<option value="">请先选择年份</option>';
-                monthSelector.disabled = true;
-                showDefaultMessage();
-            }
-        }
-
-        // 月份选择变化处理
-        function handleMonthChange() {
-            const selectedYear = parseInt(yearSelector.value);
-            const selectedMonth = parseInt(monthSelector.value);
-
-            if (selectedYear && selectedMonth) {
-                fetchAndDisplayReports(selectedYear, selectedMonth);
-            }
-        }
-
-        // 检查链接是否存在
-        async function checkLinkExists(url) {
+        // 辅助函数：检测 URL 是否有效 (简单HEAD请求)
+        async function checkUrlAvailability(url) {
             try {
+                // 必须支持 CORS 或者同域，否则 fetch 可能会报错或 opaque
                 const response = await fetch(url, { method: 'HEAD' });
-                return response.ok; // 状态码在 200-299 范围内
+                return response.ok;
             } catch (error) {
-                // 在跨域或其他网络错误情况下，可能无法准确判断，这里假设失败
-                // 注意：在本地打开html文件时，跨域限制可能导致无法检测同目录文件
                 return false;
             }
         }
 
-        // 获取并展示日报
-        async function fetchAndDisplayReports(year, month) {
-            // 清空容器并显示加载状态
-            reportLinksContainer.innerHTML = `
-                <div class="text-center text-gray-500 py-8">
-                    <div class="loading-spinner mx-auto mb-3"></div>
-                    <p>正在检查日报文件...</p>
-                </div>
-            `;
+        function renderCalendar(year, month) {
+            calendarDays.innerHTML = '';
+            currentDateDisplay.textContent = `${year}.${String(month + 1).padStart(2, '0')}`;
 
-            const today = getToday();
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-            // 确定日期范围
-            let dayStart, dayEnd;
-
-            // 始终从每月1号开始检查，支持查询任何历史日报
-            dayStart = 1;
-
-            if (year == today.year && month == today.month) {
-                dayEnd = today.day;
-            } else {
-                dayEnd = daysInMonth(year, month);
+            // 填充空白
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.classList.add('calendar-day', 'empty');
+                calendarDays.appendChild(emptyDiv);
             }
 
-            // 如果还没到起始日期，直接显示无数据
-            if (dayStart > dayEnd && year == today.year && month == today.month) {
-                // 隐藏报告头部信息
-                const reportsHeader = document.getElementById('reports-header');
-                if (reportsHeader) {
-                    reportsHeader.style.display = 'none';
-                }
-                reportLinksContainer.innerHTML = `
-                    <div class="text-center text-gray-500 py-8">
-                        <i class="fas fa-hourglass-start text-2xl mb-2"></i>
-                        <p>该月份日报尚未开始更新</p>
-                        <p class="text-sm mt-1">起始日期为 ${START_YEAR}年${START_MONTH_FOR_START_YEAR}月${START_DAY_FOR_START_YEAR}日</p>
-                    </div>
-                `;
-                return;
-            }
+            // 填充日期
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.classList.add('calendar-day');
+                dayDiv.textContent = day;
 
-            // 创建检查任务数组
-            const checkTasks = [];
-            const dateInfos = [];
+                const thisDate = new Date(year, month, day);
+                thisDate.setHours(0, 0, 0, 0);
 
-            for (let day = dayStart; day <= dayEnd; day++) {
-                const dateStr = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-                const url = `${REPORT_FILENAME_PREFIX}${dateStr}${REPORT_FILENAME_SUFFIX}`;
+                const isToday = thisDate.getTime() === today.getTime();
+                const isFuture = thisDate > today;
+                const isBeforeStart = thisDate < startDate;
 
-                dateInfos.push({
-                    date: dateStr,
-                    url: url,
-                    day: day,
-                    year: year,
-                    month: month,
-                    // 修改点：文案改为星火
-                    displayText: `星火群日报 ${year}年${month}月${day}日`,
-                    weekday: getWeekdayName(year, month, day),
-                    date_display_full: `${year}年${month}月${day}日${getWeekdayName(year, month, day)}`,
-                    issueNumber: 0 // 后续动态计算
-                });
+                const targetUrl = generateReportLink(thisDate);
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
-                checkTasks.push(checkLinkExists(url));
-            }
-
-            try {
-                // 并发检查所有链接
-                const results = await Promise.all(checkTasks);
-
-                // 收集存在的日报链接
-                const existingReports = [];
-                for (let i = 0; i < results.length; i++) {
-                    if (results[i]) {
-                        existingReports.push(dateInfos[i]);
-                    }
-                }
-
-                // 按日期正序排列，然后分配期数
-                existingReports.sort((a, b) => {
-                    const dateA = new Date(a.year, a.month - 1, a.day);
-                    const dateB = new Date(b.year, b.month - 1, b.day);
-                    return dateA - dateB;
-                });
-
-                // 按顺序分配期数（第1份日报=第1期）
-                existingReports.forEach((report, index) => {
-                    report.issueNumber = index + 1;
-                });
-
-                // 再按日期倒序排列用于显示（最新的在上面）
-                existingReports.sort((a, b) => b.day - a.day);
-
-                // 显示结果
-                if (existingReports.length > 0) {
-                    // 显示报告头部信息
-                    const reportsHeader = document.getElementById('reports-header');
-                    const selectedPeriod = document.getElementById('selected-period');
-                    const reportsCount = document.getElementById('reports-count');
-
-                    if (reportsHeader && selectedPeriod && reportsCount) {
-                        selectedPeriod.textContent = `${year}年${month}月`;
-                        reportsCount.textContent = existingReports.length;
-                        reportsHeader.style.display = 'block';
-                    }
-
-                    // 修改点：列表项文案改为星火
-                    reportLinksContainer.innerHTML = existingReports.map(report => `
-                        <div class="report-container">
-                            <a href="${report.url}" class="report-title-link" target="_blank">
-                                星火 ${report.year}.${report.month}.${report.day}
-                            </a>
-                            <div class="report-date-info">
-                                <i class="fas fa-calendar-day"></i>
-                                <span>${report.weekday} 第${report.issueNumber}期</span>
-                            </div>
-                            <a href="${report.url}" class="view-details-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                                <span>查看详情</span>
-                            </a>
-                        </div>
-                    `).join('');
+                if (isFuture || isBeforeStart) {
+                    // 未来或起始日期前：直接置灰
+                    dayDiv.classList.add('disabled');
+                    dayDiv.title = isFuture ? "未来可期" : "";
                 } else {
-                    // 隐藏报告头部信息
-                    const reportsHeader = document.getElementById('reports-header');
-                    if (reportsHeader) {
-                        reportsHeader.style.display = 'none';
-                    }
+                    // 历史日期 或 今天：默认先置灰（Loading状态），等待检测
+                    dayDiv.classList.add('disabled');
+                    dayDiv.title = "正在获取日报状态...";
 
-                    reportLinksContainer.innerHTML = `
-                        <div class="text-center text-gray-500 py-8">
-                            <i class="fas fa-calendar-times text-2xl mb-2"></i>
-                            <p>该月份暂无日报</p>
-                            <p class="text-sm mt-1">请选择其他月份或等待新日报上传</p>
-                        </div>
-                    `;
+                    // 异步检测链接
+                    checkUrlAvailability(targetUrl).then(isAvailable => {
+                        if (isAvailable) {
+                            // 存在：移除灰色，添加点击
+                            dayDiv.classList.remove('disabled');
+                            dayDiv.title = `阅读 ${dateStr} 星火日报`;
+                            dayDiv.onclick = () => window.location.href = targetUrl;
+
+                            // 如果是今天且存在，加高亮
+                            if (isToday) dayDiv.classList.add('today');
+
+                        } else {
+                            // 不存在
+                            if (isToday) {
+                                // 今天不存在：特殊提示
+                                dayDiv.classList.add('today'); // 保持今日边框
+                                dayDiv.classList.add('disabled'); // 保持灰色
+                                dayDiv.title = "今日日报将于次日更新";
+                            } else {
+                                // 历史不存在
+                                dayDiv.title = "该日暂无日报";
+                            }
+                        }
+                    });
                 }
-            } catch (error) {
-                console.error('检查日报链接时出错:', error);
 
-                // 隐藏报告头部信息
-                const reportsHeader = document.getElementById('reports-header');
-                if (reportsHeader) {
-                    reportsHeader.style.display = 'none';
-                }
+                // 初始渲染时如果是今天，加上边框样式（哪怕还没检测完）
+                if (isToday) dayDiv.classList.add('today');
 
-                reportLinksContainer.innerHTML = `
-                    <div class="text-center text-red-500 py-8">
-                        <i class="fas fa-exclamation-triangle text-2xl mb-2"></i>
-                        <p>加载日报列表时出现错误</p>
-                        <p class="text-sm mt-1">请稍后重试</p>
-                    </div>
-                `;
+                calendarDays.appendChild(dayDiv);
             }
         }
 
-        // 显示默认消息
-        function showDefaultMessage() {
-            const reportsHeader = document.getElementById('reports-header');
-            if (reportsHeader) {
-                reportsHeader.style.display = 'none';
-            }
+        renderCalendar(currentYear, currentMonth);
 
-            reportLinksContainer.innerHTML = `
-                <div class="text-center text-gray-500 py-8">
-                    <i class="fas fa-info-circle text-2xl mb-2"></i>
-                    <p>请选择年份和月份以查看日报</p>
-                </div>
-            `;
+        prevMonthBtn.addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+            renderCalendar(currentYear, currentMonth);
+        });
+
+        nextMonthBtn.addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+            renderCalendar(currentYear, currentMonth);
+        });
+
+        if (latestReportBtn) {
+            const yesterday = new Date(today);
+            yesterday.setDate(today.getDate() - 1);
+            latestReportBtn.href = generateReportLink(yesterday);
         }
 
-        // 页面加载完成后的初始化
-        window.addEventListener('load', function () {
-            // 如果有默认选中的年份和月份，自动加载日报
-            if (yearSelector.value && monthSelector.value) {
-                fetchAndDisplayReports(parseInt(yearSelector.value), parseInt(monthSelector.value));
+        const datePickerPopup = document.getElementById('date-picker-popup');
+        const pickerHeaderBtn = document.getElementById('picker-header-btn');
+        const pickerContent = document.getElementById('picker-content');
+        let pickerYear = currentYear;
+        let currentView = 'month';
+
+        currentDateDisplay.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (datePickerPopup.classList.contains('hidden')) openDatePicker();
+            else closeDatePicker();
+        });
+
+        pickerHeaderBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (currentView === 'month') switchView('year');
+            else switchView('month');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!datePickerPopup.contains(e.target) && e.target !== currentDateDisplay) {
+                closeDatePicker();
             }
         });
-    </script>
-    <div
-        style="text-align:center; font-size:14px; color:#888; padding:20px 0; margin-top:20px; border-top:1px solid #eee;">
-        <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#888; text-decoration:none;">
-            赣ICP备2024051762号-2
-        </a>
-    </div>
-    <div style="text-align:center; font-size:14px; color:#888; padding:10px 0;">
-        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36060202000451" rel="noreferrer" target="_blank"
-            style="color:#888; text-decoration:none; display:inline-flex; align-items:center; gap:5px;">
-            <img src="beian.png" alt="公安备案" style="width:20px; height:20px;">
-            <span>赣公网安备36060202000451号</span>
-        </a>
-    </div>
-</body>
+
+        function openDatePicker() {
+            pickerYear = currentYear;
+            currentView = 'month';
+            const rect = currentDateDisplay.getBoundingClientRect();
+            let left = rect.left + (rect.width / 2) - 140;
+            let top = rect.bottom + 8;
+            if (left < 10) left = 10;
+            if (left + 280 > window.innerWidth) left = window.innerWidth - 290;
+            datePickerPopup.style.left = `${left}px`;
+            datePickerPopup.style.top = `${top}px`;
+            updateHeader();
+            renderContent();
+            datePickerPopup.classList.remove('hidden');
+        }
+
+        function closeDatePicker() {
+            datePickerPopup.classList.add('hidden');
+        }
+
+        function switchView(view) {
+            currentView = view;
+            updateHeader();
+            renderContent();
+        }
+
+        function updateHeader() {
+            pickerHeaderBtn.textContent = `${pickerYear}年`;
+            if (currentView === 'year') pickerHeaderBtn.classList.add('text-brand');
+            else pickerHeaderBtn.classList.remove('text-brand');
+        }
+
+        function renderContent() {
+            pickerContent.innerHTML = '';
+            if (currentView === 'month') renderMonthView();
+            else renderYearView();
+        }
+
+        function renderMonthView() {
+            pickerContent.className = "grid grid-cols-4 gap-3 p-2";
+            const months = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
+            months.forEach((mStr, index) => {
+                const btn = document.createElement('button');
+                btn.textContent = mStr;
+                const isSelected = (index === currentMonth && pickerYear === currentYear);
+                btn.className = `text-sm py-3 rounded-lg transition-all font-medium ${isSelected ? 'bg-brand text-white shadow-md' : 'bg-slate-50 text-slate-600 hover:bg-red-50 hover:text-brand'}`;
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    currentYear = pickerYear;
+                    currentMonth = index;
+                    renderCalendar(currentYear, currentMonth);
+                    closeDatePicker();
+                };
+                pickerContent.appendChild(btn);
+            });
+        }
+
+        function renderYearView() {
+            pickerContent.className = "grid grid-cols-4 gap-2 p-1 max-h-[240px] overflow-y-auto custom-scrollbar";
+            // 修改年份范围：2025 - 2049
+            for (let y = 2025; y <= 2049; y++) {
+                const btn = document.createElement('button');
+                btn.textContent = y;
+                const isSelected = (y === pickerYear);
+                btn.className = `text-sm py-2 rounded-lg transition-all font-medium ${isSelected ? 'bg-brand text-white shadow-md' : 'bg-white text-slate-600 hover:bg-slate-50 hover:text-brand border border-slate-100'}`;
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    pickerYear = y;
+                    switchView('month');
+                };
+                pickerContent.appendChild(btn);
+            }
+        }
+    });
+</script>
 
 </html>
-
