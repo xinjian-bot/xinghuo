@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- AI填充指南：请将YYYY-MM-DD替换为日报对应的日期 -->
+    <title>星火日报 2026-01-09</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C9T7FPDT2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-6C9T7FPDT2');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            counter-reset: section-counter;
+        }
+
+        :root {
+            --directory-main-font-size: clamp(0.85rem, 0.9vw + 0.6rem, 0.95rem);
+            --directory-sub-font-size: clamp(0.78rem, 0.75vw + 0.5rem, 0.88rem);
+        }
+
+        .bento-card {
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .number-display {
+            font-weight: 900;
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-weight: 800;
+            font-size: 2.25rem;
+            color: #000000;
+            margin-bottom: 2rem;
+        }
+
+        .section-title::before {
+            counter-increment: section-counter;
+            content: counter(section-counter, cjk-ideographic) "、 ";
+        }
+
+        .tag-item {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px -3px rgba(239, 68, 68, 0.3);
+        }
+
+        .nav-button:disabled {
+            background: #e5e7eb;
+            color: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .history-link {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .history-link:hover {
+            background: rgba(239, 68, 68, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .expandable-content {
+            position: relative;
+        }
+
+        .content-preview.collapsed {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-preview.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(transparent, rgba(248, 250, 252, 0.9));
+            pointer-events: none;
+        }
+
+        .expand-btn {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .expand-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .expand-btn.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .anchor-target {
+            scroll-margin-top: 120px;
+        }
+
+        .floating-actions {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 50;
+        }
+
+        .floating-button {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            color: #ffffff;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px -5px rgba(239, 68, 68, 0.35);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .floating-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -6px rgba(239, 68, 68, 0.45);
+        }
+
+        .floating-button--hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            pointer-events: none;
+        }
+
+        .directory-wrapper {
+            position: relative;
+        }
+
+        .directory-panel {
+            position: absolute;
+            right: 0;
+            bottom: 3.5rem;
+            width: 18rem;
+            background: #ffffff;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -15px rgba(239, 68, 68, 0.35);
+            padding: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            max-height: min(75vh, 30rem);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        .directory-panel.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .directory-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .directory-title {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: var(--directory-main-font-size);
+        }
+
+        .directory-close {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 9999px;
+            transition: color 0.2s ease;
+        }
+
+        .directory-close:hover {
+            color: #ef4444;
+        }
+
+        .directory-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .directory-list button {
+            width: 100%;
+            text-align: left;
+            background: rgba(239, 68, 68, 0.08);
+            color: #1f2937;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.55rem 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: var(--directory-main-font-size);
+        }
+
+        .directory-list button:hover {
+            background: rgba(239, 68, 68, 0.18);
+            color: #b91c1c;
+        }
+
+        .directory-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .directory-sublist {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-left: 2.5rem;
+            padding-left: 0.75rem;
+            border-left: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .directory-subitem {
+            background: rgba(239, 68, 68, 0.04);
+            padding-top: 0.45rem;
+            padding-bottom: 0.45rem;
+            font-size: var(--directory-sub-font-size);
+        }
+
+        .directory-subitem:hover {
+            background: rgba(239, 68, 68, 0.14);
+        }
+
+        .directory-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 640px) {
+            .floating-actions {
+                right: 0.75rem;
+                bottom: 1rem;
+            }
+
+            .directory-panel {
+                width: min(80vw, 15rem);
+                bottom: 3.25rem;
+                max-height: min(70vh, 20rem);
+            }
+
+            :root {
+                --directory-main-font-size: 0.8rem;
+                --directory-sub-font-size: 0.72rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- === "星火日报" 文件头区域 开始 === -->
+        <header class="w-full mb-8">
+            <div class="bento-card p-8">
+                <div class="text-center">
+                    <h1 class="text-5xl font-black text-black mb-6">
+                        星火日报
+                    </h1>
+                    <div
+                        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg mb-4">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-calendar-alt mr-2 text-[#ef4444]"></i>
+                            <span id="report-date">2026年1月9日</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-clock mr-2 text-[#ef4444]"></i>
+                            <span>00:00 - 24:00</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <a id="history-link" href="#" class="history-link">
+                            <i class="fas fa-history"></i>
+                            星火历史日报汇总
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- === "星火日报" 文件头区域 结束 === -->
+
+        <nav class="w-full mb-8 daily-nav">
+            <div class="bento-card p-4">
+                <div class="flex justify-between items-center">
+                    <button type="button" class="nav-button day-nav-prev">
+                        <i class="fas fa-chevron-left"></i>
+                        上一天
+                    </button>
+                    <div class="text-center">
+                        <span class="text-sm text-gray-600">日报导航</span>
+                    </div>
+                    <button type="button" class="nav-button day-nav-next">
+                        下一天
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- === 模块一：总消息概览 开始 === -->
+        <section id="section-overview" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">总消息概览</h2>
+            <div
+                class="bento-card p-8 bg-gradient-to-br from-[#ef4444]/20 via-[#ef4444]/10 to-[#ef4444]/5 text-center rounded-2xl">
+                <div class="number-display text-[#ef4444]">
+                    1392
+                </div>
+                <p class="text-xl font-semibold text-black mt-3">总消息数量</p>
+            </div>
+        </section>
+        <!-- === 模块一：总消息概览 结束 === -->
+        <!-- HTML注释: 此模块作为单独一行，占据整行宽度。用于展示群内讨论的热点话题。 -->
+        <!-- HTML注释: 模块二内容结构说明: -->
+        <!-- 1. 话题: 作为卡片的主标题 -->
+        <!-- 2. 关键结论: 每个话题下可以包含多个关键结论 (模板结构示例展示支持最多3个关键结论，如需更多可复制结构)；关键结论应按照话题讨论的时间线来编写。 -->
+        <!-- 3. <b>金句时刻</b>: 每个关键结论下对应约3个<b>金句时刻</b>金句必须是让人获得“啊哈”或恍然大悟的发言。 -->
+        <!-- HTML注释: "爬楼关键词"说明: 每个话题卡片中包含爬楼关键词区域，话题讨论起始句，用于用户快速定位到群聊记录中的对应讨论位置。填写时需要包含相关用户的昵称，格式示例：[用户昵称]：[关键词内容]，但不要包含微信ID。为便于定位，请勿引用图片、视频、链接、语音等非文本消息作为起始句，应顺延至其后的第一条有效文本消息。 -->
+        <!-- === 模块二：火花碰撞时刻・热点话题 开始 === -->
+        <section id="section-hot-topics" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">火花碰撞时刻・热点话题</h2>
+            <div class="space-y-8">
+
+                <!-- 热点话题卡片 1 开始 -->
+                <div class="bento-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            “今年继续同舟共济” = “没有年终奖”？——群友共解职场“反话正说”密码
+                        </h4>
+                        <span class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            22:22 - 22:58
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                           AA昍：“反话正说，用产品来举一个例子的话，就是”
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">反话正说</span>
+                            <span class="tag-item">职场黑话</span>
+                            <span class="tag-item">公文语言</span>
+                            <span class="tag-item">弦外之音</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br>
+                                    在讨论如何向领导有效沟通时，<b>Suerte</b>同志提到自己因过于耿直而被领导评价为“抬杠”。由此，群内延伸出了一场关于如何解读职场与公文中“反话正说”的精彩讨论，旨在揭示语言背后的真实意图。<br><br>
+                                    <b>二、主要观点与讨论详情</b><br>
+                                    讨论从产品经理的工作场景切入，逐步扩展到企业管理和官方话术，群友们纷纷贡献了自己的“翻译”版本：<br><br>
+                                    <b>产品与客户领域：</b><br>
+                                    <b>AA昍</b>首先举例，当产品经理说：“客户的需求可能还有待于我们继续挖掘，在这方面我们应该做出更多的努力，包括用户访谈、市场调研、竞品分析，之前做得还是不够。”<br>
+                                    其真实含义可能是：“<b>客户懂个屁，都是傻逼</b>”。<br><br>
+                                    <b>企业管理与HR领域：</b><br>
+                                    讨论迅速转向了员工们耳熟能详的“老板语录”：<br>
+                                    <ul>
+                                        <li>“今年继续同舟共济” = “<b>没有年终奖</b>” (by <b>AA昍</b>)</li>
+                                        <li>“下一年加油好好干” = “<b>今年干的什么几把玩意</b>” (by <b>Zac</b>)</li>
+                                        <li>“弹性工作制” = “<b>24小时待机状态</b>” (by <b>Florence🎈</b>)</li>
+                                        <li>“不鼓励加班” = “<b>回家把活干完别在公司碍眼</b>” (by <b>光之咸鱼小玖💤</b>)</li>
+                                        <li>“开源节流” = “<b>要降薪啦</b>” (by <b>转念之间</b>)</li>
+                                        <li>“该同志起点低，进步大” = “<b>总算开始有点人样儿了</b>” (by <b>AA昍</b>)</li>
+                                    </ul>
+                                    <br>
+                                    <b>官方公文领域：</b><br>
+                                    <b>AA昍</b>进一步将这种解读能力延伸到官方话语体系：<br>
+                                    <ul>
+                                        <li>“提升民营企业家接班人的培养水准” ≈ “<b>富二代都tm该弄死</b>”</li>
+                                        <li>“房住不炒，回归居住价值” ≈ “<b>炒房的等着死吧，看好了，我只表演一次</b>”</li>
+                                    </ul>
+                                    <b>转念之间</b>同志也补充道，当一个新项目被称为“我们是这个市场的新参者，还有很长的路要走”，其潜台词就是“<b>刚起步，烂得一批</b>”。<br><br>
+                                    <b>三、结论与启发</b><br>
+                                    这场热烈的讨论，不仅是一场有趣的语言解构游戏，更是一次对沟通智慧的深刻洞察。它揭示了在复杂的社会与职场环境中，听懂“弦外之音”的重要性。对于职场人而言，理解这些“反话”背后的真实意图，是有效沟通、规避风险、做出正确决策的关键一步。正如群友总结，学会听懂并使用这些“黑话”，是向上管理和职场生存的重要技能。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            在职场和官方语境中，许多表述都是经过包装的“反话”，理解其背后的真实意图是必备的生存技能。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                               客户的需求可能还有待于我们继续挖掘...（真实含义：客户懂个屁，都是傻逼）
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                               今年继续同舟共济。（真实含义：没有年终奖）
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                不鼓励加班。（真实含义：回家把活干完别在公司碍眼）
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>光之咸鱼小玖💤</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 热点话题卡片 1 结束 -->
+                
+                <!-- 热点话题卡片 2 开始 -->
+                <div class="bento-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                           “导航失灵、破车狂飙、天价维修”——当现代生活回到“Hard模式”的俄罗斯生存体验
+                        </h4>
+                        <span class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            15:02 - 19:11
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            佥刀君：“说起来有点好笑，有几次看做饭的教学视频因为卡得实在受不了了，锅里水都烧开了视频还卡着。我一度开过720p和480p看视频学做菜。。。”
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">俄罗斯生活</span>
+                            <span class="tag-item">基础设施</span>
+                            <span class="tag-item">文化冲击</span>
+                            <span class="tag-item">留学生</span>
+                            <span class="tag-item">Hard模式</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br>
+                                    群成员<b>佥刀君</b>分享了自己在俄罗斯的“逆现代化”生活体验，引发了群友的广泛好奇和讨论。他用一系列生动又无奈的亲身经历，描绘了一幅与国内便捷生活形成鲜明对比的“Hard模式”生存图景。<br><br>
+                                    <b>二、主要讨论内容与槽点</b><br>
+                                    <b>1. 网络与通信：倒退十年的体验</b><br>
+                                    <b>佥刀君</b>提到，当地网络基建落后，差到他不得不习惯观看480p的教学视频学做菜。更严重的是，由于战争原因的信号限制，在莫斯科市中心、高架、环岛等关键区域，导航会完全失灵。他曾因此在冬夜雪地里为找一个2公里内的小酒馆而步行一个半小时，最后靠在地铁站下载离线地图、当“纸质地图”用才找到路。<br><br>
+                                    <b>2. 交通与出行：狂野的“废土朋克”</b><br>
+                                    <ul>
+                                        <li><b>汽车维修：</b>车辆维修不仅价格惊人，而且流程繁琐，换机油、换雪地胎都需要带购车文件、签合同、漫长排队。因此，路上随处可见“手工修车”的奇观：前挡风玻璃裂缝长达一米的车照常开，甚至有用透明胶带代替车窗和后视镜的“勇士”。<b>佥刀君</b>总结：“只要能动，基本都是自己处理一下继续跑。”</li>
+                                        <li><b>摩托车文化：</b>不禁摩且允许改装，导致摩托车在车流中“擦边超车”成为常态，给驾驶带来极大惊吓和风险。<b>佥刀君</b>因此表示百分百赞同国内的禁摩政策。</li>
+                                    </ul><br>
+                                    <b>3. 个人生活：被迫体验“原始”</b><br>
+                                    由于种种不便和想体验异性困扰，<b>佥刀君</b>曾九个月没理发，顶着长发体验了洗头麻烦、吹干耗时、堵塞下水道等一系列“女生的烦恼”。回国时，其“野人”形象甚至让高铁站务人员一眼认出是“刚从国外回来的”。此外，他还尝试过剃光头，结果发现不适合自己头型，不得不在30度的夏天戴了两个月帽子。<br><br>
+                                    <b>三、结论与启发</b><br>
+                                    <b>佥刀君</b>的分享让群友们大开眼界，大家从最初的震惊和同情，到后来逐渐理解了“其所处社会环境的合理性”。<b>南瓜</b>感慨“人类的适应能力可真强啊”，而<b>今天是叶子</b>则戏称润出去的中国人是“忍上忍”，能做到“吃过好的再吃屎也觉得香”。这场讨论生动地展示了不同国家在基础设施和生活便利性上的巨大差异，也让群友们对自己所处的现代文明生活有了更深刻的珍惜和感悟。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            在基础设施落后的环境下，许多在国内看来匪夷所思的“手工”解决方案和“忍耐”行为，都有其存在的合理性，同时也反衬出现代化便利生活的珍贵。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                               我看到的时候还在想，他用透明胶做车窗怎么看后视镜呢，走近一看，噢噢原来没有后视镜呀。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>佥刀君</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                               我们觉得匪夷所思的事物也可能有其所处社会环境的合理性。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>佥刀君</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                好担心佥刀君下个月回到文明世界会不习惯。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>南瓜</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 热点话题卡片 2 结束 -->
+
+            </div>
+        </section>
+        <!-- === 模块二：火花碰撞时刻・热点话题 结束 === -->
+
+        <!-- === (条件触发模块) 秉烛共谈录 · 星火深潜 开始 === -->
+        <section id="section-deep-dive" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">秉烛共谈录 · 星火深潜</h2>
+            <div class="space-y-8">
+                <div class="bento-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                           从“拧巴”的互联网产品到“踏实”的奶茶店主——一场关于职业选择与人生主权的深度探索
+                        </h4>
+                        <span
+                            class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-comments mr-1.5 text-gray-500"></i>
+                            15:30 - 22:24
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            肥发灰（请同志们批判版）：“一下不知道怎么组织语言好，就结合自己经历概括的说一下，不一定具有普遍性...”
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">职业内耗</span>
+                            <span class="tag-item">产品经理</span>
+                            <span class="tag-item">实体创业</span>
+                            <span class="tag-item">向上管理</span>
+                            <span class="tag-item">路径选择</span>
+                            <span class="tag-item">表演型工作</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div
+                            class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题提出与背景补充</b><br>
+                                    今日下午，一场关于职业道路与内心挣扎的深度讨论由群成员<b>肥发灰（请同志们批判版）</b>的自我剖析引爆。他详细复盘了自己从一名充满热情的互联网产品经理，到因种种“内耗”而转行开设奶茶店的心路历程。他的坦诚分享，触动了群内多位有相似经历的同志，并逐步演化为一场对现代职场病、个人成长路径选择的集体反思。<br><br>
+                                    <b>二、核心焦点与深层议题挖掘</b><br>
+                                    讨论从<b>肥发灰</b>的个人经历出发，迅速挖掘出几个具有普遍性的深层议题：<br>
+                                    <b>1. 互联网工作的“内耗”之源：</b>为何一个曾充满“创造”热情的岗位，会变得令人内耗？讨论指向了几个关键因素：<b>缺乏自主权</b>（产品经理无资源调配权，需满足上层奇怪需求）、<b>价值感失落</b>（陷入积分墙、灰产等“不入流”业务，与职业认同相悖）、<b>身体的警告</b>（久坐加班导致腰突手术，具身认知加剧精神困扰）。<br>
+                                    <b>2. 实体创业的“解药”效应：</b>为何风险高、不一定赚钱的奶茶店，反而治愈了内耗？核心在于<b>夺回了自主性</b>（自己做老板，自己调配资源），<b>获得了真实的反馈</b>（直接面对顾客，收获比看数据报表更强烈的实感与能量），以及<b>找到了实践的根基</b>（亲身参与社会生产环节，将理论知识付诸实践，不再迷茫）。<br>
+                                    <b>3. 职场中的“表演”与“耿直”：</b>由<b>Suerte</b>同志的困惑——因开会时追问细节被领导批评为“抬杠”——引出了对“表演型工作”的探讨。会议究竟是解决问题的场所，还是同步结论的舞台？个人在其中应扮演何种角色？<br><br>
+                                    <b>三、多方观点流派与方案探讨</b><br>
+                                    <b>【路径反思派】：</b><br>
+                                    <b>肥发灰</b>的经历揭示了一条“曲线救国”的道路：当主路（互联网产品）因学历（大专）、行业（灰产）和健康问题受阻时，通过转换赛道（实体创业）找回了身心健康和人生主导权。他的经验“先进去做运营，再抓住机会转产品”也为低学历者提供了宝贵的“隐藏路径”参考。<br>
+                                    <b>今天是叶子</b>分享了自己相似的经历：大学未毕业，学历卡住运营转产品之路，最终选择销售作为突破口，并感悟到“销售是基本技能，人人都是产品，要学会销售自己”。她的路径是“一级一级跳，尽量每一次都找跳板，而不是谋生的差事”。<br><br>
+                                    <b>【理论升华派】：</b><br>
+                                    <b>AA昍</b>对<b>肥发灰</b>的转变给出了深刻的理论解释：“经济基础决定上层建筑”。他认为，从“骗人”（积分墙业务）到“生产”（开店）的转变，是生产模式的根本改变，从而解决了上层建筑（权力结构、个人心态）的问题。他还建议，应届生应先进大厂正规业务线，先掌握系统方法论，这与“读了毛选思想变了，主体性也不一样了”是同一道理。<br><br>
+                                    <b>【职场生存派】：</b><br>
+                                    针对<b>Suerte</b>的“会议抬杠”困境，群友们给出了高度一致的“生存法则”：<br>
+                                    • <b>子蟹</b>一针见血地指出：“如果你耿直发问，将本可以模糊化的地带公开化，像是在给她挖坑...如果我是领导，会把这种憨憨边缘化处理。”这揭示了在“表演型公司”中，维护领导面子和模糊空间的重要性。<br>
+                                    • <b>讨厌的橙子🍊</b>与<b>今天是叶子</b>等群友建议：开会只为同步信息，所有讨论和问题应在会前通过私下沟通解决，会上要和领导“同频”。<br>
+                                    • <b>AA昍</b>则传授了“反话正说”的沟通艺术，并给出了多个生动案例，强调了理解语言背后真实意图的重要性。<br><br>
+                                    <b>四、讨论共识与分歧总结</b><br>
+                                    本次讨论凝聚了强大的共识：<b>无论是职业选择还是职场生存，核心都在于提升“主体性”和“认知水平”。</b><br>
+                                    • <b>共识一：</b>当工作本身与个人价值观严重冲突、且无法改变时，勇敢地转换赛道是解决内耗的有效途径。<br>
+                                    • <b>共识二：</b>学历或起点并非决定性因素，抓住机遇、主动学习、选择正确的路径策略，同样可以实现职业跃迁。<br>
+                                    • <b>共识三：</b>在复杂的职场环境中，必须学会区分“做事”和“演戏”，掌握向上管理和“反话正说”等沟通技巧，避免成为“耿直的憨憨”。<br><br>
+                                    <b>五、宏观影响与价值提炼（重点）</b><br>
+                                    这场讨论的价值远远超出了个人职业咨询的范畴，它为所有身处现代职场的群友提供了一个宝贵的<b>“职业内耗自救框架”</b>。讨论从“我该怎么办”的个体问题，上升到了<b>“我们应该如何理解工作与人生的关系”</b>的哲学层面。<br><br>
+                                    它深刻揭示了，工作的意义不仅在于薪酬，更在于是否能获得<b>自主权、价值感和真实反馈</b>。当一份工作持续剥夺这三者时，无论其外表多么光鲜，都将导致严重的精神内耗。<b>肥发灰</b>同志以亲身经历证明了，通过转换生产模式（从虚拟的、依附性的产品岗，到实体的、自主的创业者），可以从根本上重塑人的精神状态。<br><br>
+                                    此外，关于“表演型工作”的探讨，为许多“只懂做事，不懂做人”的耿直青年敲响了警钟。它提炼出的行动策略——<b>“会前充分沟通，会上同步表演”</b>，以及<b>“反话正说”</b>的沟通艺术，是能够直接应用于日常工作，帮助个人在不牺牲原则底线的前提下，更好地在复杂组织中生存和发展的“屠龙之术”。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#ef4444] hover:text-red-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            职业内耗的根源往往是<b>自主权的丧失和价值感的缺失</b>。从依附性的“虚拟工作”转向拥有主导权的“实体生产”，是根治内耗的有效路径之一。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                你要是没有碰到坏事，你就学不到对付那个坏事的本领。所以我碰到这些坏事其实也是好事，也确实让我觉得这些坏事有解。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>肥发灰（请同志们批判版）</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                               销售就像空气一样，无处不在。销售完全就是一项基本技能。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>今天是叶子</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                经济基础决定上层建筑。（注：用于解释从“骗人”的积分墙业务转向“生产”的开店，是生产模式的改变带来了心态的改变）
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            在“表演型”职场中，<b>公开会议是同步结论的舞台，而非解决问题的场所</b>。学会“向上管理”和“反话正说”，避免成为被边缘化的“耿直憨憨”。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                如果你耿直发问，将本可以模糊化的地带公开化，像是在给她挖坑...如果我是领导，会把这种憨憨边缘化处理。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>子蟹</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                开会是为了同步消息，不是为了讨论问题，问题应该在开会前就全都聊差不多。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>讨厌的橙子🍊</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                               产品晋升有个挺卡脖子的能力：向上管理。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>肥发灰（请同志们批判版）</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- === (条件触发模块) 秉烛共谈录 · 星火深潜 结束 === -->
+
+        <!-- === 模块四：解惑一点通・有问必答 开始 === -->
+        <section id="section-qa" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">解惑一点通・有问必答</h2>
+            <div class="space-y-8">
+                
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            后槽牙龋齿，根管治疗没做完又疼了怎么办？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            静心守拙：“有没有哪位同志对拔牙比较了解的？我左上后槽牙龋齿，准备找医院瞅瞅...”
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br>
+                                    群成员<b>静心守拙</b>同志提出，自己左上后槽牙之前做过根管治疗，但因疫情中断，疗程未完成。近期该牙齿偶尔会痛，想咨询是继续治疗还是拔掉，并了解相关注意事项。<br><br>
+                                    <b>二、核心原因分析与建议</b><br>
+                                    多位群友（包括疑似专业人士<b>Suue</b>）给出了详尽的分析和建议，核心观点高度一致：<br><br>
+                                    <b>1. 优先保牙，避免拔牙：</b><br>
+                                    <b>敏</b>和<b>Suue</b>等群友一致强调“<b>能补就不拔，原装的就是坠吼滴</b>”。因为拔牙后需要种植，否则会导致邻牙歪斜，成本和代价更高。<b>敏</b>指出，疼痛可能意味着牙神经未完全杀死，需要继续完成根管治疗。<br><br>
+                                    <b>2. 根管治疗后必须戴冠：</b><br>
+                                    专业群友<b>Suue</b>解释，做过根管治疗的牙齿会变脆，失去了牙髓的营养供给，容易在使用中咬崩。因此，<b>即使缺损不大，也强烈建议佩戴牙冠进行保护</b>，尤其是后牙。<br><br>
+                                    <b>3. 其他可能性与自查方法：</b><br>
+                                    <b>南瓜</b>同志分享了医生的知识，指出疼痛也可能是炎症严重，波及到了牙根下方的骨膜。他提供了一个简单的自查方法作为参考：“从正上方敲击牙齿疼痛，是牙齿本身的问题；侧面敲击疼痛，是牙周问题。”当然，最终诊断需由医生判断。<br><br>
+                                    <b>三、就医前注意事项</b><br>
+                                    <b>普卡</b>和<b>南瓜</b>同志提醒，看牙前一定要<b>吃饱饭</b>，因为治疗过程可能耗时较长，且治疗后短时间内不便进食。同时，<b>刷个牙</b>再去医院也是对医生的基本尊重。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">牙齿健康</span>
+                            <span class="tag-item">根管治疗</span>
+                            <span class="tag-item">拔牙</span>
+                            <span class="tag-item">口腔护理</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            “无需经验、公司提供账号”的跨境电商工作靠谱吗？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                           zzyyxx：“这个是boss招跨境电商的人发的介绍，请问有没有有经验的同志了解的”
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br>
+                                    群成员<b>zzyyxx</b>分享了一份跨境电商的招聘说明，其模式为公司提供TikTok账号，个人负责运营，并对这种模式的可靠性提出疑问，担心是卖假货。<br><br>
+                                    <b>二、核心模式与风险分析</b><br>
+                                    群友们迅速识别出这是一种常见的“代运营”或“养号”模式，并指出了其中的核心风险：<br><br>
+                                    <b>1. 资产归属问题：</b><br>
+                                    <b>佥刀君</b>和<b>可</b>一针见血地指出，这种模式的核心是“<b>做起来了账号是公司的</b>”。公司通过广撒网的方式，利用求职者的劳动力来“养号”，如果账号火了，这个最有价值的资产归公司所有；如果没做起来，公司的损失也极小。<br><br>
+                                    <b>2. 劳动剥削风险：</b><br>
+                                    <b>佥刀君</b>补充道，招聘中特意提到“联络账号用自己的”，这意味着员工需要用自己的私人设备和账号，在下班时间（利用时差）“<b>全天免费当客服</b>”，而核心的运营账号却不属于自己。<br><br>
+                                    <b>3. 历史骗局警示：</b><br>
+                                    <b>Changebin</b>同志提供了极具价值的历史视角，他将此模式与2010年代初期的“国外电商平台代运营”诈骗进行类比。当年的骗局导致参与者账号因售假、侵权被封，血本无归，个人信息也被平台拉黑，最终毫无技能积累，浪费了大量时间和金钱。<br><br>
+                                    <b>三、解决方案与建议</b><br>
+                                    群友们普遍不看好这种工作模式。<b>今天是叶子</b>建议，与其为他人做嫁衣，不如自己学习单干，并推荐参考群内<b>向山</b>老师在小红书分享的跨境电商实战经验。这起事件也侧面反映出，求职时需要仔细甄别商业模式，明确核心资产的归属，警惕看似门槛低、实则风险高的“陷阱”。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">跨境电商</span>
+                            <span class="tag-item">求职避坑</span>
+                            <span class="tag-item">TikTok运营</span>
+                            <span class="tag-item">商业模式</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- === 模块四：解惑一点通・有问必答 结束 === -->
+
+        <!-- === 模块五：智慧火花匣・每日精选 开始 === -->
+        <section id="section-daily-picks" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">智慧火花匣・每日精选</h2>
+            <div class="space-y-8">
+                
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        AI视觉识别从0到1：一份硬核的12周YOLOv8自学成才计划
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            小方：“[合并转发|风吹: 我现在想要从0开始学习训练YOLO视觉识别AI模型，至少...]”
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br>
+                                面对AI视觉识别领域的高门槛，群成员<b>小方</b>分享了一份由AI生成的、极其详尽的“<b>12周YOLO视觉识别AI模型自学计划</b>”。这份计划专为有初级Python基础、希望独立开发部署小规模视觉识别模型的非开发人员（如工艺工程师）量身定制。<br><br>
+                                <b>二、核心价值与特点</b><br>
+                                这份计划的最大亮点在于其<b>高度的结构化和可执行性</b>，它将复杂的学习过程分解为清晰的阶段性目标：<br>
+                                <ul>
+                                    <li><b>知识模块化：</b>清晰列出了<b>6大必学知识块</b>：1) Python与工程基础（含Git），2) 深度学习与PyTorch基础，3) 计算机视觉基础，4) YOLO核心实战，5) 标注与数据治理，6) 部署与边缘落地。</li>
+                                    <li><b>资源精准推荐：</b>为每个知识块都配备了经过筛选的中文教材、在线课程（如廖雪峰教程、莫烦Python、动手学深度学习D2L、中国大学MOOC）和官方文档，避免了学习者在海量信息中迷失。</li>
+                                    <li><b>周度计划与产出导向：</b>制定了<b>12周、每天1小时</b>的学习安排，并为每周设定了明确的“周末产出”目标（如编写脚本、训练出第一个模型、完成对比表等），强调以项目实践驱动学习。</li>
+                                </ul><br>
+                                <b>三、适用场景或补充信息</b><br>
+                                该计划对于任何想从零开始系统学习AI视觉识别，并期望能在3个月内做出实际应用的个人或团队，都具有极高的参考价值。它不仅提供了学习的“地图”，更指明了每一步的“路标”。群内的<b>甲鱼非鱼</b>同志也补充，可以直接让GPT生成特定功能的代码来跑通，作为入门的辅助手段。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag-item">AI</span>
+                        <span class="tag-item">计算机视觉</span>
+                        <span class="tag-item">YOLO</span>
+                        <span class="tag-item">学习计划</span>
+                        <span class="tag-item">深度学习</span>
+                    </div>
+                </div>
+
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        消费升级指南：从沧州化妆刷到120支贡缎四件套的源头好物分享
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            Fay天小兔King：“关键词捕捉”
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br>
+                                在讨论各地产业带时，<b>ღ້໌满满金</b>提到了自己的家乡沧州是“武术之乡”和“杂技之乡”，<b>转念之间</b>同志补充其还是著名的化妆刷产业带。由此，好物分享达人<b>Fay天小兔King</b>（拟合梨）顺势开启了一波高品质生活好物的推荐。<br><br>
+                                <b>二、核心价值与特点</b><br>
+                                <b>1. 化妆刷选购指南：</b><br>
+                                <b>Fay天小兔King</b>首先分享了一篇关于“如何挑选化妆刷（材质篇）”的公众号文章，并确认了河北沧州青县作为化妆刷源头产地的地位。这为爱美的群友提供了专业的选购知识背景。<br><br>
+                                <b>2. 高性价比床上四件套：</b><br>
+                                接着，她分享了个人在床上用品上的心得，并直接给出了一个1688店铺链接。核心推荐是“<b>300块钱能买到120支新疆长绒棉贡缎四件套</b>”。她评价其体感“非常丝滑”，为追求高品质睡眠体验的群友提供了一个极具性价比的源头选择。此外，她还贴心地为被套尺寸非标的群友提供了另一家淘宝店作为备选。<br><br>
+                                <b>三、适用场景或补充信息</b><br>
+                                这次分享充分体现了群内“藏龙卧虎”，成员们不仅了解各地产业特色，还能精准地找到源头工厂或高性价比的店铺。对于追求生活品质但又希望理性消费的群友来说，这类直接指向源头的好物推荐具有极高的实用价值。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">好物分享</span>
+                        <span class="tag-item">化妆刷</span>
+                        <span class="tag-item">床上四件套</span>
+                        <span class="tag-item">消费指南</span>
+                        <span class="tag-item">1688</span>
+                    </div>
+                    <div class="flex justify-end">
+                        <a href="https://qr.1688.com/s/Ff7GoQV5"
+                            target="_blank" rel="noopener noreferrer"
+                            class="text-sm font-medium text-[#4D6BFE] hover:text-blue-700 hover:underline flex items-center">
+                            120支贡缎四件套(1688)
+                            <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        电商运营转产品经理？一份清晰的“干中学”转型实践路径图
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            曳卷：“也给大家汇报一下目前转行产品的进展。”
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br>
+                                在关于职业转型的讨论中，群成员<b>曳卷</b>同志分享了自己从电商运营转向产品经理的清晰、结构化的学习与实践计划，为有志于转型的群友提供了一份宝贵的“路线图”。<br><br>
+                                <b>二、核心路径与策略</b><br>
+                                <b>曳卷</b>的转型路径展现了极强的规划性和战略思考，可以总结为“<b>理论输入 -> 聚焦赛道 -> 项目实践 -> 迭代深化</b>”的四步法：<br>
+                                <ul>
+                                    <li><b>1. 理论学习与补足：</b>首先，她阅读了《人人都是产品经理》和《启示录》等经典书籍，但感觉“很虚”。于是，她立刻转向更具实操性的产品课程进行系统学习，弥补理论与实践的鸿沟。</li>
+                                    <li><b>2. 聚焦垂直赛道：</b>基于自己过往的电商运营经验，她明确将转型方向锁定在“电商行业的产品经理”，并补充学习了相关的电商项目课程，实现了知识的精准聚焦。</li>
+                                    <li><b>3. 设定实践项目并进行战略选择：</b>学习后，她没有停留在理论，而是着手规划一个练手项目。在“商家服务产品”和“供应链智能产品”两个方向中，她做出了明智的战略选择：先从自己更有优势的“商家服务”入手以求快速入门，同时在项目中为更具长期价值的“供应链”方向埋下伏笔，体现了“<b>先易后难，小步快跑，长远布局</b>”的策略。</li>
+                                    <li><b>4. 联动资源，收集信息：</b>她还主动联系了程序员朋友，进行信息收集和技术可行性探讨，展现了积极整合外部资源的能力。</li>
+                                </ul><br>
+                                <b>三、价值与启发</b><br>
+                                <b>曳卷</b>同志的分享堪称一份转行自救的优秀范本。它告诉我们，成功的转型不仅需要学习的毅力，更需要清晰的规划和聪明的策略。相比于漫无目的地学习，她“干中学”的思路、聚焦优势领域的决策、以及长短期目标结合的项目规划，都极具借鉴意义。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag-item">产品经理</span>
+                        <span class="tag-item">职业转型</span>
+                        <span class="tag-item">学习路径</span>
+                        <span class="tag-item">电商</span>
+                        <span class="tag-item">供应链</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- === 模块五：智慧火花匣・每日精选 结束 === -->
+
+        <nav class="w-full mt-12 daily-nav">
+            <div class="bento-card p-4">
+                <div class="flex justify-between items-center">
+                    <button type="button" class="nav-button day-nav-prev">
+                        <i class="fas fa-chevron-left"></i>
+                        上一天
+                    </button>
+                    <div class="text-center">
+                        <span class="text-sm text-gray-600">日报导航</span>
+                    </div>
+                    <button type="button" class="nav-button day-nav-next">
+                        下一天
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- === 文件底部 开始 === -->
+        <footer class="w-full mt-16">
+            <div class="bento-card p-8">
+                <div class="text-center text-gray-700 space-y-3">
+                    <div
+                        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-base">
+                        <div class="flex items-center">
+                            <i class="fas fa-database mr-2 text-[#ef4444]"></i>
+                            <span>星火群聊记录</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-robot mr-2 text-[#ef4444]"></i>
+                            <span>2026-01-10 02:00:00</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                        本报告基于群聊数据自动生成，仅供参考。内容可能包含个人观点，不代表群组官方立场。
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <!-- === 文件底部 结束 === -->
+    </div>
+
+    <!-- === 浮动按钮与脚本区域 开始 === -->
+    <div class="floating-actions" aria-label="页面快捷操作">
+        <div class="directory-wrapper">
+            <button type="button" class="floating-button" id="directory-toggle" aria-expanded="false"
+                aria-controls="directory-panel" aria-label="打开内容导航">
+                <i class="fas fa-list-ul"></i>
+            </button>
+            <div class="directory-panel" id="directory-panel" role="dialog" aria-hidden="true">
+                <div class="directory-header">
+                    <span class="directory-title">内容导航</span>
+                    <button type="button" class="directory-close" id="directory-close" aria-label="关闭内容导航">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="directory-list" id="directory-list">
+                    <!-- 目录由脚本自动生成 -->
+                </div>
+            </div>
+        </div>
+        <button type="button" class="floating-button floating-button--hidden" id="scroll-top-btn" aria-label="返回顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 数字动画
+            document.querySelectorAll('.number-display').forEach(el => {
+                const finalValue = parseInt(el.textContent.replace(/,/g, ''), 10);
+                if (isNaN(finalValue)) return;
+                let current = 0;
+                const duration = 1500, frameRate = 1000 / 60, totalFrames = Math.round(duration / frameRate);
+                const increment = finalValue / totalFrames;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= finalValue) {
+                        current = finalValue;
+                        clearInterval(timer);
+                    }
+                    el.textContent = Math.floor(current).toLocaleString('en-US');
+                }, frameRate);
+            });
+
+            initDailyNavigation();
+            initExpandableContent();
+            initFloatingActions();
+
+            const historyLink = document.getElementById('history-link');
+            if (historyLink) historyLink.href = '星火历史日报汇总.html';
+        });
+
+        // 日报导航
+        async function initDailyNavigation() {
+            const currentDate = getCurrentDateFromPage();
+            if (!currentDate) return;
+            await setupNavigationButtons(currentDate);
+        }
+
+        function getCurrentDateFromPage() {
+            const dateEl = document.getElementById('report-date');
+            if (dateEl) {
+                const match = dateEl.textContent.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                if (match) return `${match[1]}-${match[2].padStart(2, '0')}-${match[3].padStart(2, '0')}`;
+            }
+            const titleMatch = document.title.match(/(\d{4}-\d{2}-\d{2})/);
+            if (titleMatch) return titleMatch[1];
+            return null;
+        }
+
+        async function setupNavigationButtons(currentDate) {
+            const prevBtns = document.querySelectorAll('.day-nav-prev');
+            const nextBtns = document.querySelectorAll('.day-nav-next');
+            const navContainers = document.querySelectorAll('.daily-nav');
+
+            const currentDateObj = new Date(currentDate);
+            const prevDate = new Date(currentDateObj); prevDate.setDate(prevDate.getDate() - 1);
+            const nextDate = new Date(currentDateObj); nextDate.setDate(nextDate.getDate() + 1);
+            const prevDateStr = formatDate(prevDate), nextDateStr = formatDate(nextDate);
+
+            const [prevExists, nextExists] = await Promise.all([checkReportExists(prevDateStr), checkReportExists(nextDateStr)]);
+
+            if (!prevExists && !nextExists) {
+                navContainers.forEach(c => c.style.display = 'none');
+                return;
+            }
+            navContainers.forEach(c => c.style.display = 'block');
+
+            prevBtns.forEach(btn => {
+                btn.disabled = !prevExists;
+                if (prevExists) btn.onclick = () => window.location.href = `星火群日报_${prevDateStr}.html`;
+            });
+            nextBtns.forEach(btn => {
+                btn.disabled = !nextExists;
+                if (nextExists) btn.onclick = () => window.location.href = `星火群日报_${nextDateStr}.html`;
+            });
+        }
+
+        async function checkReportExists(date) {
+            try {
+                const res = await fetch(`星火群日报_${date}.html`, { method: 'HEAD' });
+                return res.ok;
+            } catch { return false; }
+        }
+
+        function formatDate(date) {
+            return date.toISOString().slice(0, 10);
+        }
+
+        // 展开/收起功能
+        function initExpandableContent() {
+            const expandableContents = document.querySelectorAll('.expandable-content');
+
+            expandableContents.forEach(container => {
+                const charLimit = parseInt(container.getAttribute('data-char-limit')) || 200;
+                const contentPreview = container.querySelector('.content-preview');
+                const expandBtn = container.querySelector('.expand-btn');
+
+                if (!contentPreview || !expandBtn) return;
+
+                const fullContent = contentPreview.innerHTML;
+                const fullText = contentPreview.textContent || contentPreview.innerText;
+
+                // 如果内容长度超过限制，则显示展开按钮
+                if (fullText.length > charLimit) {
+                    // 创建一个临时元素来正确截取HTML内容
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = fullContent;
+
+                    // 使用TreeWalker遍历所有文本节点
+                    let charCount = 0;
+                    const walker = document.createTreeWalker(
+                        tempDiv,
+                        NodeFilter.SHOW_TEXT,
+                        null,
+                        false
+                    );
+
+                    let node;
+                    const textNodes = [];
+                    while (node = walker.nextNode()) {
+                        textNodes.push(node);
+                    }
+
+                    // 计算需要保留的文本内容
+                    for (let textNode of textNodes) {
+                        const text = textNode.textContent;
+                        if (charCount + text.length <= charLimit) {
+                            charCount += text.length;
+                        } else {
+                            const remainingChars = charLimit - charCount;
+                            textNode.textContent = text.substring(0, remainingChars) + '...';
+                            charCount = charLimit;
+
+                            // 移除后续所有节点
+                            let currentNodeToClearAfter = textNode;
+                            while (currentNodeToClearAfter && currentNodeToClearAfter !== tempDiv) {
+                                let sibling = currentNodeToClearAfter.nextSibling;
+                                while (sibling) {
+                                    const nodeToRemove = sibling;
+                                    sibling = sibling.nextSibling;
+                                    nodeToRemove.remove();
+                                }
+                                currentNodeToClearAfter = currentNodeToClearAfter.parentElement;
+                            }
+                            break;
+                        }
+                    }
+
+                    const previewContent = tempDiv.innerHTML;
+
+                    contentPreview.innerHTML = previewContent;
+                    contentPreview.classList.add('collapsed');
+                    expandBtn.style.display = 'flex';
+
+                    // 绑定展开/收起事件
+                    expandBtn.addEventListener('click', function () {
+                        const isExpanded = expandBtn.classList.contains('expanded');
+
+                        if (isExpanded) {
+                            // 收起内容
+                            contentPreview.innerHTML = previewContent;
+                            contentPreview.classList.add('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '展开全文';
+                            expandBtn.classList.remove('expanded');
+                        } else {
+                            // 展开内容
+                            contentPreview.innerHTML = fullContent;
+                            contentPreview.classList.remove('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '收起';
+                            expandBtn.classList.add('expanded');
+                        }
+                    });
+                } else {
+                    // 内容较短，隐藏展开按钮
+                    expandBtn.style.display = 'none';
+                }
+            });
+        }
+
+        // 浮动操作与目录
+        function initFloatingActions() {
+            const scrollTopBtn = document.getElementById('scroll-top-btn');
+            const dirToggle = document.getElementById('directory-toggle');
+            const dirPanel = document.getElementById('directory-panel');
+            const dirClose = document.getElementById('directory-close');
+
+            if (scrollTopBtn) {
+                window.addEventListener('scroll', () => {
+                    scrollTopBtn.classList.toggle('floating-button--hidden', window.scrollY <= 240);
+                }, { passive: true });
+                scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            }
+
+            if (!dirPanel || !dirToggle) return;
+            buildDirectory();
+
+            const closePanel = () => { dirPanel.classList.remove('open'); dirToggle.setAttribute('aria-expanded', 'false'); };
+            dirToggle.addEventListener('click', (e) => { e.stopPropagation(); dirPanel.classList.toggle('open'); dirToggle.setAttribute('aria-expanded', dirPanel.classList.contains('open')); });
+            if (dirClose) dirClose.addEventListener('click', closePanel);
+
+            dirPanel.querySelectorAll('[data-target]').forEach(item => {
+                item.addEventListener('click', () => {
+                    const target = document.getElementById(item.getAttribute('data-target'));
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    closePanel();
+                });
+            });
+            document.addEventListener('click', (e) => { if (!dirPanel.contains(e.target) && !dirToggle.contains(e.target)) closePanel(); });
+            window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+        }
+
+        function buildDirectory() {
+            const listEl = document.getElementById('directory-list');
+            if (!listEl) return;
+            listEl.innerHTML = '';
+
+            const configs = [
+                { id: 'section-overview', icon: 'fa-chart-column' },
+                { id: 'section-hot-topics', icon: 'fa-fire' },
+                { id: 'section-deep-dive', icon: 'fa-comments' },
+                { id: 'section-qa', icon: 'fa-circle-question' },
+                { id: 'section-daily-picks', icon: 'fa-gem' }
+            ];
+
+            // 中文数字转换
+            const chineseNumbers = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+            let sectionCounter = 0;
+
+            configs.forEach(config => {
+                const section = document.getElementById(config.id);
+                if (!section) return;
+
+                const titleEl = section.querySelector('.section-title');
+                const title = titleEl ? titleEl.textContent.trim() : config.id;
+
+                // 递增计数器并添加中文序号
+                const chineseNumber = chineseNumbers[sectionCounter];
+                const titleWithNumber = `${chineseNumber}、 ${title}`;
+                sectionCounter++;
+
+                const itemWrapper = document.createElement('div');
+                itemWrapper.className = 'directory-item';
+
+                const entryBtn = document.createElement('button');
+                entryBtn.className = 'directory-entry';
+                entryBtn.setAttribute('data-target', config.id);
+                entryBtn.innerHTML = `<span class="directory-icon"><i class="fas ${config.icon}"></i></span><span>${titleWithNumber}</span>`;
+                itemWrapper.appendChild(entryBtn);
+
+                const subHeadings = section.querySelectorAll('.bento-card h4');
+                if (subHeadings.length > 0) {
+                    const sublist = document.createElement('div');
+                    sublist.className = 'directory-sublist';
+                    subHeadings.forEach((h, i) => {
+                        const card = h.closest('.bento-card');
+                        if (!card) return;
+                        if (!card.id) card.id = `${config.id}-item-${i + 1}`;
+                        card.classList.add('anchor-target');
+
+                        const subBtn = document.createElement('button');
+                        subBtn.className = 'directory-subitem';
+                        subBtn.setAttribute('data-target', card.id);
+                        subBtn.textContent = h.textContent.trim();
+                        sublist.appendChild(subBtn);
+                    });
+                    if (sublist.hasChildNodes()) itemWrapper.appendChild(sublist);
+                }
+                listEl.appendChild(itemWrapper);
+            });
+        }
+    </script>
+
+    <!-- ICP备案号等信息 -->
+    <div
+        style="text-align:center; font-size:14px; color:#888; padding:20px 0; margin-top:20px; border-top:1px solid #eee;">
+        <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#888; text-decoration:none;">
+            赣ICP备2024051762号-2
+        </a>
+    </div>
+    <div style="text-align:center; font-size:14px; color:#888; padding:10px 0;">
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36060202000451" rel="noreferrer" target="_blank"
+            style="color:#888; text-decoration:none; display:inline-flex; align-items:center; gap:5px;">
+            <img src="beian.png" alt="公安备案" style="width:20px; height:20px;">
+            <span>赣公网安备36060202000451号</span>
+        </a>
+    </div>
+</body>
+
+</html>
