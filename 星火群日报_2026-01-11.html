@@ -1294,34 +1294,86 @@
                 const expandBtn = container.querySelector('.expand-btn');
 
                 if (!contentPreview || !expandBtn) return;
-                
-                // Use a temporary div to measure text length while ignoring HTML tags
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = contentPreview.innerHTML;
-                const fullText = tempDiv.textContent || tempDiv.innerText;
 
+                const fullContent = contentPreview.innerHTML;
+                const fullText = contentPreview.textContent || contentPreview.innerText;
+
+                // 如果内容长度超过限制，则显示展开按钮
                 if (fullText.length > charLimit) {
-                    expandBtn.style.display = 'flex';
-                    contentPreview.classList.add('collapsed');
+                    // 创建一个临时元素来正确截取HTML内容
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = fullContent;
 
+                    // 使用TreeWalker遍历所有文本节点
+                    let charCount = 0;
+                    const walker = document.createTreeWalker(
+                        tempDiv,
+                        NodeFilter.SHOW_TEXT,
+                        null,
+                        false
+                    );
+
+                    let node;
+                    const textNodes = [];
+                    while (node = walker.nextNode()) {
+                        textNodes.push(node);
+                    }
+
+                    // 计算需要保留的文本内容
+                    for (let textNode of textNodes) {
+                        const text = textNode.textContent;
+                        if (charCount + text.length <= charLimit) {
+                            charCount += text.length;
+                        } else {
+                            const remainingChars = charLimit - charCount;
+                            textNode.textContent = text.substring(0, remainingChars) + '...';
+                            charCount = charLimit;
+
+                            // 移除后续所有节点
+                            let currentNodeToClearAfter = textNode;
+                            while (currentNodeToClearAfter && currentNodeToClearAfter !== tempDiv) {
+                                let sibling = currentNodeToClearAfter.nextSibling;
+                                while (sibling) {
+                                    const nodeToRemove = sibling;
+                                    sibling = sibling.nextSibling;
+                                    nodeToRemove.remove();
+                                }
+                                currentNodeToClearAfter = currentNodeToClearAfter.parentElement;
+                            }
+                            break;
+                        }
+                    }
+
+                    const previewContent = tempDiv.innerHTML;
+
+                    contentPreview.innerHTML = previewContent;
+                    contentPreview.classList.add('collapsed');
+                    expandBtn.style.display = 'flex';
+
+                    // 绑定展开/收起事件
                     expandBtn.addEventListener('click', function () {
-                        const isExpanded = this.classList.toggle('expanded');
-                        contentPreview.classList.toggle('collapsed');
-                        this.querySelector('.expand-text').textContent = isExpanded ? '收起' : '展开全文';
+                        const isExpanded = expandBtn.classList.contains('expanded');
+
                         if (isExpanded) {
-                            // After expanding, we remove the gradient overlay
-                             const overlay = contentPreview.querySelector('.content-overlay');
-                             if(overlay) overlay.style.display = 'none';
+                            // 收起内容
+                            contentPreview.innerHTML = previewContent;
+                            contentPreview.classList.add('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '展开全文';
+                            expandBtn.classList.remove('expanded');
+                        } else {
+                            // 展开内容
+                            contentPreview.innerHTML = fullContent;
+                            contentPreview.classList.remove('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '收起';
+                            expandBtn.classList.add('expanded');
                         }
                     });
                 } else {
+                    // 内容较短，隐藏展开按钮
                     expandBtn.style.display = 'none';
-                    // If content is short, ensure it's not collapsed by default
-                    contentPreview.classList.remove('collapsed');
                 }
             });
         }
-
 
         // 浮动操作与目录
         function initFloatingActions() {
@@ -1344,15 +1396,10 @@
             dirToggle.addEventListener('click', (e) => { e.stopPropagation(); dirPanel.classList.toggle('open'); dirToggle.setAttribute('aria-expanded', dirPanel.classList.contains('open')); });
             if (dirClose) dirClose.addEventListener('click', closePanel);
 
-            dirPanel.querySelectorAll('button[data-target]').forEach(item => {
+            dirPanel.querySelectorAll('[data-target]').forEach(item => {
                 item.addEventListener('click', () => {
-                    const targetId = item.getAttribute('data-target');
-                    const target = document.getElementById(targetId);
-                    if (target) {
-                         // Find the closest parent bento-card for sub-items
-                        const cardTarget = target.closest('.bento-card.anchor-target') || target;
-                        cardTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
+                    const target = document.getElementById(item.getAttribute('data-target'));
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     closePanel();
                 });
             });
@@ -1372,26 +1419,31 @@
                 { id: 'section-qa', icon: 'fa-circle-question' },
                 { id: 'section-daily-picks', icon: 'fa-gem' }
             ];
-            
-            let sectionCounter = 0;
+
+            // 中文数字转换
             const chineseNumbers = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+            let sectionCounter = 0;
 
             configs.forEach(config => {
                 const section = document.getElementById(config.id);
                 if (!section) return;
 
                 const titleEl = section.querySelector('.section-title');
-                // Extract text content, removing the counter that might be there from CSS
-                const title = titleEl ? titleEl.textContent.trim().replace(/^[一二三四五六七八九十]、\s*/, '') : config.id;
+                const title = titleEl ? titleEl.textContent.trim() : config.id;
+
+                // 递增计数器并添加中文序号
+                const chineseNumber = chineseNumbers[sectionCounter];
+                const titleWithNumber = `${chineseNumber}、 ${title}`;
+                sectionCounter++;
 
                 const itemWrapper = document.createElement('div');
                 itemWrapper.className = 'directory-item';
-                
+
                 const entryBtn = document.createElement('button');
+                entryBtn.className = 'directory-entry';
                 entryBtn.setAttribute('data-target', config.id);
-                entryBtn.innerHTML = `<span class="directory-icon"><i class="fas ${config.icon}"></i></span><span>${chineseNumbers[sectionCounter]}、 ${title}</span>`;
+                entryBtn.innerHTML = `<span class="directory-icon"><i class="fas ${config.icon}"></i></span><span>${titleWithNumber}</span>`;
                 itemWrapper.appendChild(entryBtn);
-                sectionCounter++;
 
                 const subHeadings = section.querySelectorAll('.bento-card h4');
                 if (subHeadings.length > 0) {
@@ -1399,21 +1451,17 @@
                     sublist.className = 'directory-sublist';
                     subHeadings.forEach((h, i) => {
                         const card = h.closest('.bento-card');
-                        if (card) {
-                            const subItemId = `${config.id}-item-${i}`;
-                            card.id = subItemId;
-                            card.classList.add('anchor-target');
-                            
-                            const subBtn = document.createElement('button');
-                            subBtn.className = 'directory-subitem';
-                            subBtn.setAttribute('data-target', subItemId);
-                            subBtn.textContent = h.textContent.trim();
-                            sublist.appendChild(subBtn);
-                        }
+                        if (!card) return;
+                        if (!card.id) card.id = `${config.id}-item-${i + 1}`;
+                        card.classList.add('anchor-target');
+
+                        const subBtn = document.createElement('button');
+                        subBtn.className = 'directory-subitem';
+                        subBtn.setAttribute('data-target', card.id);
+                        subBtn.textContent = h.textContent.trim();
+                        sublist.appendChild(subBtn);
                     });
-                    if (sublist.children.length > 0) {
-                        itemWrapper.appendChild(sublist);
-                    }
+                    if (sublist.hasChildNodes()) itemWrapper.appendChild(sublist);
                 }
                 listEl.appendChild(itemWrapper);
             });
