@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- AI填充指南：请将YYYY-MM-DD替换为日报对应的日期 -->
+    <title>星火日报 2026-01-11</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C9T7FPDT2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-6C9T7FPDT2');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            counter-reset: section-counter;
+        }
+
+        :root {
+            --directory-main-font-size: clamp(0.85rem, 0.9vw + 0.6rem, 0.95rem);
+            --directory-sub-font-size: clamp(0.78rem, 0.75vw + 0.5rem, 0.88rem);
+        }
+
+        .bento-card {
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .number-display {
+            font-weight: 900;
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-weight: 800;
+            font-size: 2.25rem;
+            color: #000000;
+            margin-bottom: 2rem;
+        }
+
+        .section-title::before {
+            counter-increment: section-counter;
+            content: counter(section-counter, cjk-ideographic) "、 ";
+        }
+
+        .tag-item {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px -3px rgba(239, 68, 68, 0.3);
+        }
+
+        .nav-button:disabled {
+            background: #e5e7eb;
+            color: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .history-link {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .history-link:hover {
+            background: rgba(239, 68, 68, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .expandable-content {
+            position: relative;
+        }
+
+        .content-preview.collapsed {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-preview.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(transparent, rgba(248, 250, 252, 0.9));
+            pointer-events: none;
+        }
+
+        .expand-btn {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .expand-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .expand-btn.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .anchor-target {
+            scroll-margin-top: 120px;
+        }
+
+        .floating-actions {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 50;
+        }
+
+        .floating-button {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            color: #ffffff;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px -5px rgba(239, 68, 68, 0.35);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .floating-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -6px rgba(239, 68, 68, 0.45);
+        }
+
+        .floating-button--hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            pointer-events: none;
+        }
+
+        .directory-wrapper {
+            position: relative;
+        }
+
+        .directory-panel {
+            position: absolute;
+            right: 0;
+            bottom: 3.5rem;
+            width: 18rem;
+            background: #ffffff;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -15px rgba(239, 68, 68, 0.35);
+            padding: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            max-height: min(75vh, 30rem);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        .directory-panel.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .directory-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .directory-title {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: var(--directory-main-font-size);
+        }
+
+        .directory-close {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 9999px;
+            transition: color 0.2s ease;
+        }
+
+        .directory-close:hover {
+            color: #ef4444;
+        }
+
+        .directory-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .directory-list button {
+            width: 100%;
+            text-align: left;
+            background: rgba(239, 68, 68, 0.08);
+            color: #1f2937;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.55rem 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: var(--directory-main-font-size);
+        }
+
+        .directory-list button:hover {
+            background: rgba(239, 68, 68, 0.18);
+            color: #b91c1c;
+        }
+
+        .directory-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .directory-sublist {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-left: 2.5rem;
+            padding-left: 0.75rem;
+            border-left: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .directory-subitem {
+            background: rgba(239, 68, 68, 0.04);
+            padding-top: 0.45rem;
+            padding-bottom: 0.45rem;
+            font-size: var(--directory-sub-font-size);
+        }
+
+        .directory-subitem:hover {
+            background: rgba(239, 68, 68, 0.14);
+        }
+
+        .directory-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 640px) {
+            .floating-actions {
+                right: 0.75rem;
+                bottom: 1rem;
+            }
+
+            .directory-panel {
+                width: min(80vw, 15rem);
+                bottom: 3.25rem;
+                max-height: min(70vh, 20rem);
+            }
+
+            :root {
+                --directory-main-font-size: 0.8rem;
+                --directory-sub-font-size: 0.72rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- === "星火日报" 文件头区域 开始 === -->
+        <header class="w-full mb-8">
+            <div class="bento-card p-8">
+                <div class="text-center">
+                    <h1 class="text-5xl font-black text-black mb-6">
+                        星火日报
+                    </h1>
+                    <div
+                        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg mb-4">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-calendar-alt mr-2 text-[#ef4444]"></i>
+                            <span id="report-date">2026年1月11日</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-clock mr-2 text-[#ef4444]"></i>
+                            <span>00:00 - 24:00</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <a id="history-link" href="#" class="history-link">
+                            <i class="fas fa-history"></i>
+                            星火历史日报汇总
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- === "星火日报" 文件头区域 结束 === -->
+
+        <nav class="w-full mb-8 daily-nav">
+            <div class="bento-card p-4">
+                <div class="flex justify-between items-center">
+                    <button type="button" class="nav-button day-nav-prev">
+                        <i class="fas fa-chevron-left"></i>
+                        上一天
+                    </button>
+                    <div class="text-center">
+                        <span class="text-sm text-gray-600">日报导航</span>
+                    </div>
+                    <button type="button" class="nav-button day-nav-next">
+                        下一天
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- === 模块一：总消息概览 开始 === -->
+        <section id="section-overview" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">总消息概览</h2>
+            <div
+                class="bento-card p-8 bg-gradient-to-br from-[#ef4444]/20 via-[#ef4444]/10 to-[#ef4444]/5 text-center rounded-2xl">
+                <div class="number-display text-[#ef4444]">
+                    1453
+                </div>
+                <p class="text-xl font-semibold text-black mt-3">总消息数量</p>
+            </div>
+        </section>
+        <!-- === 模块一：总消息概览 结束 === -->
+        
+        <!-- === 模块二：火花碰撞时刻・热点话题 开始 === -->
+        <section id="section-hot-topics" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">火花碰撞时刻・热点话题</h2>
+            <div class="space-y-8">
+                
+                <!-- 热点话题卡片 1 -->
+                <div class="bento-card p-6 rounded-xl"> 
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            如何实现5%年化收益？关于理财入门与风险的思辨
+                        </h4>
+                        <span
+                            class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            17:12 - 17:51
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            转念之间：@AA昍 日日这个可以解释一下吗？
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">投资理财</span>
+                            <span class="tag-item">年化收益</span>
+                            <span class="tag-item">沪深300</span>
+                            <span class="tag-item">ETF</span>
+                            <span class="tag-item">风险管理</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div
+                            class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br>
+                                    群成员<b>转念之间</b>对“年薪50万，5年攒够200万本金，实现每年10万被动收入”的财务路径感到好奇，追问为何以<b>5%的年化收益率</b>作为衡量标准。这一问题迅速点燃了群内关于投资理财的讨论热情，多位同志分享了各自的见解和困惑。<br><br>
+                                    <b>二、主要观点与讨论详情</b><br>
+                                    围绕如何稳健实现5%的年化收益，群友们展开了热烈探讨：<br><br>
+                                    <ul>
+                                        <li><b>高股息策略</b>：<b>Eric</b>率先提出，可以通过购买高股息率的红利股来实现，其年度分红可能超过5%。他还建议可以利用AI工具来筛选此类股票，并进行分散投资。</li>
+                                        <li><b>行业ETF投资</b>：<b>Eric</b>进一步补充，投资于具有突破性前景的行业ETF，如航天卫星、核聚变、固态电池等，长期来看有潜力跑赢多数投资。</li>
+                                        <li><b>指数基金定投</b>：有群友引用<b>AA昍</b>早期的观点，认为对于普通人而言，最简单且风险可控的方式是<b>购买沪深300指数基金并长期持有</b>，未来十年的年化收益率有望达到5%。这一观点得到了不少同志的认可。<b>旺旺</b>同志表示，听取建议后准备迈出第一步，先从开户学起。</li>
+                                    </ul>
+                                    <br>
+                                    <b>三、争议焦点与风险警示</b><br>
+                                    当讨论涉及到具体投资标的时，群内出现了关键的风险警示。在<b>Eric</b>分享了“卫星ETF还能涨很多”的看法后，<b>AA昍</b>和<b>Florence🎈</b>立即进行了严肃提醒。<br><br>
+                                    <b>AA昍</b>引用<b>旺旺</b>关于理财博主的提问，发表了深刻见解：“<b>理财博主干嘛要免费告诉你？理财博主自己有本金干嘛还要赚你的几块钱会员费？</b>”他强调，真正可靠且低风险的理财知识可以通过免费渠道学习，而非寄望于他人的“财富密码”。<br><br>
+                                    随后，他严正指出，在没有证券从业资格的情况下公开推荐具体股票或预测涨跌是<b>违法行为</b>，并用一句极具震撼力的话总结了其风险：“<b>赚了不会分你，赔了杀你全家。不要做这种事。</b>”他明确了群规“三不”原则（不键政、不炒股、不相亲），并解释“不炒股”指的是不荐股、不预测，但散户交流心得体会是允许的。这一番警示让大家对投资的严肃性和法律边界有了更清醒的认识。<br><br>
+                                    <b>四、结论与启发</b><br>
+                                    本次讨论从一个具体的财务目标出发，演变为一场关于投资策略、风险认知和行为边界的宝贵课程。讨论最终沉淀出几点核心启发：
+                                    <br>1. 对普通投资者而言，<b>长期持有如沪深300等宽基指数基金</b>，是追求市场平均回报（约5%年化）的稳健之选。
+                                    <br>2. 投资需“<b>干中学</b>”，与其听信各路“专家”，不如从基础学起，小额实践，逐步建立自己的投资体系。
+                                    <br>3. 必须对公开荐股等行为保持高度警惕，认识到其背后的法律风险和道德风险，坚守“<b>投资决策第一责任人</b>”的原则。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            对于普通人，追求5%的稳健年化收益，最可靠的路径之一是<b>长期持有宽基指数基金（如沪深300）</b>，而非寄望于他人的“财富密码”。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                理财博主干嘛要免费告诉你？理财博主自己有本金干嘛还要赚你的几块钱会员费？自己实践一下就明白了。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                比如我就可以免费说一条：买了沪深300然后放着，未来十年年化肯定有5%。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                我只想赚不想亏是不是想得太美。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>旺旺</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            <b>严守投资纪律与法律边界</b>，公开荐股荐基是违法行为，投资者需对自己负责，警惕“赚了不会分你，赔了杀你全家”的风险。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                不要荐股。是违法犯罪行为。认真说。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                赚了不会分你，赔了杀你全家。不要做这种事。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                这个群一不键政，二不炒股，三不相亲，都是容易出人命的话题。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 热点话题卡片 2 -->
+                <div class="bento-card p-6 rounded-xl"> 
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                           从“脆蜜金桔”谈起：农产品品牌化与消费心理洞察
+                        </h4>
+                        <span
+                            class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            18:15 - 19:12
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            桂花松仁糖：金桔是不是不用剥皮直接啃的
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">农产品</span>
+                            <span class="tag-item">品牌营销</span>
+                            <span class="tag-item">脆蜜金桔</span>
+                            <span class="tag-item">消费升级</span>
+                            <span class="tag-item">模块化思维</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div
+                            class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br>
+                                    群内关于融安脆蜜金桔的团购引发了一场关于现代农产品营销与消费心理的趣味讨论。起初，部分群友因其价格远高于传统金桔而感到困惑。<b>阿南plus</b>解释道，这源于大家对“金桔”的刻板印象，而新品种无论在个头、口感还是成本上都与传统品种有天壤之别，价格高是市场规律。<br><br>
+                                    <b>二、核心观点与讨论详情</b><br>
+                                    讨论从金桔本身扩展到了更广泛的农产品品牌化现象：<br><br>
+                                    <ul>
+                                        <li><b>改名即升级的营销策略</b>：<b>AA昍</b>指出，这类新品种“不如改个名字”，以区别于传统认知，避免价格误判。<b>清风拂我书</b>同志以“冰淇淋红薯”和“苹果蕉”为例，生动印证了这一观点。他解释说，这些所谓的新品种很多是基于广西等地的老品种改良而来，通过更换一个更具吸引力的名字，不仅提升了商品价值，也创造了新的市场定位。</li>
+                                        <li><b>包装设计的“解耦”思维</b>：针对金桔的独立包装，起初有群友不解其必要性。<b>清风拂我书</b>解释，单果包装是为方便运输和贮藏，能有效降低高单价水果的损耗，“一个坏了不会影响其它”。<b>AA昍</b>立刻将此现象抽象为技术领域的“<b>解耦</b>”和“<b>模块化</b>”思维，类似于电路中的保险丝，极大地提升了讨论的认知高度。</li>
+                                        <li><b>消费升级下的新需求</b>：<b>桂花松仁糖</b>表示，自己不爱吃水果的主要原因是“不想处理皮和核”，而这种即食金桔恰好解决了这一痛点。这反映了现代消费者，尤其是“懒人经济”下，对便利性的高度需求。<b>运动喵</b>也提到，榴莲、车厘子等水果虽好吃，但售后问题多，而柑橘类因其耐储运的特性，在电商和送礼市场具有天然优势。</li>
+                                    </ul>
+                                    <br>
+                                    <b>三、结论与启发</b><br>
+                                    这场由一颗金桔引发的讨论，为我们揭示了现代农业与消费市场互动的新图景：
+                                    <br>1. <b>认知重塑</b>：通过“改名”等营销手段，可以打破消费者对传统农产品的刻板印象，创造新的价值认知和溢价空间。
+                                    <br>2. <b>体验为王</b>：产品设计（如独立包装、无核化）解决了消费过程中的痛点，提升了用户体验，这是产品能够获得高溢价的关键。
+                                    <br>3. <b>跨界思维</b>：将工业领域的“解耦”、“模块化”思维应用于农业产品的包装与物流，体现了跨学科思维在解决实际问题中的巨大威力。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            现代农产品营销通过<b>更换名称和优化包装</b>，成功重塑了消费者认知，解决了消费痛点（如处理果皮果核），从而创造了更高的产品溢价。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                这东西确实不如改个名字。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                我不怎么吃水果的原因就是不想处理皮和核，这个看了我想尝一尝。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>桂花松仁糖</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                其实在本地水果摊没区别的，就是一个叫法会贵点。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>清风拂我书</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            高价值水果采用单果包装，是典型的<b>“解耦”和“模块化”思维</b>应用：防止交叉感染，降低整体损耗，类似电路中的保险丝机制。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                单果包是为了方便运输和贮藏，每个果子住单间，一个坏了不会影响其它。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>清风拂我书</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                对，解耦。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                类似于模块化，保险丝。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- === 模块二：火花碰撞时刻・热点话题 结束 === -->
+
+        <!-- === (条件触发模块) 秉烛共谈录 · 星火深潜 开始 === -->
+        <section id="section-deep-dive" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">秉烛共谈录 · 星火深潜</h2>
+            <div class="space-y-8">
+                <div class="bento-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            读博十字路口：面对“鸡肋”出国交流机会，何去何从？
+                        </h4>
+                        <span
+                            class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-comments mr-1.5 text-gray-500"></i>
+                            21:50 - 23:15
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            哈哈哈：同志们，我要自我暴露一下，想让大家帮忙分析分析哇，要不要试试出个国交流一年：
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">博士生</span>
+                            <span class="tag-item">职业规划</span>
+                            <span class="tag-item">出国交流</span>
+                            <span class="tag-item">机会成本</span>
+                            <span class="tag-item">导师关系</span>
+                            <span class="tag-item">课题分离</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div
+                            class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题提出与背景补充</b><br>
+                                    晚间，群成员<b>哈哈哈</b>同志（博四，声学专业）抛出了一个典型的博士生发展困境，引发了一场长达一个半小时的深度思辨。他面临一个CSC公派去欧洲（法国、德国）交流一年的机会，但内心极为纠结。他条理清晰地列出了利弊清单，为后续的精准剖析提供了详实素材。<br><br>
+                                    <b>核心诉求</b>：尽早毕业，找到年薪约40-50万的工作。<br>
+                                    <b>利弊分析</b>：
+                                    <ul>
+                                        <li><b>好处</b>：可以暂时逃离压榨自己干杂活的导师；能出国“长长见识”，满足家人和女友的期待。</li>
+                                        <li><b>坏处</b>：对非教职工作无加成；需与女友异国恋；但最致命的是，<b>出国必然导致延毕（至少半年），且会错过秋招黄金期</b>。</li>
+                                    </ul>
+                                    问题的核心矛盾昭然若揭：<b>以“尽早毕业挣钱”为目标的他，却在考虑一个必然会“延毕”的选项。</b><br><br>
+
+                                    <b>二、核心焦点与深层议题挖掘</b><br>
+                                    讨论迅速从表面的是非选择，深入到问题的本质。群友们的智慧碰撞，将议题从“去不去”的个人选择，升维至“如何决策”的通用方法论。<br><br>
+                                    <b>1.【主要矛盾】确立：</b>以<b>小月半皮</b>（博导）、<b>今天是叶子</b>、<b>陈俊豪</b>为代表的“速决毕业派”迅速抓住要害。<b>小月半皮</b>以导师视角直言：<b>“早点毕业是最重要的”</b>。<b>陈俊豪</b>更是“现身说法”，分享自己因等论文延毕而错失20万科研经费和更优考核待遇的惨痛教训，力劝“找工作要趁早”。<br><br>
+                                    <b>2.【机会成本】拷问：</b>当讨论还在“见世面”的价值上摇摆时，<b>AA昍</b>引入了经济学视角，发动了一次认知层面的“降维打击”。他对比了“毕业后50万的年薪”和“导师省下的每月2000元补贴”，犀利地指出：“<b>一年能有50w或者少说20w的职业生涯，为什么还会把一个月2000当成一种考虑因素来提？</b>”他由此推断：“<b>换句话说，要么问题是假的，要么50w是假的。否则不成立。</b>”这一拷问，瞬间将延毕一年的抽象时间，转化为<b>“损失50万元”</b>的具象成本，极大地冲击了在场所有人的惯性思维。<br><br>
+                                    <b>3.【海外滤镜】祛魅：</b>针对“出国长见识”这一看似诱人的好处，群内掀起了一场“祛魅”风暴。从<b>吖洋洋🥙</b>“互联网不都看到了”的直白，到<b>今天是叶子</b>对欧洲治安乱象的“应激”，再到<b>AA昍</b>“<b>几年后，海外经历将会是扣分项</b>”的暴论，群友们从社会现实、求职市场（<b>小福仙</b>、<b>高大壮喝了冰露真的永不痛风</b>证实企业对“水硕”已有偏见）等多个维度，瓦解了对海外经历的盲目崇拜。<br><br>
+                                    
+                                    <b>三、多方观点流派与方案探讨</b><br>
+                                    在抽丝剥茧的过程中，大家发现问题的根源并非出国与否，而是<b>如何处理与导师的紧张关系</b>。<b>哈哈哈</b>同志坦言，导师希望学生延毕以充当廉价劳动力，出国交流成了他“逃避”导师的一种策略。对此，群内形成了清晰的解决方案：<br><br>
+                                    <b>【直面现实派】</b>：<b>甲鱼非鱼</b>等有经验的同志指出，面对想卡毕业的导师，<b>必须提前谈判，通过“帮带新人”或“完成棘手项目”来交换毕业条件，否则“100%延毕”</b>。逃避无法解决问题，只会让问题拖延和恶化。<br><br>
+                                    <b>【风险控制派】</b>：<b>陈俊豪</b>和<b>Geng</b>等有海外经历的同志强调，在不了解对方导师底细的情况下，出国交流是<b>“纯粹在赌”</b>。他们建议，除非有知根知底的师兄师姐推荐，能确保抱上大腿、产出顶刊，否则大概率是“在海外华人圈宅一年”，纯属浪费时间。<br><br>
+
+                                    <b>四、讨论共识与分歧总结</b><br>
+                                    经过激烈的思想碰撞，群内最终达成高度共识：<b>“哈哈哈”同志的核心问题是逃避，而非选择。</b> 他对出国的纠结，实质是用一个看似“高大上”的选项，来掩盖自己不敢直面导师、不敢为自己争取利益的现状。家人和女友的支持，更多是“不留遗憾”的感性投射，缺乏对实际利弊和机会成本的考量。<br><br>
+                                    <b>AA昍</b>在讨论末尾，引入了“<b>课题分离</b>”的重要概念，提醒提问者：所有建议都基于他的片面陈述，他必须为自己的最终决定负全责，不能将责任推给家人或群友。
+                                    <br><br>
+                                    
+                                    <b>五、宏观影响与价值提炼（重点）</b><br>
+                                    这场讨论从一个博士生的个人困惑，升华为一次关于人生重大决策的深刻复盘，其价值远超问题本身：
+                                    <br>1. <b>决策第一性原理——抓住主要矛盾</b>：任何复杂的决策，首先要识别并牢牢抓住核心目标（主要矛盾）。所有选项都应围绕此目标进行评估，任何与之相悖的，无论看起来多么诱人，都应果断舍弃。
+                                    <br>2. <b>机会成本的量化思维</b>：学会将抽象的时间、精力等成本，转化为具体的、可感知的经济数字。当“出国一年”等价于“放弃50万收入”，决策的天平会立刻变得清晰。
+                                    <br>3. <b>警惕“张艺谋式”补偿心理</b>：对未曾拥有之物（如海外经历）的过度美化和执念，往往会导致非理性决策。必须对这类“滤镜”进行祛魅，回归现实，实事求是。
+                                    <br>4. <b>逃避可耻且无用</b>：面对困境，选择逃避（如用出国躲避导师）只会将问题拖延，并可能引发更严重的后果。唯有直面问题根源，积极寻求解决方案，才是真正的勇者之道。
+                                    <br><br>
+                                    最终，在群策群力的“批判”下，<b>哈哈哈</b>同志幡然醒悟：“<b>我想明白了，真不出去了，一定要抓住主要矛盾，就是尽快毕业挣钱钱。</b>” 这次讨论，无疑是他人生道路上一次宝贵的思想洗礼。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#ef4444] hover:text-red-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            在面临职业选择时，必须首先<b>抓住主要矛盾</b>（如尽快毕业挣钱），并学会<b>量化机会成本</b>（如延毕一年等于放弃50万年薪），任何与核心目标相悖的选项都应果断排除。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                早点毕业是最重要的。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>小月半皮</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                既然想好了去工作，那紧要的就是准时甚至提前毕业，别浪费时间。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>陈俊豪</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                换句话说，要么问题是假的，要么50w是假的。否则不成立。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            对海外经历等看似美好的选项需<b>理性祛魅</b>，警惕“张艺谋式”的补偿心理。在当前环境下，海外经历对非学术就业的加成有限，甚至可能成为扣分项。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                现在还有什么可以长见识的吗？国外长啥样，互联网不都看到了。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>吖洋洋🥙</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                几年后，海外经历将会是扣分项。我的暴论，不一定对。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                做好课题分离。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- === (条件触发模块) 秉烛共谈录 · 星火深潜 结束 === -->
+
+        <!-- === 模块四：解惑一点通・有问必答 开始 === -->
+        <section id="section-qa" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">解惑一点通・有问必答</h2>
+            <div class="space-y-8">
+                <!-- 问答卡片 1 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            面对高薪但高压的初创公司工作，如何调整心态与决策？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            W：同志们最近我有点累，来吐槽一下。
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br>
+                                    群成员<b>W</b>同志分享了其在一家初创公司工作的困惑。他入职2个多月，薪资上涨了25%（涨薪5000元），但工作强度极大，老板精力旺盛，要求员工随时待命，并明确鼓励加班。尽管<b>W</b>同志认为这是一个锻炼和挑战自我的机会，但持续的高压状态让他感到身心俱疲。<br><br>
+                                    <b>二、核心原因分析</b><br>
+                                    群友们分析，问题的核心在于<b>高回报与高付出的平衡被打破</b>。虽然薪资涨幅可观，但“随时待命”和“被动加班”的模式，让工作的边界变得模糊，个人生活被严重侵占，导致幸福感和工作动力快速衰减。<br><br>
+                                    <b>三、解决方案与建议</b><br>
+                                    群策群力，给出了多角度的解决方案：<br>
+                                    1. <b>市场测试与选择权 확보</b>：<b>AA昍</b>建议，既然觉得累得不划算，可以“<b>投投简历呢？有更合适的就走，没有就忍着</b>”。这提供了一个主动的决策框架：通过了解市场行情，来判断当前工作的真实价值，从而掌握是去是留的主动权。<br>
+                                    2. <b>量化付出与回报</b>：<b>维哈腾海特</b>同志提出了一个理性的量化方法：“<b>也可以算算时薪，横向比较一下，安慰安慰自己</b>”。通过计算时薪，可以更客观地评估这份工作的“性价比”，避免单纯的情绪内耗。<br>
+                                    3. <b>明确目标，阶段性忍耐</b>：<b>AA昍</b>进一步指出，如果目标是冲击更高的年薪（如50万），那么现阶段的累是必要的资本积累。他描绘了“<b>一年50，轻松攒30，很快复利就会有一年10w的进账</b>”的路径，强调为了未来的“躺平”，当前的奋斗是值得的。这个视角为“忍耐”提供了清晰的目标和动力。<br>
+                                    4. <b>坚守健康底线</b>：在鼓励奋斗的同时，多位同志也强调了健康的重要性。<b>AA昍</b>提醒“<b>别猝死就行</b>”，<b>维哈腾海特</b>也指出“<b>身体信号一定要注意，硬扛伤腰，徐徐图之</b>”。这为高强度工作划定了一条不可逾越的红线。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">职业发展</span>
+                            <span class="tag-item">工作压力</span>
+                            <span class="tag-item">初创公司</span>
+                            <span class="tag-item">机会成本</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 问答卡片 2 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            自媒体起步期，如何有效报价及调整内容方向？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            小欧：跟同志们汇报一下这两周做自媒体的进展。
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br>
+                                    群成员<b>小欧</b>在复盘自己的育儿自媒体账号时，提出了两个核心困惑：1. 首次接到公众号互选广告，报价300元后杳无音信，不知如何报价才算合理；2. 感觉选题困难，内容产出受阻，怀疑自己被“想发一个‘像样’的东西”卡住了。<br><br>
+                                    <b>二、核心原因分析</b><br>
+                                    群友们分析，<b>小欧</b>同志遇到的问题是自媒体创作者在起步期普遍面临的挑战：一是缺乏市场化的定价标准和谈判经验，二是内容创作陷入了“完美主义”和“自我设限”的怪圈，脱离了平台受众的真实需求。<br><br>
+                                    <b>三、解决方案与建议</b><br>
+                                    针对这两个问题，群内有经验的同志给出了具体且可操作的建议：<br><br>
+                                    1. <b>关于广告报价</b>：
+                                    <ul>
+                                        <li><b>通用报价法则</b>：<b>小月半皮</b>和<b>Major.T</b>分享了行业内通用的报价参考标准，即“<b>粉丝量的10%左右</b>”。<b>Major.T</b>建议可以此为起点，根据几次报价的反馈来动态调整。</li>
+                                        <li><b>警惕中间商套路</b>：<b>已设置昵称</b>同志揭示了PR公司（公关公司）可能存在的操作，即品牌方预算可能是500元，但PR会压价到200元并要求返点50元，自己赚取高额差价。这提醒创作者在谈判时要有心理预期，适当提高报价以应对压价。</li>
+                                        <li><b>建立谈判筹码</b>：<b>Major.T</b>鼓励道，初期可以不接性价比低的合作，集中精力“养肥账号”，粉丝量和数据上去了，自然就有更多的谈判筹码。</li>
+                                    </ul>
+                                    <br>
+                                    2. <b>关于内容方向</b>：
+                                    <ul>
+                                        <li><b>破除“论文思维”</b>：<b>老登的白丝袜</b>（糕糕老师）一语中的，指出许多知识型博主容易陷入“<b>写论文</b>”的误区。他强调，小红书是大众平台，用户不想看复杂的焦虑信息，更喜欢“<b>开心的日常</b>”。</li>
+                                        <li><b>拥抱大众需求</b>：他建议<b>小欧</b>发挥宝妈身份的优势，多做“<b>宝妈严选</b>”或“<b>好物推荐</b>”这类能直接为用户提供解决方案、腾出“广告位”的内容。这个方向不仅更受用户欢迎，也为未来的商业变现铺平了道路。</li>
+                                    </ul>
+                                    <br>
+                                    <b>小欧</b>同志积极采纳建议，表示将朝着更贴近大众、更具实用性的方向努力。这场问答为自媒体新人提供了宝贵的实战指南。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">自媒体</span>
+                            <span class="tag-item">内容创作</span>
+                            <span class="tag-item">商业报价</span>
+                            <span class="tag-item">育儿赛道</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- === 模块四：解惑一点通・有问必答 结束 === -->
+
+        <!-- === 模块五：智慧火花匣・每日精选 开始 === -->
+        <section id="section-daily-picks" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">智慧火花匣・每日精选</h2>
+            <div class="space-y-8">
+                <!-- 知识卡片 1 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        “圩(wéi)日表”小程序：带你体验人间烟火，寻找城市中的传统市集
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            清风拂我书：今天谈水果也算谈农事，那肯定要跟大家分享一个我用了很久的小程序，叫圩日。
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br>
+                                群成员<b>清风拂我书</b>分享了一款极具人文气息和实用价值的小程序——“<b>圩日表</b>”。他介绍，这是一款用于查询全国各地“赶圩”日期的工具。<br><br>
+                                <b>二、核心价值与特点</b><br>
+                                “圩”(wéi)，即集市。赶圩（或称赶集、赶场、上会、赶巴扎）是中国民间一种传统的商品交易形式。<b>清风拂我书</b>指出，这款小程序的最大价值在于，它系统整理了全国各地仍在沿用的、大多基于农历的赶集日期，让身处现代都市的人们也能轻松找到这份“人间烟火气”。<br><br>
+                                讨论中，群友们发现这种传统市集在现代社会依然生命力旺盛，并演化出了新形式。<b>AA昍</b>观察到，商场周边定期举办的小吃街、主题市集，本质上就是“<b>新形势的赶集</b>”，那些开着车、跟着活动走的小吃摊贩，正是现代的“赶集人”。<br><br>
+                                <b>三、适用场景或补充信息</b><br>
+                                这款小程序不仅是普通人周末寻觅美食、体验当地风情的绝佳向导，更是自媒体创作者的“<b>宝藏素材库</b>”。<b>清风拂我书</b>提到，B站知名UP主“艾伦的美食探索”等美食博主，正是利用这类信息来拍摄和探索地方特色。<b>AA昍</b>也认为，将赶集文化与新农村、国内游等话题结合，是极具潜力的自媒体创作方向。群友<b>佥刀君</b>对此工具大加赞赏，认为它非常有用，值得收录。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">小程序</span>
+                        <span class="tag-item">生活工具</span>
+                        <span class="tag-item">地方文化</span>
+                        <span class="tag-item">自媒体素材</span>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <a href="#" onclick="alert('请在微信中搜索小程序“圩日表”'); return false;"
+                            target="_blank" rel="noopener noreferrer"
+                            class="text-sm font-medium text-[#4D6BFE] hover:text-blue-700 hover:underline flex items-center">
+                            打开小程序
+                            <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 知识卡片 2 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        “炭炭口语宝”：一个通过录制英语口语赚取零花钱的渠道
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            小欧：给大家分享一个（几乎）无痛赚零花钱的渠道...
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br>
+                                群成员<b>小欧</b>分享了一个名为“<b>炭炭口语宝</b>”的App，并介绍了其“现金征稿”功能，为群友们提供了一个“几乎无痛赚零花钱”的新思路。<br><br>
+                                <b>二、核心价值与特点</b><br>
+                                该App通过现金奖励的方式，征集用户录制的英语晨读音频。<b>小欧</b>同志以亲身经历展示了其可行性：尽管自谦英语水平“辣鸡”，但她借助AI工具（DeepSeek）分析句子并进行录音，成功投稿并被选中，获得了<b>100元</b>的稿费。这个案例极大地鼓舞了群友，<b>Suerte</b>、<b>满满金</b>等同志在看到分享后，立刻下载并尝试录制，发现App的激励机制确实能激发学习和参与的热情。<br><br>
+                                <b>三、适用场景或补充信息</b><br>
+                                这个渠道的亮点在于其<b>低门槛和正向激励</b>。对于英语学习者来说，它不仅提供了一个练习口语的平台，还能通过赚取稿费获得即时满足感。对于普通用户，这也是一个利用碎片时间、借助AI工具辅助、轻松赚取零花钱的有效方法。<br><br>
+                                <b>小欧</b>分享的真正价值，正如她自己总结的：“<b>有些事可以试试，会发现也许并没有那么复杂</b>”。这不仅是一个赚钱小技巧的分享，更是一次关于“主动尝试、破除自我设限”的生动示范。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag-item">App推荐</span>
+                        <span class="tag-item">英语学习</span>
+                        <span class="tag-item">零花钱</span>
+                        <span class="tag-item">搞钱思路</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- === 模块五：智慧火花匣・每日精选 结束 === -->
+
+        <nav class="w-full mt-12 daily-nav">
+            <div class="bento-card p-4">
+                <div class="flex justify-between items-center">
+                    <button type="button" class="nav-button day-nav-prev">
+                        <i class="fas fa-chevron-left"></i>
+                        上一天
+                    </button>
+                    <div class="text-center">
+                        <span class="text-sm text-gray-600">日报导航</span>
+                    </div>
+                    <button type="button" class="nav-button day-nav-next">
+                        下一天
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- === 文件底部 开始 === -->
+        <footer class="w-full mt-16">
+            <div class="bento-card p-8">
+                <div class="text-center text-gray-700 space-y-3">
+                    <div
+                        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-base">
+                        <div class="flex items-center">
+                            <i class="fas fa-database mr-2 text-[#ef4444]"></i>
+                            <span>星火群聊记录</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-robot mr-2 text-[#ef4444]"></i>
+                            <span>2026-01-12 02:00:00</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                        本报告基于群聊数据自动生成，仅供参考。内容可能包含个人观点，不代表群组官方立场。
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <!-- === 文件底部 结束 === -->
+    </div>
+
+    <!-- === 浮动按钮与脚本区域 开始 === -->
+    <div class="floating-actions" aria-label="页面快捷操作">
+        <div class="directory-wrapper">
+            <button type="button" class="floating-button" id="directory-toggle" aria-expanded="false"
+                aria-controls="directory-panel" aria-label="打开内容导航">
+                <i class="fas fa-list-ul"></i>
+            </button>
+            <div class="directory-panel" id="directory-panel" role="dialog" aria-hidden="true">
+                <div class="directory-header">
+                    <span class="directory-title">内容导航</span>
+                    <button type="button" class="directory-close" id="directory-close" aria-label="关闭内容导航">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="directory-list" id="directory-list">
+                    <!-- 目录由脚本自动生成 -->
+                </div>
+            </div>
+        </div>
+        <button type="button" class="floating-button floating-button--hidden" id="scroll-top-btn" aria-label="返回顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 数字动画
+            document.querySelectorAll('.number-display').forEach(el => {
+                const finalValue = parseInt(el.textContent.replace(/,/g, ''), 10);
+                if (isNaN(finalValue)) return;
+                let current = 0;
+                const duration = 1500, frameRate = 1000 / 60, totalFrames = Math.round(duration / frameRate);
+                const increment = finalValue / totalFrames;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= finalValue) {
+                        current = finalValue;
+                        clearInterval(timer);
+                    }
+                    el.textContent = Math.floor(current).toLocaleString('en-US');
+                }, frameRate);
+            });
+
+            initDailyNavigation();
+            initExpandableContent();
+            initFloatingActions();
+
+            const historyLink = document.getElementById('history-link');
+            if (historyLink) historyLink.href = '星火历史日报汇总.html';
+        });
+
+        // 日报导航
+        async function initDailyNavigation() {
+            const currentDate = getCurrentDateFromPage();
+            if (!currentDate) return;
+            await setupNavigationButtons(currentDate);
+        }
+
+        function getCurrentDateFromPage() {
+            const dateEl = document.getElementById('report-date');
+            if (dateEl) {
+                const match = dateEl.textContent.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                if (match) return `${match[1]}-${match[2].padStart(2, '0')}-${match[3].padStart(2, '0')}`;
+            }
+            const titleMatch = document.title.match(/(\d{4}-\d{2}-\d{2})/);
+            if (titleMatch) return titleMatch[1];
+            return null;
+        }
+
+        async function setupNavigationButtons(currentDate) {
+            const prevBtns = document.querySelectorAll('.day-nav-prev');
+            const nextBtns = document.querySelectorAll('.day-nav-next');
+            const navContainers = document.querySelectorAll('.daily-nav');
+
+            const currentDateObj = new Date(currentDate);
+            const prevDate = new Date(currentDateObj); prevDate.setDate(prevDate.getDate() - 1);
+            const nextDate = new Date(currentDateObj); nextDate.setDate(nextDate.getDate() + 1);
+            const prevDateStr = formatDate(prevDate), nextDateStr = formatDate(nextDate);
+
+            const [prevExists, nextExists] = await Promise.all([checkReportExists(prevDateStr), checkReportExists(nextDateStr)]);
+
+            if (!prevExists && !nextExists) {
+                navContainers.forEach(c => c.style.display = 'none');
+                return;
+            }
+            navContainers.forEach(c => c.style.display = 'block');
+
+            prevBtns.forEach(btn => {
+                btn.disabled = !prevExists;
+                if (prevExists) btn.onclick = () => window.location.href = `星火群日报_${prevDateStr}.html`;
+            });
+            nextBtns.forEach(btn => {
+                btn.disabled = !nextExists;
+                if (nextExists) btn.onclick = () => window.location.href = `星火群日报_${nextDateStr}.html`;
+            });
+        }
+
+        async function checkReportExists(date) {
+            try {
+                const res = await fetch(`星火群日报_${date}.html`, { method: 'HEAD' });
+                return res.ok;
+            } catch { return false; }
+        }
+
+        function formatDate(date) {
+            return date.toISOString().slice(0, 10);
+        }
+
+        // 展开/收起功能
+        function initExpandableContent() {
+            const expandableContents = document.querySelectorAll('.expandable-content');
+
+            expandableContents.forEach(container => {
+                const charLimit = parseInt(container.getAttribute('data-char-limit')) || 200;
+                const contentPreview = container.querySelector('.content-preview');
+                const expandBtn = container.querySelector('.expand-btn');
+
+                if (!contentPreview || !expandBtn) return;
+                
+                // Use a temporary div to measure text length while ignoring HTML tags
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = contentPreview.innerHTML;
+                const fullText = tempDiv.textContent || tempDiv.innerText;
+
+                if (fullText.length > charLimit) {
+                    expandBtn.style.display = 'flex';
+                    contentPreview.classList.add('collapsed');
+
+                    expandBtn.addEventListener('click', function () {
+                        const isExpanded = this.classList.toggle('expanded');
+                        contentPreview.classList.toggle('collapsed');
+                        this.querySelector('.expand-text').textContent = isExpanded ? '收起' : '展开全文';
+                        if (isExpanded) {
+                            // After expanding, we remove the gradient overlay
+                             const overlay = contentPreview.querySelector('.content-overlay');
+                             if(overlay) overlay.style.display = 'none';
+                        }
+                    });
+                } else {
+                    expandBtn.style.display = 'none';
+                    // If content is short, ensure it's not collapsed by default
+                    contentPreview.classList.remove('collapsed');
+                }
+            });
+        }
+
+
+        // 浮动操作与目录
+        function initFloatingActions() {
+            const scrollTopBtn = document.getElementById('scroll-top-btn');
+            const dirToggle = document.getElementById('directory-toggle');
+            const dirPanel = document.getElementById('directory-panel');
+            const dirClose = document.getElementById('directory-close');
+
+            if (scrollTopBtn) {
+                window.addEventListener('scroll', () => {
+                    scrollTopBtn.classList.toggle('floating-button--hidden', window.scrollY <= 240);
+                }, { passive: true });
+                scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            }
+
+            if (!dirPanel || !dirToggle) return;
+            buildDirectory();
+
+            const closePanel = () => { dirPanel.classList.remove('open'); dirToggle.setAttribute('aria-expanded', 'false'); };
+            dirToggle.addEventListener('click', (e) => { e.stopPropagation(); dirPanel.classList.toggle('open'); dirToggle.setAttribute('aria-expanded', dirPanel.classList.contains('open')); });
+            if (dirClose) dirClose.addEventListener('click', closePanel);
+
+            dirPanel.querySelectorAll('button[data-target]').forEach(item => {
+                item.addEventListener('click', () => {
+                    const targetId = item.getAttribute('data-target');
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                         // Find the closest parent bento-card for sub-items
+                        const cardTarget = target.closest('.bento-card.anchor-target') || target;
+                        cardTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    closePanel();
+                });
+            });
+            document.addEventListener('click', (e) => { if (!dirPanel.contains(e.target) && !dirToggle.contains(e.target)) closePanel(); });
+            window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+        }
+
+        function buildDirectory() {
+            const listEl = document.getElementById('directory-list');
+            if (!listEl) return;
+            listEl.innerHTML = '';
+
+            const configs = [
+                { id: 'section-overview', icon: 'fa-chart-column' },
+                { id: 'section-hot-topics', icon: 'fa-fire' },
+                { id: 'section-deep-dive', icon: 'fa-comments' },
+                { id: 'section-qa', icon: 'fa-circle-question' },
+                { id: 'section-daily-picks', icon: 'fa-gem' }
+            ];
+            
+            let sectionCounter = 0;
+            const chineseNumbers = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+
+            configs.forEach(config => {
+                const section = document.getElementById(config.id);
+                if (!section) return;
+
+                const titleEl = section.querySelector('.section-title');
+                // Extract text content, removing the counter that might be there from CSS
+                const title = titleEl ? titleEl.textContent.trim().replace(/^[一二三四五六七八九十]、\s*/, '') : config.id;
+
+                const itemWrapper = document.createElement('div');
+                itemWrapper.className = 'directory-item';
+                
+                const entryBtn = document.createElement('button');
+                entryBtn.setAttribute('data-target', config.id);
+                entryBtn.innerHTML = `<span class="directory-icon"><i class="fas ${config.icon}"></i></span><span>${chineseNumbers[sectionCounter]}、 ${title}</span>`;
+                itemWrapper.appendChild(entryBtn);
+                sectionCounter++;
+
+                const subHeadings = section.querySelectorAll('.bento-card h4');
+                if (subHeadings.length > 0) {
+                    const sublist = document.createElement('div');
+                    sublist.className = 'directory-sublist';
+                    subHeadings.forEach((h, i) => {
+                        const card = h.closest('.bento-card');
+                        if (card) {
+                            const subItemId = `${config.id}-item-${i}`;
+                            card.id = subItemId;
+                            card.classList.add('anchor-target');
+                            
+                            const subBtn = document.createElement('button');
+                            subBtn.className = 'directory-subitem';
+                            subBtn.setAttribute('data-target', subItemId);
+                            subBtn.textContent = h.textContent.trim();
+                            sublist.appendChild(subBtn);
+                        }
+                    });
+                    if (sublist.children.length > 0) {
+                        itemWrapper.appendChild(sublist);
+                    }
+                }
+                listEl.appendChild(itemWrapper);
+            });
+        }
+    </script>
+
+    <!-- ICP备案号等信息 -->
+    <div
+        style="text-align:center; font-size:14px; color:#888; padding:20px 0; margin-top:20px; border-top:1px solid #eee;">
+        <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#888; text-decoration:none;">
+            赣ICP备2024051762号-2
+        </a>
+    </div>
+    <div style="text-align:center; font-size:14px; color:#888; padding:10px 0;">
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36060202000451" rel="noreferrer" target="_blank"
+            style="color:#888; text-decoration:none; display:inline-flex; align-items:center; gap:5px;">
+            <img src="beian.png" alt="公安备案" style="width:20px; height:20px;">
+            <span>赣公网安备36060202000451号</span>
+        </a>
+    </div>
+</body>
+
+</html>
