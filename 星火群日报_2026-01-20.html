@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- AI填充指南：请将YYYY-MM-DD替换为日报对应的日期 -->
+    <title>星火日报 2026-01-20</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C9T7FPDT2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-6C9T7FPDT2');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            counter-reset: section-counter;
+        }
+
+        :root {
+            --directory-main-font-size: clamp(0.85rem, 0.9vw + 0.6rem, 0.95rem);
+            --directory-sub-font-size: clamp(0.78rem, 0.75vw + 0.5rem, 0.88rem);
+        }
+
+        .bento-card {
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .number-display {
+            font-weight: 900;
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-weight: 800;
+            font-size: 2.25rem;
+            color: #000000;
+            margin-bottom: 2rem;
+        }
+
+        .section-title::before {
+            counter-increment: section-counter;
+            content: counter(section-counter, cjk-ideographic) "、 ";
+        }
+
+        .tag-item {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px -3px rgba(239, 68, 68, 0.3);
+        }
+
+        .nav-button:disabled {
+            background: #e5e7eb;
+            color: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .history-link {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .history-link:hover {
+            background: rgba(239, 68, 68, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .expandable-content {
+            position: relative;
+        }
+
+        .content-preview.collapsed {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-preview.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(transparent, rgba(248, 250, 252, 0.9));
+            pointer-events: none;
+        }
+
+        .expand-btn {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .expand-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .expand-btn.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .anchor-target {
+            scroll-margin-top: 120px;
+        }
+
+        .floating-actions {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 50;
+        }
+
+        .floating-button {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            color: #ffffff;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px -5px rgba(239, 68, 68, 0.35);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .floating-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -6px rgba(239, 68, 68, 0.45);
+        }
+
+        .floating-button--hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            pointer-events: none;
+        }
+
+        .directory-wrapper {
+            position: relative;
+        }
+
+        .directory-panel {
+            position: absolute;
+            right: 0;
+            bottom: 3.5rem;
+            width: 18rem;
+            background: #ffffff;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -15px rgba(239, 68, 68, 0.35);
+            padding: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            max-height: min(75vh, 30rem);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        .directory-panel.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .directory-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .directory-title {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: var(--directory-main-font-size);
+        }
+
+        .directory-close {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 9999px;
+            transition: color 0.2s ease;
+        }
+
+        .directory-close:hover {
+            color: #ef4444;
+        }
+
+        .directory-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .directory-list button {
+            width: 100%;
+            text-align: left;
+            background: rgba(239, 68, 68, 0.08);
+            color: #1f2937;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.55rem 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: var(--directory-main-font-size);
+        }
+
+        .directory-list button:hover {
+            background: rgba(239, 68, 68, 0.18);
+            color: #b91c1c;
+        }
+
+        .directory-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .directory-sublist {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-left: 2.5rem;
+            padding-left: 0.75rem;
+            border-left: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .directory-subitem {
+            background: rgba(239, 68, 68, 0.04);
+            padding-top: 0.45rem;
+            padding-bottom: 0.45rem;
+            font-size: var(--directory-sub-font-size);
+        }
+
+        .directory-subitem:hover {
+            background: rgba(239, 68, 68, 0.14);
+        }
+
+        .directory-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 640px) {
+            .floating-actions {
+                right: 0.75rem;
+                bottom: 1rem;
+            }
+
+            .directory-panel {
+                width: min(80vw, 15rem);
+                bottom: 3.25rem;
+                max-height: min(70vh, 20rem);
+            }
+
+            :root {
+                --directory-main-font-size: 0.8rem;
+                --directory-sub-font-size: 0.72rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- === "星火日报" 文件头区域 开始 === -->
+        <header class="w-full mb-8">
+            <div class="bento-card p-8">
+                <div class="text-center">
+                    <h1 class="text-5xl font-black text-black mb-6">
+                        星火日报
+                    </h1>
+                    <div
+                        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg mb-4">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-calendar-alt mr-2 text-[#ef4444]"></i>
+                            <span id="report-date">2026年1月20日</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-clock mr-2 text-[#ef4444]"></i>
+                            <span>00:00 - 24:00</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <a id="history-link" href="#" class="history-link">
+                            <i class="fas fa-history"></i>
+                            星火历史日报汇总
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- === "星火日报" 文件头区域 结束 === -->
+
+        <nav class="w-full mb-8 daily-nav">
+            <div class="bento-card p-4">
+                <div class="flex justify-between items-center">
+                    <button type="button" class="nav-button day-nav-prev">
+                        <i class="fas fa-chevron-left"></i>
+                        上一天
+                    </button>
+                    <div class="text-center">
+                        <span class="text-sm text-gray-600">日报导航</span>
+                    </div>
+                    <button type="button" class="nav-button day-nav-next">
+                        下一天
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- === 模块一：总消息概览 开始 === -->
+        <section id="section-overview" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">总消息概览</h2>
+            <div
+                class="bento-card p-8 bg-gradient-to-br from-[#ef4444]/20 via-[#ef4444]/10 to-[#ef4444]/5 text-center rounded-2xl">
+                <div class="number-display text-[#ef4444]">
+                    1717
+                </div>
+                <p class="text-xl font-semibold text-black mt-3">总消息数量</p>
+            </div>
+        </section>
+        <!-- === 模块一：总消息概览 结束 === -->
+        <!-- HTML注释: 此模块作为单独一行，占据整行宽度。用于展示群内讨论的热点话题。 -->
+        <!-- HTML注释: 模块二内容结构说明: -->
+        <!-- 1. 话题: 作为卡片的主标题 -->
+        <!-- 2. 关键结论: 每个话题下可以包含多个关键结论 (模板结构示例展示支持最多3个关键结论，如需更多可复制结构)；关键结论应按照话题讨论的时间线来编写。 -->
+        <!-- 3. <b>金句时刻</b>: 每个关键结论下对应约3个<b>金句时刻</b>金句必须是让人获得“啊哈”或恍然大悟的发言。 -->
+        <!-- HTML注释: "爬楼关键词"说明: 每个话题卡片中包含爬楼关键词区域，话题讨论起始句，用于用户快速定位到群聊记录中的对应讨论位置。填写时需要包含相关用户的昵称，格式示例：[用户昵称]：[关键词内容]，但不要包含微信ID。为便于定位，请勿引用图片、视频、链接、语音等非文本消息作为起始句，应顺延至其后的第一条有效文本消息。 -->
+        <!-- === 模块二：火花碰撞时刻・热点话题 开始 === -->
+        <section id="section-hot-topics" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">火花碰撞时刻・热点话题</h2>
+            <div class="space-y-8">
+
+                <!-- 热点话题卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl"> 
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            “领导总是否定我”：如何与“凭感觉”的管理者高效协作？
+                        </h4>
+                        <span
+                            class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            20:57 - 21:52
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            Suerte：这两天在思考怎么跟领导过项目更顺利些，但还是没想到什么好方法...领导不喜欢听我对各方诉求的拆解，喜欢让我直接讲交互。
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">向上管理</span>
+                            <span class="tag-item">产品思维</span>
+                            <span class="tag-item">职场沟通</span>
+                            <span class="tag-item">需求分析</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div
+                            class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br>
+                                    群成员<b>Suerte</b>在晚间打卡时，详细描述了她在工作中遇到的一个棘手问题：如何与一位工作风格独特的领导进行有效沟通。她提到，领导很忙，沟通时间少，且不喜欢听需求的拆解过程，偏好直接看交互设计。这导致她的设计方案常被否定，而领导提出的新思路又缺乏细节，让她无从下手，陷入反复确认的无效循环。<br><br>
+                                    <b>二、主要观点与讨论详情</b><br>
+                                    <b>AA昍</b>注意到这个问题后，引用了前一天关于“竞品调研”的讨论，指出这本质上是一个如何向上管理和高效沟通的问题，并给出了具体的分析和建议。<br><br>
+                                    他认为<b>Suerte</b>的沟通方式可能存在问题，并用一个生动的例子来说明：当你的设计（甲版）被领导否定，并被要求按他的思路（乙版）来做时，不应去猜测乙版背后的逻辑。正确的做法是，<b>直接阐明你的甲版设计能满足哪些现实需求，而乙版会导致这些需求无法被满足</b>，从而引导领导说出他的真实考量。他举例：“你直接告诉他『确认在左边是因为一线员工全是左撇子，所以不能改到右边』，看他怎么说。或许他就会说出他的理由了，比如『确认是常规操作，但取消这种例外才更容易出事，所以要故意反着设计才安全』。”<br><br>
+                                    <b>Suerte</b>反馈说，她尝试过解释设计背后的用户和业务现状，但领导的回应是她的理解不对，甚至让她“不要被事业部牵着鼻子走”。例如，她提出某功能重复且用户（多为老年人）不会使用，建议精简，但领导却认为“这么常规的操作，还有人不会用吗？”并直接打断了她的进一步解释。<br><br>
+                                    <b>三、争议焦点与深化分析</b><br>
+                                    基于<b>Suerte</b>的补充，讨论的焦点从“沟通技巧”深化到了“组织环境分析”。<b>AA昍</b>敏锐地指出，如果领导的决策如此脱离实际，而部门依然存在，那么反推可知“你们部门对公司没有价值”，否则公司早就倒闭了。这揭示了<b>Suerte</b>所处环境的本质：一个在公司中重要性不高、缺乏规范流程（如产品方案评审会）的部门。在这种环境下，领导的行为模式可能是因为“自己不懂，既不想担责，又害怕被动”。<br><br>
+                                    <b>四、结论与启发</b><br>
+                                    讨论最终得出了清晰的结论和极具操作性的启发：<br>
+                                    1. <b>识别主要矛盾</b>：在次要功能上，不必与领导硬碰硬，应“不要浪费行政资源”，把精力用在真正重要的事情上。<br>
+                                    2. <b>调整工作视角</b>：既然身处这样的环境，不妨将其视为一个独特的学习机会。<b>AA昍</b>建议：“能了解很多在大公司不一定能了解到的宏观视角”，可以把自家App当作“竞品”来逆向分析，锻炼产品思维。<br>
+                                    3. <b>明确个人目标</b>：最终的行动指南非常明确——“尽快整理文档，了解流程，然后抓紧时间跳槽。”在这个过程中积累的经验和文档，将成为下一份工作的敲门砖。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            面对领导的无理由否定，与其猜测其意图，不如主动阐明自己方案所满足的现实需求与对方方案可能引发的问题，从而“逼”出对方的真实逻辑。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                你直接告诉他「确认在左边是因为一线员工全是左撇子，所以不能改到右边」，看他怎么说。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">- <b>AA昍</b></p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                这个领导是自己不懂，对吧，所以既不想担责，又害怕被动。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">- <b>AA昍</b></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            在流程混乱、价值不高的部门，应调整视角，将工作本身视为一次“竞品调研”，积累宏观经验，并明确最终目标是“整理文档，抓紧跳槽”。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                在这种次要矛盾上，不要浪费行政资源（也就是不要轻易和领导对着干），正劲用在正事上。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">- <b>AA昍</b></p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                app在手里吧？就假装这是竞品呗，你是调研竞品的pm，直接有啥写啥嘛。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">- <b>AA昍</b></p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                方向没变，还是尽快整理文档，了解流程，然后抓紧时间跳槽。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">- <b>AA昍</b></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 热点话题卡片 结束 -->
+                
+                <!-- 热点话题卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            去大城市打拼是追求美好生活，还是一种思想钢印？
+                        </h4>
+                        <span
+                            class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            11:19 - 13:09
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            旺旺：同志们我想问下，“到大城市打拼，努力在大城市定居”，你们觉得是对美好生活的向往，还是一种思想钢印。
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">职业规划</span>
+                            <span class="tag-item">城市选择</span>
+                            <span class="tag-item">生活方式</span>
+                            <span class="tag-item">个人发展</span>
+                            <span class="tag-item">提问技巧</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div
+                            class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br>
+                                    群成员<b>旺旺</b>提出了一个引人深思的宏大命题：“到大城市打拼，努力在大城市定居”，这究竟是对美好生活的向往，还是一种被社会植入的思想钢印？这个问题迅速引发了群友们的广泛讨论和共鸣。<br><br>
+                                    <b>二、主要观点与讨论详情</b><br>
+                                    讨论中，群友们从个人经历和现实观察出发，分享了各自的看法。<br>
+                                    <b>我是你大凯哥, 🍻</b>率先分享了他在北京的亲身经历，他认为对于普通人而言，需要“努力打拼”才能留下的生活并不美好。他描述道：“不知道要掏空几个钱包才能凑出来一个老破小的首付，还要还着贷款，还拿不到北京户口……想想都窒息。”他犀利地指出，<b>“只有特别有钱的人，在大城市里才会处处美好。”</b> 同时，他也提出了另一种选择，像成都这样的新一线城市，生活压力较小，通过努力几年就能够得着，更具幸福感。<br><br>
+                                    <b>静儿</b>则从另一个角度补充，她认为“很多留在大城市的人，其实是因为没得选啊”，道出了许多人身不由己的现实。<br><br>
+                                    <b>三、讨论的深化：从“是什么”到“怎么问”</b><br>
+                                    随着讨论的进行，<b>AA昍</b>和<b>运动喵</b>将话题引向了更深层次的元认知——如何提出一个好问题。他们指出，像“是否该留在大城市”这类抽象问题，若不提供具体个人背景，很难得到有价值的答案。<br><br>
+                                    <b>AA昍</b>提供了一个优秀的提问框架示例：“我现在上海，老家是云南的，我在上海工作大致一年能有……，开支不低......但又觉得......”他强调，只有将问题具象化，把个人情况、困惑、期望都摆出来，才能让别人给出真正有针对性的建议。<br><br>
+                                    <b>运动喵</b>也用“老公月入1万算少吗”的例子附和，说明脱离了城市、家庭情况等背景的提问，最终只会演变成一场猜谜游戏。<br><br>
+                                    <b>四、结论与启发</b><br>
+                                    本次讨论不仅探讨了“留在大城市”这一现实议题，更重要的是，它为群友们上了一堂关于“有效提问”的实践课。最终形成的共识是：<br>
+                                    1. <b>大城市的美好有门槛</b>：对于普通人而言，一线城市的生存压力巨大，其“美好生活”的入场券价格不菲。相比之下，一些新一线城市可能提供了更好的生活与奋斗的平衡点。<br>
+                                    2. <b>有效提问是解决问题的第一步</b>：在寻求他人帮助时，与其抛出宏大而抽象的问题，不如先清晰、具体地陈述自己的背景、困境和诉求。这不仅能帮助他人更好地理解问题，也能帮助自己理清思路，是“形成我的主体性”的关键一步，正如后来<b>静群</b>同志的感悟一样。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            在大城市定居的“美好”与否高度依赖个人经济基础，对于需要“努力打拼”的普通人，其压力可能远大于美好。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                你都需要「努力打拼」，才能留下来，我觉得其实不会美好，只能说努力让后代过好日子。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">- <b>我是你大凯哥, 🍻</b></p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                只有特别有钱的人，在大城市里才会处处美好。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">- <b>我是你大凯哥, 🍻</b></p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                很多留在大城市的人，其实是因为没得选啊。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">- <b>静儿</b></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            讨论抽象的人生议题时，应先具象化个人情况，才能获得有针对性的建议，避免陷入“猜谜式”的务虚空谈。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                这个问法就偏抽象，比较有帮助的问法是：我现在上海，老家是云南的，我在上海工作大致一年能有……
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">- <b>AA昍</b></p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                我有时候遇到有人提问就是这样...每说出来一个问题要回答他的就完全不一样。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">- <b>运动喵（星火群尊贵年费vip）</b></p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                找出了原因 然后分我解决or不解决两条路 各有什么结果 这样子分下来之后 形成我的主体性 感觉就客观了很多。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">- <b>静群</b></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 热点话题卡片 结束 -->
+            </div>
+        </section>
+        <!-- === 模块二：火花碰撞时刻・热点话题 结束 === -->
+
+        <!-- === (条件触发模块) 秉烛共谈录 · 星火深潜 开始 === -->
+        <section id="section-deep-dive" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">秉烛共谈录 · 星火深潜</h2>
+            <div class="space-y-8">
+                <!-- 深度讨论卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                           职场“高压线”：面对领导“借用”个人银行卡的越界要求，我们该如何抉择？
+                        </h4>
+                        <span
+                            class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-comments mr-1.5 text-gray-500"></i>
+                            11:24 - 11:54
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            满满金：还记得我那个银行卡的事儿嘛？我不是拒绝了嘛，老板在背后蛐蛐我
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">职场风险</span>
+                            <span class="tag-item">法律意识</span>
+                            <span class="tag-item">个人边界</span>
+                            <span class="tag-item">公司治理</span>
+                            <span class="tag-item">风险管理</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div
+                            class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题提出与背景补充</b><br>
+                                    今日午间，群成员<b>满满金</b>同志抛出了一个极具现实意义的职场困境，引发了群内一场关于“职场红线”的深度讨论。她提到，此前她拒绝了领导借用其个人银行卡处理公司事务的要求，虽然守住了底线，但事后却从同事处得知“老板在背后蛐蛐我”，并且自己也能明显感觉到领导因此对她心生不满，这让她感到困扰和不安，觉得自己“在公司的定位真的是个白痴牛马”。<br><br>
+
+                                    <b>二、核心焦点与深层议题挖掘</b><br>
+                                    讨论迅速从“如何应对领导不满”的表层情绪问题，深入挖掘到事件背后隐藏的巨大风险和职场生存法则的深层议题。群友们敏锐地意识到，这并非简单的人际关系摩擦，而是触及了法律和个人安全的“高压线”。<br>
+                                    • <b>法律风险</b>：<b>小方</b>直接点出核心：“他要是没什么问题为什么要走个人账户呢？一定有问题的，没爆雷而已。”这引导大家将焦点从“领导不高兴”转移到“领导行为的合法性”上，可能涉及洗钱、偷税漏税等严重问题。<br>
+                                    • <b>责任归属</b>：<b>Florence🎈</b>强调了“第一责任人原则”，指出银行卡外借，无论对方是领导还是亲戚，最终法律责任都由持卡人承担。<b>南瓜</b>则用一张“第一责任人”的表情包，生动形象地强化了这一概念。<br>
+                                    • <b>领导意图分析</b>：<b>清清</b>一针见血地提出：“要是好事，怎么不先让狗腿子亲信上呢？”这句话揭示了领导“柿子专挑软的捏”的心态，试图利用新员工或看起来“傻乎乎”的员工来承担风险。<br><br>
+
+                                    <b>三、多方观点流派与方案探讨</b><br>
+                                    在这次讨论中，群内形成了高度一致的“统一战线”，不存在观点分歧，所有参与者都旗帜鲜明地支持<b>满满金</b>的做法，并对领导的行为予以谴责。这本身就是一种强大的集体力量，为当事人提供了坚实的情感支持和决策依据。<br>
+                                    • <b>风险警告派</b>：以<b>南瓜</b>、<b>小雪</b>、<b>小方</b>等为代表，他们从结果导向出发，反复强调其中的重大利害关系。<b>南瓜</b>的金句“领导对你不满意，也比你自己进去要强”，直接点明了利弊权衡的核心。<b>小雪</b>则给出了行动建议：“有意识离这种人远点，爆雷时血别溅你身上。”<br>
+                                    • <b>经验分享派</b>：<b>行之</b>分享了自己类似的经历：“之前有口锅想让俺背俺就是不同意最后换岗了，领导那段时间也是肉眼可见的不满意但不影响俺正常上班”，并透露最后也是领导的“狗腿子亲信”接了锅。她的现身说法，极大地鼓舞了<b>满满金</b>，证明了坚守底线是正确且可行的。<br>
+                                    • <b>黑色幽默派</b>：<b>楽一鲤</b>的发言“前几天看到个段子：说会计是最不可能被ai替代的职业，因为坐牢需要真人”，用一句玩笑话，辛辣地讽刺了此类行为的本质，让大家在紧张的讨论中得以会心一笑，也更深刻地理解了其中的风险。<br><br>
+
+                                    <b>四、讨论共识与分歧总结</b><br>
+                                    本次讨论迅速达成了以下几个核心共识：<br>
+                                    1. <b>坚守底线，绝不妥协</b>：在涉及法律风险和个人账户安全的问题上，没有任何妥协的余地。<br>
+                                    2. <b>领导不满是“必要代价”</b>：相比于潜在的法律风险，领导的暂时不满是完全可以接受的，甚至是值得的。<br>
+                                    3. <b>“跑路”是最终选择</b>：一个要求员工承担此类风险的公司和领导，其本身就存在巨大的治理问题和道德风险，不值得长期追随。多位同志明确建议“为了安全，尽早离开这家公司才对”。<br>
+                                    4. <b>事实证明了判断</b>：<b>满满金</b>后续补充，在她和另一位女同事拒绝后，领导最终还是让他的“狗腿子”去办了。这一事实反过来印证了群友们的判断——这确实不是什么好事。<br><br>
+
+                                    <b>五、宏观影响与价值提炼（重点）</b><br>
+                                    这次讨论堪称一次生动的“职场风险管理”与“集体智慧决策”的实战演练。其普适性价值体现在以下几个层面：<br>
+                                    • <b>提炼了职场避险的核心原则</b>：讨论从一个具体案例中，提炼出了一个可跨场景迁移的通用原则——<b>凡是领导不愿让亲信去做，却要求你去做，且说不清缘由和风险的“好事”，百分之百是“坑”</b>。这个原则可以帮助职场新人快速识别潜在风险。<br>
+                                    • <b>展现了高质量社群的支撑作用</b>：面对职场PUA和不合理要求，个人往往会陷入信息孤岛和自我怀疑（如<b>满满金</b>觉得自己“傻”和“内耗”）。而群体的介入，不仅提供了多维度的信息和经验，更重要的是给予了强大的情感支持和价值肯定（“你做得对！”“不傻，傻人有傻福”），打破了当事人的孤立无援感，坚定了其正确决策的信心。这正是“远方的哭声”需要被听见的意义所在。<br>
+                                    • <b>完成了从情绪疏导到理性决策的闭环</b>：讨论始于<b>满满金</b>的情绪困扰，通过群友的分析、劝慰、经验分享和幽默调侃，最终帮助她完成了从“我让领导不高兴了怎么办”到“这个傻叉领导不值得我为之困扰”的心态转变，并巩固了“远离风险”的理性决策。这是一个完整且健康的心理建设过程。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#ef4444] hover:text-red-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <!-- 关键结论 1 开始 -->
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            领导要求使用员工个人账户进行公司业务，是严重的违规越界行为，可能涉及洗钱、偷税等法律风险，<b>相比“进去”的风险，领导的不满不值一提</b>。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                会计是最不可能被AI替代的职业，因为坐牢需要真人。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>楽一鲤</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                领导对你不满意，也比你自己进去要强。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>南瓜</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                要是好事，怎么不先让狗腿子亲信上呢？
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>清清</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 关键结论 1 结束 -->
+
+                            <!-- 关键结论 2 开始 -->
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            当公司或领导出现明显违规、挑战个人法律底线的行为时，是及时止损、准备“跑路”的明确信号，<b>这种公司没爆雷只是时候未到</b>。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                为了安全，尽早离开这家公司才对。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>今天是叶子</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                有意识离这种人远点，爆雷时血别溅你身上。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>小雪</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                一定有问题的，没爆雷而已。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>小方</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 关键结论 2 结束 -->
+                        </div>
+                    </div>
+                </div>
+                <!-- 深度讨论卡片 结束 -->
+            </div>
+        </section>
+        <!-- === (条件触发模块) 秉烛共谈录 · 星火深潜 结束 === -->
+
+        <!-- === 模块四：解惑一点通・有问必答 开始 === -->
+        <section id="section-qa" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">解惑一点通・有问必答</h2>
+            <div class="space-y-8">
+                <!-- 问答卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]"> 
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            找工作时，互联网外包岗位可以去吗？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            Suerte：同志们，互联网找工作外包可以去吗
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br>
+                                    群成员<b>Suerte</b>在求职过程中遇到困惑，她虽然身处传统行业，但工作内容与互联网相关。在面试互联网大厂时，因方向不符屡屡碰壁，而一些大厂的外包岗却向她伸出了橄榄枝。她不清楚外包岗的利弊，担心“去了外包就回不去甲方”，因此向群友求助。<br><br><b>二、核心原因分析</b>
+                                    <br>群友们对外包岗位的普遍看法是比较负面的，核心原因在于其对个人职业发展的限制。<br>
+                                    <b>阿南plus</b>指出，外包经历会“<b>脏简历</b>”，因为它对已在互联网行业内的人来说，几乎没有职业发展助益。他解释说：“外包没有晋升和发展，本来设置外包就是为了降成本，所以不管是工作内容和薪资都不是核心的。”<br>
+                                    <b>子蟹</b>也认为，除非实在找不到工作，否则不建议轻易选择外包，尤其是对于产品岗。不过他也提到，即便是外包，如果能进入大公司，也能学到标准流程，具体还需看个人情况。<br><br><b>三、解决方案与建议</b>
+                                    <br>综合群友们的建议，针对<b>Suerte</b>的情况，大家给出了循序渐进的求职策略：<br>
+                                    1. <b>明确外包的适用场景</b>：<b>阿南plus</b>认为，外包岗的主要价值在于帮助“其他行业要进这个行业”的新人刷经验和熟悉行业，但对于本就在行业内的人来说，价值不大。<br>
+                                    2. <b>面试复盘与能力对齐</b>：建议<b>Suerte</b>继续在职面试，将每次面试都当作学习机会。对于面试官提出的“方向不合适”，应主动追问具体需要什么能力或工作经历，然后反思自己能否在现有公司内部通过实践来弥补，并相应地“包装”自己的简历和项目经验。<br>
+                                    3. <b>调整求职策略</b>：建议“先面小厂，积累点面试经验再面大厂”。同时提醒，即便是大厂，学历也可能成为筛选门槛（如<b>Suerte</b>提到因非211被机刷），因此不必执着于顶级大厂，可以考虑“大厂里的小厂”或发展中的独立公司。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">求职</span>
+                            <span class="tag-item">互联网</span>
+                            <span class="tag-item">外包</span>
+                            <span class="tag-item">职业发展</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 问答卡片 结束 -->
+
+                <!-- 问答卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            关系不错的同事订婚请客，该送什么礼物？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            今天是叶子：我有个礼物问题想问大家。今晚有个关系不错的同事请客...他才说是订婚。
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br>
+                                    群成员<b>今天是叶子</b>遇到一个紧急的人情难题：关系不错的同事临时通知晚上聚餐是“订婚宴”，她毫无准备，不知该送什么礼物，因此向群友求助。她最初的想法是送一套喜庆的餐具，因为对方小两口都爱做饭。<br><br><b>二、核心思路与讨论</b>
+                                    <br>群友们围绕“送礼还是随礼”、“送什么”、“什么时候送”展开了热烈讨论，形成了几个主流思路：<br>
+                                    1. <b>实用派</b>：<b>旺旺</b>建议送小厨电，<b>今天是叶子</b>自己想送餐具，都是从对方“爱做饭”的特点出发，非常贴心。<br>
+                                    2. <b>便捷派</b>：<b>南瓜</b>和<b>吖洋洋🥙</b>等人建议直接发红包或随礼，让对方自行购买所需物品，既省心又实在。<br>
+                                    3. <b>氛围派</b>：<b>我是你大凯哥, 🍻</b>和<b>尼克的星火昵称</b>等建议送酒，如红酒、葡萄酒，寓意“好事成双、长长久久”，既能烘托喜庆氛围，也显得得体。讨论还延伸到了国产与进口酒、不同酒类的风味等专业知识。<br>
+                                    4. <b>务实派</b>：<b>我是你大凯哥, 🍻</b>提出，订婚宴通常不如正式婚礼隆重，可以等到对方正式婚礼时再随礼。<b>祺</b>也建议，可以先探探其他同事的口风，做到“不出风头也不喧宾夺主”。<br><br><b>三、解决方案与建议</b>
+                                    <br>经过一番讨论，<b>今天是叶子</b>综合了大家的意见，并结合实际情况（如聚餐地点能否外带酒水），最终形成了一套灵活的解决方案：<br>
+                                    • <b>应急方案</b>：由于时间仓促，且考虑到众口难调和开车问题，决定放弃送酒，采纳了<b>南瓜</b>的“蜜雪冰城”方案——直接点足量的小甜水送到聚餐地点，既解决了饮品问题，也表达了心意，轻松有趣。<br>
+                                    • <b>长远方案</b>：采纳了“订婚从简，婚礼再重”的思路，决定今天先以饮料表达祝福，等同事正式结婚时再送上更正式的礼物（餐具或随礼）。<br>
+                                    这个案例充分展现了群策群力的智慧，从一个紧急的人情问题，延展到礼物选择的多个维度，最终形成了一个既得体又充满趣味的解决方案。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">人情世故</span>
+                            <span class="tag-item">礼物选择</span>
+                            <span class="tag-item">职场关系</span>
+                            <span class="tag-item">生活经验</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 问答卡片 结束 -->
+                
+                <!-- 问答卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            如何做出不腥又鲜嫩的菠菜猪肝汤？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            小方：同志们有没有实践过的菠菜猪肝汤教学？
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br>
+                                    群成员<b>小方</b>想尝试制作菠菜猪肝汤，但在B站上未能找到权威教程，特别是对如何处理猪肝的腥味感到困惑，因此向群里的美食家们求助。<br><br><b>二、核心原因分析</b>
+                                    <br>群友们一致认为，菠菜猪肝汤成败的关键在于猪肝的处理，核心难点在于“去腥”和“保嫩”。如果处理不当，猪肝容易产生腥味，口感也会变老变柴。<br><br><b>三、解决方案与建议</b>
+                                    <br>各位烹饪达人纷纷献计，提供了多个经过实践检验的有效方法：<br><br>
+                                    <b>【去腥技巧】</b><br>
+                                    • <b>腌制法</b>：<b>落日钓星星💫</b>分享了她的秘诀：“猪肝想要做好吃，关键点在于去腥”，她实践过的方法是“买新鲜的猪肝，用<b>柠檬和洋葱腌制</b>，效果还可以”。这是利用酸和辛香料来中和腥味。<br>
+                                    • <b>焯水法</b>：<b>吖洋洋🥙</b>建议在下锅煮汤前，先将猪肝“开水烫一下”，这样可以有效去除血水，减少腥味来源。<br>
+                                    • <b>清洗法</b>：<b>小方</b>自己也了解到，一些教程会强调“切片后把血水洗几次”，这也是物理去腥的基础步骤。<br><br>
+                                    <b>【保嫩技巧】</b><br>
+                                    • <b>淀粉法</b>：<b>Zac</b>提出了关键一步：“新鲜猪肝可以抓一下淀粉”，这样可以在猪肝表面形成一层保护膜，锁住水分，使其口感比直接焯水“来得嫩”。<br><br>
+                                    <b>【烹饪流程】</b><br>
+                                    <b>吖洋洋🥙</b>总结了简易流程：“（处理好的猪肝）水煮开就下菠菜，下猪肝，滚了撒点蒜蓉酥，好吃惨了”。这说明猪肝下锅后不宜久煮，见熟即起，方能保持嫩滑。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">烹饪技巧</span>
+                            <span class="tag-item">家常菜</span>
+                            <span class="tag-item">猪肝</span>
+                            <span class="tag-item">美食</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 问答卡片 结束 -->
+            </div>
+        </section>
+        <!-- === 模块四：解惑一点通・有问必答 结束 === -->
+
+        <!-- === 模块五：智慧火花匣・每日精选 开始 === -->
+        <section id="section-daily-picks" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">智慧火花匣・每日精选</h2>
+            <div class="space-y-8">
+                <!-- 知识卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        英语语法速成：通过词尾判断词性
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            Hsiaomin：[链接|看词尾定词性！一篇帮你深度理清词性困扰~]
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b>
+                                <br> 成员<b>Hsiaomin</b>在群内分享了一篇非常实用的英语学习文章，核心内容是教授如何通过识别单词的后缀（词尾）来快速判断其词性（如名词、动词、形容词等）。<br><br><b>二、核心价值与特点</b>
+                                <br> 这篇文章的核心价值在于提供了一种高效的“语法解码”技巧。对于英语学习者，尤其是那些在阅读中经常被生词困扰的同志来说，掌握这一技巧意味着：<br>
+                                1. <b>提升阅读速度</b>：即使不完全认识某个单词，也能通过词性判断其在句子中的作用，从而更快地理解句意。<br>
+                                2. <b>增强背词效率</b>：将具有相同词尾的单词归类记忆，可以形成体系，提高记忆效率。<br>
+                                3. <b>巩固语法基础</b>：通过对词性的深入理解，可以更好地掌握句子结构，为写作和口语表达打下坚实基础。<br><br><b>三、适用场景或补充信息</b>
+                                <br> 该技巧适用于所有阶段的英语学习者，无论是学生备考，还是职场人士希望提升英文文档阅读能力，都能从中受益。群友<b>我是你大凯哥, 🍻</b>也对该分享给予了“牛”的高度评价，可见其普适性和实用性。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">英语学习</span>
+                        <span class="tag-item">语法</span>
+                        <span class="tag-item">学习技巧</span>
+                    </div>
+                    <div class="flex justify-end">
+                        <a href="https://mp.weixin.qq.com/s/JwnIJbTpCUENaLdXAboMuQ"
+                            target="_blank" rel="noopener noreferrer"
+                            class="text-sm font-medium text-[#4D6BFE] hover:text-blue-700 hover:underline flex items-center">
+                            阅读原文
+                            <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 知识卡片 结束 -->
+                
+                <!-- 知识卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        “液体口罩”小蓝鼻喷雾好价提醒
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            Changebin：安慰剂提醒：小蓝雾化弹京东自营又有活动...
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b>
+                                <br> 成员<b>Changebin</b>向群友们发出了一个实用的“安慰剂提醒”，分享了被大家称为“液体口罩”的小蓝鼻喷雾在京东自营的优惠活动信息。<br><br><b>二、核心价值与特点</b>
+                                <br>
+                                1. <b>优惠信息</b>：Plus会员购买3支装，到手价为135元，折合单价仅45元/支，对于有日常防护需求的同志来说，是一个不错的囤货时机。<br>
+                                2. <b>产品科普</b>：在<b>Geralt</b>的提问下，群友<b>黄悦</b>科普了该产品的正式名称为“鼻喷雾”，其主要功能是作为物理屏障，辅助防护。同时，大家还厘清了鼻喷雾和口喷雾的区别，<b>黄悦</b>和<b>Changebin</b>都明确指出，鼻喷雾不建议直接喷向口腔，而针对口腔防护，该品牌也有专门的口喷产品。<br><br><b>三、适用场景或补充信息</b>
+                                <br>
+                                这则分享为群内有日常通勤、出差或处于人员密集场所等防护需求的同志，提供了及时的优惠资讯和正确的使用指导。<b>黄悦</b>还火速下单，体现了该信息的即时价值。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">健康防护</span>
+                        <span class="tag-item">购物优惠</span>
+                        <span class="tag-item">实用工具</span>
+                        <span class="tag-item">京东</span>
+                    </div>
+                    <div class="flex justify-end">
+                        <a href="https://u.jd.com/EaXyj48"
+                            target="_blank" rel="noopener noreferrer"
+                            class="text-sm font-medium text-[#4D6BFE] hover:text-blue-700 hover:underline flex items-center">
+                            直达链接
+                            <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 知识卡片 结束 -->
+
+                <!-- 知识卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        地方美食种草：襄阳牛肉面
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            阿豆：我昨晚半夜的时候吃了一碗海带豆腐面，热腾腾...美死了
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b>
+                                <br> 由成员<b>阿豆</b>的一碗宵夜“海带豆腐面”引发，群内掀起了一场关于湖北襄阳特色美食——襄阳牛肉面的热烈讨论和“云品尝”。<br><br><b>二、核心价值与特点</b>
+                                <br>
+                                1. <b>风味介绍</b>：群友们生动地描述了这道美食的魅力。<b>南瓜</b>指出，其灵魂在于“牛油，趁热嗦一口老香了”，看起来红，但其实并不算很辣。<b>落日钓星星💫</b>补充，面底会用绿豆芽和碱面一起烫，口感清爽。<b>高大壮喝了冰露真的永不痛风</b>更是连用三个“超级好吃”来表达喜爱，并分享了灵魂吃法：“一定要放豆芽和海量的葱碎香菜，海量，海量，海量。加个卤蛋，绝了！”<br>
+                                2. <b>食用贴士</b>：<b>小方</b>和<b>南瓜</b>提醒，这碗面一定要趁热吃，因为牛油和碱面凉了之后风味和口感都会大打折扣。<br>
+                                3. <b>购买渠道</b>：对于外地想品尝的同志，<b>高大壮喝了冰露真的永不痛风</b>提供了解决方案，分享了可提供顺丰冷链邮寄服务的当地老板微信号（xiao183587488），让这份地方美味得以跨越山海。<br><br><b>三、适用场景或补充信息</b>
+                                <br>
+                                这次美食讨论不仅让群友们“云”体验了襄阳牛肉面的魅力，还对比了武汉热干面、绵阳米粉等地方特色粉面，堪称一幅“嗦粉地图”。对于热爱美食、喜欢探索地方特色的同志来说，是一次高质量的味蕾种草。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag-item">地方美食</span>
+                        <span class="tag-item">襄阳</span>
+                        <span class="tag-item">牛肉面</span>
+                        <span class="tag-item">美食分享</span>
+                    </div>
+                </div>
+                <!-- 知识卡片 结束 -->
+
+            </div>
+        </section>
+        <!-- === 模块五：智慧火花匣・每日精选 结束 === -->
+
+        <nav class="w-full mt-12 daily-nav">
+            <div class="bento-card p-4">
+                <div class="flex justify-between items-center">
+                    <button type="button" class="nav-button day-nav-prev">
+                        <i class="fas fa-chevron-left"></i>
+                        上一天
+                    </button>
+                    <div class="text-center">
+                        <span class="text-sm text-gray-600">日报导航</span>
+                    </div>
+                    <button type="button" class="nav-button day-nav-next">
+                        下一天
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- === 文件底部 开始 === -->
+        <footer class="w-full mt-16">
+            <div class="bento-card p-8">
+                <div class="text-center text-gray-700 space-y-3">
+                    <div
+                        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-base">
+                        <div class="flex items-center">
+                            <i class="fas fa-database mr-2 text-[#ef4444]"></i>
+                            <span>星火群聊记录</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-robot mr-2 text-[#ef4444]"></i>
+                            <span>2026-01-21 02:00:00</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                        本报告基于群聊数据自动生成，仅供参考。内容可能包含个人观点，不代表群组官方立场。
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <!-- === 文件底部 结束 === -->
+    </div>
+
+    <!-- === 浮动按钮与脚本区域 开始 === -->
+    <div class="floating-actions" aria-label="页面快捷操作">
+        <div class="directory-wrapper">
+            <button type="button" class="floating-button" id="directory-toggle" aria-expanded="false"
+                aria-controls="directory-panel" aria-label="打开内容导航">
+                <i class="fas fa-list-ul"></i>
+            </button>
+            <div class="directory-panel" id="directory-panel" role="dialog" aria-hidden="true">
+                <div class="directory-header">
+                    <span class="directory-title">内容导航</span>
+                    <button type="button" class="directory-close" id="directory-close" aria-label="关闭内容导航">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="directory-list" id="directory-list">
+                    <!-- 目录由脚本自动生成 -->
+                </div>
+            </div>
+        </div>
+        <button type="button" class="floating-button floating-button--hidden" id="scroll-top-btn" aria-label="返回顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 数字动画
+            document.querySelectorAll('.number-display').forEach(el => {
+                const finalValue = parseInt(el.textContent.replace(/,/g, ''), 10);
+                if (isNaN(finalValue)) return;
+                let current = 0;
+                const duration = 1500, frameRate = 1000 / 60, totalFrames = Math.round(duration / frameRate);
+                const increment = finalValue / totalFrames;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= finalValue) {
+                        current = finalValue;
+                        clearInterval(timer);
+                    }
+                    el.textContent = Math.floor(current).toLocaleString('en-US');
+                }, frameRate);
+            });
+
+            initDailyNavigation();
+            initExpandableContent();
+            initFloatingActions();
+
+            const historyLink = document.getElementById('history-link');
+            if (historyLink) historyLink.href = '星火历史日报汇总.html';
+        });
+
+        // 日报导航
+        async function initDailyNavigation() {
+            const currentDate = getCurrentDateFromPage();
+            if (!currentDate) return;
+            await setupNavigationButtons(currentDate);
+        }
+
+        function getCurrentDateFromPage() {
+            const dateEl = document.getElementById('report-date');
+            if (dateEl) {
+                const match = dateEl.textContent.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                if (match) return `${match[1]}-${match[2].padStart(2, '0')}-${match[3].padStart(2, '0')}`;
+            }
+            const titleMatch = document.title.match(/(\d{4}-\d{2}-\d{2})/);
+            if (titleMatch) return titleMatch[1];
+            return null;
+        }
+
+        async function setupNavigationButtons(currentDate) {
+            const prevBtns = document.querySelectorAll('.day-nav-prev');
+            const nextBtns = document.querySelectorAll('.day-nav-next');
+            const navContainers = document.querySelectorAll('.daily-nav');
+
+            const currentDateObj = new Date(currentDate);
+            const prevDate = new Date(currentDateObj); prevDate.setDate(prevDate.getDate() - 1);
+            const nextDate = new Date(currentDateObj); nextDate.setDate(nextDate.getDate() + 1);
+            const prevDateStr = formatDate(prevDate), nextDateStr = formatDate(nextDate);
+
+            const [prevExists, nextExists] = await Promise.all([checkReportExists(prevDateStr), checkReportExists(nextDateStr)]);
+
+            if (!prevExists && !nextExists) {
+                navContainers.forEach(c => c.style.display = 'none');
+                return;
+            }
+            navContainers.forEach(c => c.style.display = 'block');
+
+            prevBtns.forEach(btn => {
+                btn.disabled = !prevExists;
+                if (prevExists) btn.onclick = () => window.location.href = `星火群日报_${prevDateStr}.html`;
+            });
+            nextBtns.forEach(btn => {
+                btn.disabled = !nextExists;
+                if (nextExists) btn.onclick = () => window.location.href = `星火群日报_${nextDateStr}.html`;
+            });
+        }
+
+        async function checkReportExists(date) {
+            try {
+                const res = await fetch(`星火群日报_${date}.html`, { method: 'HEAD' });
+                return res.ok;
+            } catch { return false; }
+        }
+
+        function formatDate(date) {
+            return date.toISOString().slice(0, 10);
+        }
+
+        // 展开/收起功能
+        function initExpandableContent() {
+            const expandableContents = document.querySelectorAll('.expandable-content');
+
+            expandableContents.forEach(container => {
+                const charLimit = parseInt(container.getAttribute('data-char-limit')) || 200;
+                const contentPreview = container.querySelector('.content-preview');
+                const expandBtn = container.querySelector('.expand-btn');
+
+                if (!contentPreview || !expandBtn) return;
+
+                const fullContent = contentPreview.innerHTML;
+                const fullText = contentPreview.textContent || contentPreview.innerText;
+
+                // 如果内容长度超过限制，则显示展开按钮
+                if (fullText.length > charLimit) {
+                    // 创建一个临时元素来正确截取HTML内容
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = fullContent;
+
+                    // 使用TreeWalker遍历所有文本节点
+                    let charCount = 0;
+                    const walker = document.createTreeWalker(
+                        tempDiv,
+                        NodeFilter.SHOW_TEXT,
+                        null,
+                        false
+                    );
+
+                    let node;
+                    const textNodes = [];
+                    while (node = walker.nextNode()) {
+                        textNodes.push(node);
+                    }
+
+                    // 计算需要保留的文本内容
+                    for (let textNode of textNodes) {
+                        const text = textNode.textContent;
+                        if (charCount + text.length <= charLimit) {
+                            charCount += text.length;
+                        } else {
+                            const remainingChars = charLimit - charCount;
+                            textNode.textContent = text.substring(0, remainingChars) + '...';
+                            charCount = charLimit;
+
+                            // 移除后续所有节点
+                            let currentNodeToClearAfter = textNode;
+                            while (currentNodeToClearAfter && currentNodeToClearAfter !== tempDiv) {
+                                let sibling = currentNodeToClearAfter.nextSibling;
+                                while (sibling) {
+                                    const nodeToRemove = sibling;
+                                    sibling = sibling.nextSibling;
+                                    nodeToRemove.remove();
+                                }
+                                currentNodeToClearAfter = currentNodeToClearAfter.parentElement;
+                            }
+                            break;
+                        }
+                    }
+
+                    const previewContent = tempDiv.innerHTML;
+
+                    contentPreview.innerHTML = previewContent;
+                    contentPreview.classList.add('collapsed');
+                    expandBtn.style.display = 'flex';
+
+                    // 绑定展开/收起事件
+                    expandBtn.addEventListener('click', function () {
+                        const isExpanded = expandBtn.classList.contains('expanded');
+
+                        if (isExpanded) {
+                            // 收起内容
+                            contentPreview.innerHTML = previewContent;
+                            contentPreview.classList.add('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '展开全文';
+                            expandBtn.classList.remove('expanded');
+                        } else {
+                            // 展开内容
+                            contentPreview.innerHTML = fullContent;
+                            contentPreview.classList.remove('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '收起';
+                            expandBtn.classList.add('expanded');
+                        }
+                    });
+                } else {
+                    // 内容较短，隐藏展开按钮
+                    expandBtn.style.display = 'none';
+                }
+            });
+        }
+
+        // 浮动操作与目录
+        function initFloatingActions() {
+            const scrollTopBtn = document.getElementById('scroll-top-btn');
+            const dirToggle = document.getElementById('directory-toggle');
+            const dirPanel = document.getElementById('directory-panel');
+            const dirClose = document.getElementById('directory-close');
+
+            if (scrollTopBtn) {
+                window.addEventListener('scroll', () => {
+                    scrollTopBtn.classList.toggle('floating-button--hidden', window.scrollY <= 240);
+                }, { passive: true });
+                scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            }
+
+            if (!dirPanel || !dirToggle) return;
+            buildDirectory();
+
+            const closePanel = () => { dirPanel.classList.remove('open'); dirToggle.setAttribute('aria-expanded', 'false'); };
+            dirToggle.addEventListener('click', (e) => { e.stopPropagation(); dirPanel.classList.toggle('open'); dirToggle.setAttribute('aria-expanded', dirPanel.classList.contains('open')); });
+            if (dirClose) dirClose.addEventListener('click', closePanel);
+
+            dirPanel.querySelectorAll('[data-target]').forEach(item => {
+                item.addEventListener('click', () => {
+                    const target = document.getElementById(item.getAttribute('data-target'));
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    closePanel();
+                });
+            });
+            document.addEventListener('click', (e) => { if (!dirPanel.contains(e.target) && !dirToggle.contains(e.target)) closePanel(); });
+            window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+        }
+
+        function buildDirectory() {
+            const listEl = document.getElementById('directory-list');
+            if (!listEl) return;
+            listEl.innerHTML = '';
+
+            const configs = [
+                { id: 'section-overview', icon: 'fa-chart-column' },
+                { id: 'section-hot-topics', icon: 'fa-fire' },
+                { id: 'section-deep-dive', icon: 'fa-comments' },
+                { id: 'section-qa', icon: 'fa-circle-question' },
+                { id: 'section-daily-picks', icon: 'fa-gem' }
+            ];
+
+            // 中文数字转换
+            const chineseNumbers = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+            let sectionCounter = 0;
+
+            configs.forEach(config => {
+                const section = document.getElementById(config.id);
+                if (!section) return;
+
+                const titleEl = section.querySelector('.section-title');
+                const title = titleEl ? titleEl.textContent.trim() : config.id;
+
+                // 递增计数器并添加中文序号
+                const chineseNumber = chineseNumbers[sectionCounter];
+                const titleWithNumber = `${chineseNumber}、 ${title}`;
+                sectionCounter++;
+
+                const itemWrapper = document.createElement('div');
+                itemWrapper.className = 'directory-item';
+
+                const entryBtn = document.createElement('button');
+                entryBtn.className = 'directory-entry';
+                entryBtn.setAttribute('data-target', config.id);
+                entryBtn.innerHTML = `<span class="directory-icon"><i class="fas ${config.icon}"></i></span><span>${titleWithNumber}</span>`;
+                itemWrapper.appendChild(entryBtn);
+
+                const subHeadings = section.querySelectorAll('.bento-card h4');
+                if (subHeadings.length > 0) {
+                    const sublist = document.createElement('div');
+                    sublist.className = 'directory-sublist';
+                    subHeadings.forEach((h, i) => {
+                        const card = h.closest('.bento-card');
+                        if (!card) return;
+                        if (!card.id) card.id = `${config.id}-item-${i + 1}`;
+                        card.classList.add('anchor-target');
+
+                        const subBtn = document.createElement('button');
+                        subBtn.className = 'directory-subitem';
+                        subBtn.setAttribute('data-target', card.id);
+                        subBtn.textContent = h.textContent.trim();
+                        sublist.appendChild(subBtn);
+                    });
+                    if (sublist.hasChildNodes()) itemWrapper.appendChild(sublist);
+                }
+                listEl.appendChild(itemWrapper);
+            });
+        }
+    </script>
+
+    <!-- ICP备案号等信息 -->
+    <div
+        style="text-align:center; font-size:14px; color:#888; padding:20px 0; margin-top:20px; border-top:1px solid #eee;">
+        <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#888; text-decoration:none;">
+            赣ICP备2024051762号-2
+        </a>
+    </div>
+    <div style="text-align:center; font-size:14px; color:#888; padding:10px 0;">
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36060202000451" rel="noreferrer" target="_blank"
+            style="color:#888; text-decoration:none; display:inline-flex; align-items:center; gap:5px;">
+            <img src="beian.png" alt="公安备案" style="width:20px; height:20px;">
+            <span>赣公网安备36060202000451号</span>
+        </a>
+    </div>
+</body>
+
+</html>
