@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- AI填充指南：请将YYYY-MM-DD替换为日报对应的日期 -->
+    <title>星火日报 2026-02-02</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C9T7FPDT2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-6C9T7FPDT2');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            counter-reset: section-counter;
+        }
+
+        :root {
+            --directory-main-font-size: clamp(0.85rem, 0.9vw + 0.6rem, 0.95rem);
+            --directory-sub-font-size: clamp(0.78rem, 0.75vw + 0.5rem, 0.88rem);
+        }
+
+        .bento-card {
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .number-display {
+            font-weight: 900;
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-weight: 800;
+            font-size: 2.25rem;
+            color: #000000;
+            margin-bottom: 2rem;
+        }
+
+        .section-title::before {
+            counter-increment: section-counter;
+            content: counter(section-counter, cjk-ideographic) "、 ";
+        }
+
+        .tag-item {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px -3px rgba(239, 68, 68, 0.3);
+        }
+
+        .nav-button:disabled {
+            background: #e5e7eb;
+            color: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .history-link {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .history-link:hover {
+            background: rgba(239, 68, 68, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .expandable-content {
+            position: relative;
+        }
+
+        .content-preview.collapsed {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-preview.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(transparent, rgba(248, 250, 252, 0.9));
+            pointer-events: none;
+        }
+
+        .expand-btn {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .expand-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .expand-btn.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .anchor-target {
+            scroll-margin-top: 120px;
+        }
+
+        .floating-actions {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 50;
+        }
+
+        .floating-button {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            color: #ffffff;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px -5px rgba(239, 68, 68, 0.35);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .floating-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -6px rgba(239, 68, 68, 0.45);
+        }
+
+        .floating-button--hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            pointer-events: none;
+        }
+
+        .directory-wrapper {
+            position: relative;
+        }
+
+        .directory-panel {
+            position: absolute;
+            right: 0;
+            bottom: 3.5rem;
+            width: 18rem;
+            background: #ffffff;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -15px rgba(239, 68, 68, 0.35);
+            padding: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            max-height: min(75vh, 30rem);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        .directory-panel.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .directory-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .directory-title {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: var(--directory-main-font-size);
+        }
+
+        .directory-close {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 9999px;
+            transition: color 0.2s ease;
+        }
+
+        .directory-close:hover {
+            color: #ef4444;
+        }
+
+        .directory-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .directory-list button {
+            width: 100%;
+            text-align: left;
+            background: rgba(239, 68, 68, 0.08);
+            color: #1f2937;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.55rem 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: var(--directory-main-font-size);
+        }
+
+        .directory-list button:hover {
+            background: rgba(239, 68, 68, 0.18);
+            color: #b91c1c;
+        }
+
+        .directory-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .directory-sublist {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-left: 2.5rem;
+            padding-left: 0.75rem;
+            border-left: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .directory-subitem {
+            background: rgba(239, 68, 68, 0.04);
+            padding-top: 0.45rem;
+            padding-bottom: 0.45rem;
+            font-size: var(--directory-sub-font-size);
+        }
+
+        .directory-subitem:hover {
+            background: rgba(239, 68, 68, 0.14);
+        }
+
+        .directory-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 640px) {
+            .floating-actions {
+                right: 0.75rem;
+                bottom: 1rem;
+            }
+
+            .directory-panel {
+                width: min(80vw, 15rem);
+                bottom: 3.25rem;
+                max-height: min(70vh, 20rem);
+            }
+
+            :root {
+                --directory-main-font-size: 0.8rem;
+                --directory-sub-font-size: 0.72rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- === "星火日报" 文件头区域 开始 === -->
+        <header class="w-full mb-8">
+            <div class="bento-card p-8">
+                <div class="text-center">
+                    <h1 class="text-5xl font-black text-black mb-6">
+                        星火日报
+                    </h1>
+                    <div
+                        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg mb-4">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-calendar-alt mr-2 text-[#ef4444]"></i>
+                            <span id="report-date">2026年2月2日</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-clock mr-2 text-[#ef4444]"></i>
+                            <span>00:00 - 24:00</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <a id="history-link" href="#" class="history-link">
+                            <i class="fas fa-history"></i>
+                            星火历史日报汇总
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- === "星火日报" 文件头区域 结束 === -->
+
+        <nav class="w-full mb-8 daily-nav">
+            <div class="bento-card p-4">
+                <div class="flex justify-between items-center">
+                    <button type="button" class="nav-button day-nav-prev">
+                        <i class="fas fa-chevron-left"></i>
+                        上一天
+                    </button>
+                    <div class="text-center">
+                        <span class="text-sm text-gray-600">日报导航</span>
+                    </div>
+                    <button type="button" class="nav-button day-nav-next">
+                        下一天
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- === 模块一：总消息概览 开始 === -->
+        <section id="section-overview" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">总消息概览</h2>
+            <div
+                class="bento-card p-8 bg-gradient-to-br from-[#ef4444]/20 via-[#ef4444]/10 to-[#ef4444]/5 text-center rounded-2xl">
+                <div class="number-display text-[#ef4444]">
+                    1202
+                </div>
+                <p class="text-xl font-semibold text-black mt-3">总消息数量</p>
+            </div>
+        </section>
+        <!-- === 模块一：总消息概览 结束 === -->
+        <!-- HTML注释: 此模块作为单独一行，占据整行宽度。用于展示群内讨论的热点话题。 -->
+        <!-- HTML注释: 模块二内容结构说明: -->
+        <!-- 1. 话题: 作为卡片的主标题 -->
+        <!-- 2. 关键结论: 每个话题下可以包含多个关键结论 (模板结构示例展示支持最多3个关键结论，如需更多可复制结构)；关键结论应按照话题讨论的时间线来编写。 -->
+        <!-- 3. <b>金句时刻</b>: 每个关键结论下对应约3个<b>金句时刻</b>金句必须是让人获得“啊哈”或恍然大悟的发言。 -->
+        <!-- HTML注释: "爬楼关键词"说明: 每个话题卡片中包含爬楼关键词区域，话题讨论起始句，用于用户快速定位到群聊记录中的对应讨论位置。填写时需要包含相关用户的昵称，格式示例：[用户昵称]：[关键词内容]，但不要包含微信ID。为便于定位，请勿引用图片、视频、链接、语音等非文本消息作为起始句，应顺延至其后的第一条有效文本消息。 -->
+        <!-- === 模块二：火花碰撞时刻・热点话题 开始 === -->
+        <section id="section-hot-topics" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">火花碰撞时刻・热点话题</h2>
+            <div class="space-y-8">
+                
+                <!-- 热点话题卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            神为何要“吃人”？——一场关于神话、权力和文明的思辨
+                        </h4>
+                        <span
+                            class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            14:24 - 15:30
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            AA昍：[合并转发|群聊的聊天记录] 美国众神，神话的诞生，为什么古神都要吃人，一些小讨论
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">美国众神</span>
+                            <span class="tag-item">神话学</span>
+                            <span class="tag-item">活人献祭</span>
+                            <span class="tag-item">弑神</span>
+                            <span class="tag-item">文明演进</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div
+                            class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br>
+                                    讨论由一则关于美剧《美国众神》的合并转发消息引发，群友<b>amiaogg</b>在原讨论中提出困惑：“怎么什么神最后都是要吃人？”这一问题，将群内对话引向了对神话、宗教和社会权力的深层探讨。<br><br>
+                                    <b>二、主要观点与讨论详情</b><br>
+                                    针对“神为何吃人”的核心问题，群友们展开了精彩的思辨：<br><br>
+                                    <b>昍</b>同志的观点尤为突出，他认为这并非神的逻辑，而是人的逻辑。他系统地阐述了以下几点：
+                                    <ul>
+                                        <li><b>献祭的本质：</b>在人类早期，为了凝聚抽象共同体，需要向虚构的神证明虔诚。最珍贵的祭品莫过于生命，因此活人献祭成为最高形式的信奉。一个“神”能否“吃人”，直接关系到其在凡间的权威和信徒规模。</li>
+                                        <li><b>东西方文明分野：</b>他鲜明地对比了东西方文明在“人神关系”上的根本差异。他指出，中华文明在周代就完成了“弑神”，从此掌握了对神的定义权，确立了“人”的主体地位。而西方直到文艺复兴时期，才仅仅发展到“每个人都可以直接跟上帝交流”的阶段，在思想层面远远落后。</li>
+                                        <li><b>妖的定义：</b>他引用《悟空传》的观点，指出“凡是神仙控制不了的这一类东西，都有一个名字，叫做妖”，进一步强调了“神”与“妖”的定义权掌握在人类手中，吃人的“神”在我们的文化里被重新定义为了“妖怪”。</li>
+                                    </ul>
+                                    <b>小雪</b>则从另一角度补充了现实世界的佐证，她提到网络名人“牢真”所描述的西藏地区人祭曼扎等恐怖仪式。有宗教学者证实，这些细节若非亲眼所见，几乎无法编造，这暗示了古老的献祭仪式在某些角落可能依然留存，并与现代社会的地下权力结构（如爱泼斯坦案）有着千丝万缕的联系。<br><br>
+                                    <b>三、结论与启发</b><br>
+                                    这场讨论从一个剧集中的神话设定，深刻挖掘到人类文明演进的底层逻辑。它揭示了“神”作为一种人类社会构建的抽象概念，其形象和行为方式完全服务于人类自身的权力结构和信仰需求。讨论中关于中华文明早期就完成“弑神”并掌握神明“定义权”的观点，为群友们提供了理解自身文化优越性的一个全新且有力的视角。这场高质量的思辨，让大家对神话、历史和权力有了更深层次的认识。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            “神吃人”源于人类社会的需求，是权力与信仰极端化的体现。通过献祭生命来证明虔诚，从而巩固神的权威和信徒的凝聚力。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                神一定要吃人，并不是神的逻辑，而是人的逻辑。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                能吃人的神，香火才盛。因为肉眼凡胎们的信仰，最初都来自恐惧。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                供奉基本等于给吃。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>amiaogg</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            中华文明通过“弑神”掌握了神的定义权，将“人”置于核心，这在思想层面领先于西方文明。吃人的存在，无论曾被称作什么，都会被我们重新定义为“妖”。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                我们早就「每个人都可以定义神，甚至毁灭神」了，他们还他妈跟上帝交流呢，落后至少1万年。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                原来凡是神仙控制不了的这一类东西，都有一个名字，叫做妖。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                咱们这也就是妖怪才要祭童男童女。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>.</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 热点话题卡片 结束 -->
+                
+                <!-- 热点话题卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            远离投机陷阱：关于个人投资风险与“20万魔咒”的警示
+                        </h4>
+                        <span
+                            class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            13:04 - 14:06
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            满满金：她说她表妹在杭州跟几个朋友凑了500万在香港挂靠品牌公司，做那种女性阴道凝胶，一本万利，赚了钱，玩儿金融啥的，她就心动了，想学。
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">投资理财</span>
+                            <span class="tag-item">炒股风险</span>
+                            <span class="tag-item">资产配置</span>
+                            <span class="tag-item">20万魔咒</span>
+                            <span class="tag-item">金融诈骗</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div
+                            class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br>
+                                    群成员<b>满满金</b>因同事渲染“一本万利”的商业故事和“资产配置”等金融概念而感到困惑和心动，向群友们征询关于接触金融理财产品的看法，由此引发了一场关于个人投资风险的深入讨论。<br><br>
+                                    <b>二、主要观点与讨论详情</b><br>
+                                    面对<b>满满金</b>的困惑，群内多位成员从不同角度给出了清醒而坚决的劝告：
+                                    <ul>
+                                        <li><b>亲历者的警示：</b> <b>甲鱼非鱼</b>同志分享了他惊心动魄的炒股经历。他曾在一个月内靠比亚迪股票赚了十几万，但很快又遭遇跌停，最终亏损8万，险些赔掉“老婆本”。他用自己的“过山车”体验告诫大家，<b>最可怕的不是上来就亏，而是先尝到甜头后加大投入，最终陷入万劫不复。</b></li>
+                                        <li><b>心性腐蚀的危害：</b> <b>今天是叶子</b>同志从精神层面剖析了炒股的危害，她强调：“<b>炒股最腐蚀的是心性。</b>”每日的涨跌波动极易让人心态失衡，为了精神健康，应当远离投机。</li>
+                                        <li><b>“20万魔咒”概念：</b> 讨论中，一个生动的概念被提出——“<b>20万魔咒</b>”。指的是普通人辛苦攒下约20万存款后，容易产生一种“小有资本”的错觉，开始变得浮躁，渴望通过“钱生钱”实现阶层跨越，从而极易被各种高风险投资骗局所收割。</li>
+                                    </ul>
+                                    <b>三、结论与启发</b><br>
+                                    讨论最终形成高度共识：对于缺乏专业知识和风险承受能力的普通人而言，<b>贸然进入股市等投机市场弊远大于利。</b>群友们普遍认为，踏实工作、学习真正能傍身的技能，远比追求虚无缥缈的“一夜暴富”来得可靠。对于<b>满满金</b>的情况，最实际的建议是“把钱放在余额宝，准备传给孩子”，这句玩笑话的背后，是对普通人守住血汗钱的殷切叮嘱。这场讨论为群内所有成员敲响了警钟，深刻揭示了理财话术背后的陷阱与人性的弱点。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            对于普通人，投机性炒股是高危行为。最初的小额盈利是最大的诱饵，它会诱使你加大投入，最终导致严重亏损，并对个人心性造成巨大腐蚀。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                最可怕的是上来试试水赚了点，然后加大投入之后亏了。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>甲鱼非鱼</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                炒股最腐蚀的是心性。为了精神健康，不要炒股。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>今天是叶子</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                8W就买到了老实，赚了！
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>今天是叶子</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            警惕“20万魔咒”：当普通人积攒了一定存款后，容易高估自身能力，被“钱生钱”的话术诱惑，成为被收割的对象。守住本金比追求高回报更重要。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                普通人有了20万存款就开始得瑟，接下来就赔个倾家荡产。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                你就放余额宝里，准备传给孩子就行。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                不确定自己能不能靠炒股赚钱的人，不去炒股就已经是赚钱了。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>可</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 热点话题卡片 结束 -->
+            </div>
+        </section>
+        <!-- === 模块二：火花碰撞时刻・热点话题 结束 === -->
+
+        <!-- === 模块四：解惑一点通・有问必答 开始 === -->
+        <section id="section-qa" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">解惑一点通・有问必答</h2>
+            <div class="space-y-8">
+                
+                <!-- 问答卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            公司不重视散客售后，20元的客诉问题该如何处理？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            潘玲：同志们，我遇到工作上的一个问题，给我难住了。
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br>
+                                    群成员<b>潘玲</b>在协助电商客服工作时，遇到一个棘手问题：一位淘宝散客购买的电芯在使用一个月后失效，但其主管以客户自行焊接为由拒绝补发（成本仅20元），且公司层面明确表示“不搭理散客”，导致她不知如何应对。<br><br>
+                                    <b>二、核心原因分析</b><br>
+                                    群友们迅速定位了问题的本质。<b>今天是叶子</b>一针见血地指出，问题的根源在于公司<b>缺乏标准的售后服务流程（SOP）</b>。<b>二小子</b>和<b>小方</b>则从公司运营角度分析，指出这反映了公司的战略定位——重B端大客户、轻C端散客，因此不愿为低价值客户投入过多资源。<b>AA昍</b>更是严厉地批评这种做法是“傻逼”，因为为了20元的订单耗费了多名员工的宝贵时间，是极大的管理浪费和对员工价值的不尊重。<br><br>
+                                    <b>三、解决方案与建议</b><br>
+                                    群策群力下，形成了一套短期与长期结合的解决方案：
+                                    <ol>
+                                        <li><b>短期应对：</b> <b>阿南plus</b>提供了AI生成的专业话术，帮助<b>潘玲</b>以安抚客户为主，得体地结束此次沟通。同时，<b>小方</b>建议她不要“越俎代庖”，避免揽上技术部门的责任。</li>
+                                        <li><b>中期认知：</b> <b>二小子</b>建议她要“吃透单位的技术状态和管理制度”，理解公司在这种草台班子模式下的潜规则，即“和稀泥”是散客售后的常态。</li>
+                                        <li><b>长期反思：</b> <b>AA昍</b>的观点最具颠覆性，他认为在这样一家为20元小事内耗的公司工作，员工应该反思自己的日薪价值和职业前景，<b>考虑跳槽是根本解</b>。这提醒<b>潘玲</b>从根本上审视自己所处的职场环境。</li>
+                                    </ol>
+                                    最终，<b>潘玲</b>采纳了群友建议，向客户道歉并结束了纠缠，也对公司的运作模式有了更清醒的认识。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">客户服务</span>
+                            <span class="tag-item">售后SOP</span>
+                            <span class="tag-item">职场问题</span>
+                            <span class="tag-item">草台班子</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 问答卡片 结束 -->
+                
+                <!-- 问答卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            如何解决宿舍/家中椅子沦为“衣帽架”的难题？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            哈哈哈：同志们同志们，有没有什么在家里和宿舍能代替椅子🪑挂衣服的好物么
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br>
+                                    群成员<b>哈哈哈</b>提出了一个广大学子和租房党都深有体会的痛点：椅子上总是堆满穿过一两次、暂时不想洗的外套和衣物。他希望能找到一种既能整齐收纳，又不占地方的好物来解放椅子。<br><br>
+                                    <b>二、核心原因分析</b><br>
+                                    问题的核心在于需要一个专门区域来存放“次净衣”（穿过但无需立即清洗的衣物）。椅子因其随手可及的便利性和椅背的支撑结构，自然而然地成为了这个角色的首选，但代价是空间杂乱和椅子功能的丧失。<br><br>
+                                    <b>三、解决方案与建议</b><br>
+                                    群友们迅速给出了多种实用且经济的解决方案：
+                                    <ul>
+                                        <li><b>入门级方案：</b> <b>Geralt</b>直接建议搜索“简易衣架”或“阳台晾衣架”，这是最直接的替代品。</li>
+                                        <li><b>优选方案（落地式衣帽架）：</b> <b>白糖</b>和<b>静群</b>同志分享了她们正在使用的解决方案，并附上了拼多多商品链接和实物图。她们推荐的是一种<b>底部带岩板或置物架的立式单杆衣帽架</b>。这种衣架占地面积小，非常适合宿舍和单间，不仅可以挂多件外套，底部的平台还可以放置包包等物品，完美复刻了“椅子”的全部功能，且更为整洁美观。价格也非常亲民，约29元即可入手。</li>
+                                        <li><b>心灵慰藉方案：</b> <b>头大的JJ老师小乌龟～</b>风趣地表示：“信我，椅子就是外衣最好的归属”，引得大家会心一笑，也道出了这个习惯的普遍性。</li>
+                                    </ul>
+                                    最终，小巧的落地式衣帽架成为本次问答的最优解，为有同样困扰的群友提供了极具参考价值的购物指南。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">生活好物</span>
+                            <span class="tag-item">收纳整理</span>
+                            <span class="tag-item">宿舍神器</span>
+                            <span class="tag-item">租房改造</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 问答卡片 结束 -->
+            </div>
+        </section>
+        <!-- === 模块四：解惑一点通・有问必答 结束 === -->
+
+        <!-- === 模块五：智慧火花匣・每日精选 开始 === -->
+        <section id="section-daily-picks" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">智慧火花匣・每日精选</h2>
+            <div class="space-y-8">
+                
+                <!-- 知识卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        内容分享：产品经理与唯物辩证法三部曲
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            AA昍：——产品经理+唯物辩证法的三部曲，就发完啦~
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br>
+                                群友<b>AA昍</b>分享了一套名为《你搞清楚自己的定位没有》的原创系列内容，被他概括为“产品经理+唯物辩证法的三部曲”。该分享包含了MP3音频、PDF文档和TXT文本三种格式，方便群友在不同场景下学习。<br><br>
+                                <b>二、核心价值与特点</b><br>
+                                这套内容旨在帮助大家运用唯物辩证法的思维方式来审视和明确个人定位，尤其对于产品经理等需要高度战略思维的岗位具有很强的指导意义。从群友的反馈来看，这份资料的价值极高。<b>Suerte</b>在学习后表示“秒吃”，<b>Suue</b>更是激动地反馈“看完了热血沸腾，不是懵的一逼了”，并连用三个“鞠躬”表达感谢。这表明该分享内容具有极强的启发性和实操性，能够有效解决群友在个人定位上的困惑。<br><br>
+                                <b>三、适用场景或补充信息</b><br>
+                                该系列内容适合所有对个人职业发展、思维模型和底层逻辑感兴趣的群友，特别是那些在工作中感到迷茫、需要厘清自身价值和方向的同志。多格式的分享也体现了对不同学习习惯的关照，是一份不可多得的高价值学习资料。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag-item">产品经理</span>
+                        <span class="tag-item">唯物辩证法</span>
+                        <span class="tag-item">个人定位</span>
+                        <span class="tag-item">知识分享</span>
+                        <span class="tag-item">思维模型</span>
+                    </div>
+                </div>
+                <!-- 知识卡片 结束 -->
+
+                <!-- 知识卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        书籍推荐与分享：《政治经济学概论》
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            祺：我记不清，请问是不是有本书的书名或内容类似是“CPC 带你看经济”的？
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br>
+                                在群友<b>满满金</b>表达了对金融理财的困惑后，一场关于如何建立正确经济学认知的讨论引出了一本经典教材——由徐禾等编著的《政治经济学概论》。<br><br>
+                                <b>二、核心价值与特点</b><br>
+                                这本书被群友们认为是建立马克思主义政治经济学基础的绝佳入门读物。<b>今天是叶子</b>指出，学习政治经济学是理解金融现象的“最直接的办法”。为了方便大家学习，群友<b>肥发灰（请同志们批判版）</b>和<b>小方</b>先后分享了该书的PDF和ePub版本，体现了群内互助共享的学习氛围。这本书的核心价值在于，它提供了一套科学的分析框架，帮助读者从纷繁复杂的经济现象中看透本质，理解价值、货币、资本等核心概念，从而建立起对金融世界的正确认知，避免被“钱生钱”等骗术所迷惑。<br><br>
+                                <b>三、适用场景或补充信息</b><br>
+                                对于像<b>满满金</b>一样对金融感到迷茫，或是希望建立系统性经济学知识体系的群友，这本书是极好的起点。相较于追逐市场热点和技术分析，回归经典、学习底层逻辑，是更为稳妥和根本的成长路径。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag-item">经济学</span>
+                        <span class="tag-item">政治经济学</span>
+                        <span class="tag-item">经典教材</span>
+                        <span class="tag-item">电子书分享</span>
+                    </div>
+                </div>
+                <!-- 知识卡片 结束 -->
+
+                 <!-- 知识卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        实用工具：发现身边的人间烟火——“圩日表”小程序
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            清风拂我书：说到赶集，不得不再推荐这个小程序了
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br>
+                                成员<b>清风拂我书</b>在大家热聊“赶集”的乐趣时，分享了一款极具生活气息的微信小程序——“圩日表”。<br><br>
+                                <b>二、核心价值与特点</b><br>
+                                这款小程序的主要功能是查询并标注用户周边的传统集市（“圩日”或“赶集”）的日期和地点。对于喜爱体验地方风情、品尝地道小吃、感受人间烟火气的群友来说，这是一个非常实用的小助手。它解决了“想赶集但不知道去哪、何时去”的信息差问题，让探索本地文化变得简单方便。分享后，<b>扰鹤清梦</b>等群友表示“好有意思”，展现了大家对这种接地气的生活方式的向往。<br><br>
+                                <b>三、适用场景或补充信息</b><br>
+                                适合所有希望在周末或闲暇时间，逃离城市喧嚣，去体验传统市集热闹氛围的用户。无论是本地居民还是异地游客，都可以通过这个小程序轻松找到身边的“宝藏”集市。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">生活工具</span>
+                        <span class="tag-item">小程序</span>
+                        <span class="tag-item">本地生活</span>
+                        <span class="tag-item">赶集</span>
+                    </div>
+                    <div class="flex justify-end">
+                        <a href="https://mp.weixin.qq.com/mp/waerrpage?appid=wx422c548d1f74b10f&type=upgrade&upgradetype=3#wechat_redirect"
+                            target="_blank" rel="noopener noreferrer"
+                            class="text-sm font-medium text-[#4D6BFE] hover:text-blue-700 hover:underline flex items-center">
+                            打开小程序
+                            <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 知识卡片 结束 -->
+
+            </div>
+        </section>
+        <!-- === 模块五：智慧火花匣・每日精选 结束 === -->
+
+        <nav class="w-full mt-12 daily-nav">
+            <div class="bento-card p-4">
+                <div class="flex justify-between items-center">
+                    <button type="button" class="nav-button day-nav-prev">
+                        <i class="fas fa-chevron-left"></i>
+                        上一天
+                    </button>
+                    <div class="text-center">
+                        <span class="text-sm text-gray-600">日报导航</span>
+                    </div>
+                    <button type="button" class="nav-button day-nav-next">
+                        下一天
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- === 文件底部 开始 === -->
+        <footer class="w-full mt-16">
+            <div class="bento-card p-8">
+                <div class="text-center text-gray-700 space-y-3">
+                    <div
+                        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-base">
+                        <div class="flex items-center">
+                            <i class="fas fa-database mr-2 text-[#ef4444]"></i>
+                            <span>星火群聊记录</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-robot mr-2 text-[#ef4444]"></i>
+                            <span>2026-02-03 02:00:00</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                        本报告基于群聊数据自动生成，仅供参考。内容可能包含个人观点，不代表群组官方立场。
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <!-- === 文件底部 结束 === -->
+    </div>
+
+    <!-- === 浮动按钮与脚本区域 开始 === -->
+    <div class="floating-actions" aria-label="页面快捷操作">
+        <div class="directory-wrapper">
+            <button type="button" class="floating-button" id="directory-toggle" aria-expanded="false"
+                aria-controls="directory-panel" aria-label="打开内容导航">
+                <i class="fas fa-list-ul"></i>
+            </button>
+            <div class="directory-panel" id="directory-panel" role="dialog" aria-hidden="true">
+                <div class="directory-header">
+                    <span class="directory-title">内容导航</span>
+                    <button type="button" class="directory-close" id="directory-close" aria-label="关闭内容导航">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="directory-list" id="directory-list">
+                    <!-- 目录由脚本自动生成 -->
+                </div>
+            </div>
+        </div>
+        <button type="button" class="floating-button floating-button--hidden" id="scroll-top-btn" aria-label="返回顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 数字动画
+            document.querySelectorAll('.number-display').forEach(el => {
+                const finalValue = parseInt(el.textContent.replace(/,/g, ''), 10);
+                if (isNaN(finalValue)) return;
+                let current = 0;
+                const duration = 1500, frameRate = 1000 / 60, totalFrames = Math.round(duration / frameRate);
+                const increment = finalValue / totalFrames;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= finalValue) {
+                        current = finalValue;
+                        clearInterval(timer);
+                    }
+                    el.textContent = Math.floor(current).toLocaleString('en-US');
+                }, frameRate);
+            });
+
+            initDailyNavigation();
+            initExpandableContent();
+            initFloatingActions();
+
+            const historyLink = document.getElementById('history-link');
+            if (historyLink) historyLink.href = '星火历史日报汇总.html';
+        });
+
+        // 日报导航
+        async function initDailyNavigation() {
+            const currentDate = getCurrentDateFromPage();
+            if (!currentDate) return;
+            await setupNavigationButtons(currentDate);
+        }
+
+        function getCurrentDateFromPage() {
+            const dateEl = document.getElementById('report-date');
+            if (dateEl) {
+                const match = dateEl.textContent.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                if (match) return `${match[1]}-${match[2].padStart(2, '0')}-${match[3].padStart(2, '0')}`;
+            }
+            const titleMatch = document.title.match(/(\d{4}-\d{2}-\d{2})/);
+            if (titleMatch) return titleMatch[1];
+            return null;
+        }
+
+        async function setupNavigationButtons(currentDate) {
+            const prevBtns = document.querySelectorAll('.day-nav-prev');
+            const nextBtns = document.querySelectorAll('.day-nav-next');
+            const navContainers = document.querySelectorAll('.daily-nav');
+
+            const currentDateObj = new Date(currentDate);
+            const prevDate = new Date(currentDateObj); prevDate.setDate(prevDate.getDate() - 1);
+            const nextDate = new Date(currentDateObj); nextDate.setDate(nextDate.getDate() + 1);
+            const prevDateStr = formatDate(prevDate), nextDateStr = formatDate(nextDate);
+
+            const [prevExists, nextExists] = await Promise.all([checkReportExists(prevDateStr), checkReportExists(nextDateStr)]);
+
+            if (!prevExists && !nextExists) {
+                navContainers.forEach(c => c.style.display = 'none');
+                return;
+            }
+            navContainers.forEach(c => c.style.display = 'block');
+
+            prevBtns.forEach(btn => {
+                btn.disabled = !prevExists;
+                if (prevExists) btn.onclick = () => window.location.href = `星火群日报_${prevDateStr}.html`;
+            });
+            nextBtns.forEach(btn => {
+                btn.disabled = !nextExists;
+                if (nextExists) btn.onclick = () => window.location.href = `星火群日报_${nextDateStr}.html`;
+            });
+        }
+
+        async function checkReportExists(date) {
+            try {
+                const res = await fetch(`星火群日报_${date}.html`, { method: 'HEAD' });
+                return res.ok;
+            } catch { return false; }
+        }
+
+        function formatDate(date) {
+            return date.toISOString().slice(0, 10);
+        }
+
+        // 展开/收起功能
+        function initExpandableContent() {
+            const expandableContents = document.querySelectorAll('.expandable-content');
+
+            expandableContents.forEach(container => {
+                const charLimit = parseInt(container.getAttribute('data-char-limit')) || 200;
+                const contentPreview = container.querySelector('.content-preview');
+                const expandBtn = container.querySelector('.expand-btn');
+
+                if (!contentPreview || !expandBtn) return;
+
+                const fullContent = contentPreview.innerHTML;
+                const fullText = contentPreview.textContent || contentPreview.innerText;
+
+                // 如果内容长度超过限制，则显示展开按钮
+                if (fullText.length > charLimit) {
+                    // 创建一个临时元素来正确截取HTML内容
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = fullContent;
+
+                    // 使用TreeWalker遍历所有文本节点
+                    let charCount = 0;
+                    const walker = document.createTreeWalker(
+                        tempDiv,
+                        NodeFilter.SHOW_TEXT,
+                        null,
+                        false
+                    );
+
+                    let node;
+                    const textNodes = [];
+                    while (node = walker.nextNode()) {
+                        textNodes.push(node);
+                    }
+
+                    // 计算需要保留的文本内容
+                    for (let textNode of textNodes) {
+                        const text = textNode.textContent;
+                        if (charCount + text.length <= charLimit) {
+                            charCount += text.length;
+                        } else {
+                            const remainingChars = charLimit - charCount;
+                            textNode.textContent = text.substring(0, remainingChars) + '...';
+                            charCount = charLimit;
+
+                            // 移除后续所有节点
+                            let currentNodeToClearAfter = textNode;
+                            while (currentNodeToClearAfter && currentNodeToClearAfter !== tempDiv) {
+                                let sibling = currentNodeToClearAfter.nextSibling;
+                                while (sibling) {
+                                    const nodeToRemove = sibling;
+                                    sibling = sibling.nextSibling;
+                                    nodeToRemove.remove();
+                                }
+                                currentNodeToClearAfter = currentNodeToClearAfter.parentElement;
+                            }
+                            break;
+                        }
+                    }
+
+                    const previewContent = tempDiv.innerHTML;
+
+                    contentPreview.innerHTML = previewContent;
+                    contentPreview.classList.add('collapsed');
+                    expandBtn.style.display = 'flex';
+
+                    // 绑定展开/收起事件
+                    expandBtn.addEventListener('click', function () {
+                        const isExpanded = expandBtn.classList.contains('expanded');
+
+                        if (isExpanded) {
+                            // 收起内容
+                            contentPreview.innerHTML = previewContent;
+                            contentPreview.classList.add('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '展开全文';
+                            expandBtn.classList.remove('expanded');
+                        } else {
+                            // 展开内容
+                            contentPreview.innerHTML = fullContent;
+                            contentPreview.classList.remove('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '收起';
+                            expandBtn.classList.add('expanded');
+                        }
+                    });
+                } else {
+                    // 内容较短，隐藏展开按钮
+                    expandBtn.style.display = 'none';
+                }
+            });
+        }
+
+        // 浮动操作与目录
+        function initFloatingActions() {
+            const scrollTopBtn = document.getElementById('scroll-top-btn');
+            const dirToggle = document.getElementById('directory-toggle');
+            const dirPanel = document.getElementById('directory-panel');
+            const dirClose = document.getElementById('directory-close');
+
+            if (scrollTopBtn) {
+                window.addEventListener('scroll', () => {
+                    scrollTopBtn.classList.toggle('floating-button--hidden', window.scrollY <= 240);
+                }, { passive: true });
+                scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            }
+
+            if (!dirPanel || !dirToggle) return;
+            buildDirectory();
+
+            const closePanel = () => { dirPanel.classList.remove('open'); dirToggle.setAttribute('aria-expanded', 'false'); };
+            dirToggle.addEventListener('click', (e) => { e.stopPropagation(); dirPanel.classList.toggle('open'); dirToggle.setAttribute('aria-expanded', dirPanel.classList.contains('open')); });
+            if (dirClose) dirClose.addEventListener('click', closePanel);
+
+            dirPanel.querySelectorAll('[data-target]').forEach(item => {
+                item.addEventListener('click', () => {
+                    const target = document.getElementById(item.getAttribute('data-target'));
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    closePanel();
+                });
+            });
+            document.addEventListener('click', (e) => { if (!dirPanel.contains(e.target) && !dirToggle.contains(e.target)) closePanel(); });
+            window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+        }
+
+        function buildDirectory() {
+            const listEl = document.getElementById('directory-list');
+            if (!listEl) return;
+            listEl.innerHTML = '';
+
+            const configs = [
+                { id: 'section-overview', icon: 'fa-chart-column' },
+                { id: 'section-hot-topics', icon: 'fa-fire' },
+                { id: 'section-deep-dive', icon: 'fa-comments' },
+                { id: 'section-qa', icon: 'fa-circle-question' },
+                { id: 'section-daily-picks', icon: 'fa-gem' }
+            ];
+
+            // 中文数字转换
+            const chineseNumbers = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+            let sectionCounter = 0;
+
+            configs.forEach(config => {
+                const section = document.getElementById(config.id);
+                if (!section) return;
+
+                const titleEl = section.querySelector('.section-title');
+                const titleText = titleEl ? titleEl.textContent.trim().replace(/^[一二三四五六七八九十]、\s*/, '') : config.id;
+
+                // 递增计数器并添加中文序号
+                const chineseNumber = chineseNumbers[sectionCounter];
+                const titleWithNumber = `${chineseNumber}、 ${titleText}`;
+                sectionCounter++;
+
+                const itemWrapper = document.createElement('div');
+                itemWrapper.className = 'directory-item';
+
+                const entryBtn = document.createElement('button');
+                entryBtn.className = 'directory-entry';
+                entryBtn.setAttribute('data-target', config.id);
+                entryBtn.innerHTML = `<span class="directory-icon"><i class="fas ${config.icon}"></i></span><span>${titleText}</span>`;
+                itemWrapper.appendChild(entryBtn);
+
+                const subHeadings = section.querySelectorAll('.bento-card h4');
+                if (subHeadings.length > 0) {
+                    const sublist = document.createElement('div');
+                    sublist.className = 'directory-sublist';
+                    subHeadings.forEach((h, i) => {
+                        const card = h.closest('.bento-card');
+                        if (!card) return;
+                        const cardId = `${config.id}-item-${i + 1}`;
+                        card.id = cardId;
+                        card.classList.add('anchor-target');
+
+                        const subBtn = document.createElement('button');
+                        subBtn.className = 'directory-subitem';
+                        subBtn.setAttribute('data-target', cardId);
+                        subBtn.textContent = h.textContent.trim();
+                        sublist.appendChild(subBtn);
+                    });
+                    if (sublist.hasChildNodes()) itemWrapper.appendChild(sublist);
+                }
+                listEl.appendChild(itemWrapper);
+            });
+        }
+    </script>
+
+    <!-- ICP备案号等信息 -->
+    <div
+        style="text-align:center; font-size:14px; color:#888; padding:20px 0; margin-top:20px; border-top:1px solid #eee;">
+        <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#888; text-decoration:none;">
+            赣ICP备2024051762号-2
+        </a>
+    </div>
+    <div style="text-align:center; font-size:14px; color:#888; padding:10px 0;">
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36060202000451" rel="noreferrer" target="_blank"
+            style="color:#888; text-decoration:none; display:inline-flex; align-items:center; gap:5px;">
+            <img src="beian.png" alt="公安备案" style="width:20px; height:20px;">
+            <span>赣公网安备36060202000451号</span>
+        </a>
+    </div>
+</body>
+
+</html>
