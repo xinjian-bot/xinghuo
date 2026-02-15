@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- AI填充指南：请将YYYY-MM-DD替换为日报对应的日期 -->
+    <title>星火日报 2026-02-15</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C9T7FPDT2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-6C9T7FPDT2');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            counter-reset: section-counter;
+        }
+
+        :root {
+            --directory-main-font-size: clamp(0.85rem, 0.9vw + 0.6rem, 0.95rem);
+            --directory-sub-font-size: clamp(0.78rem, 0.75vw + 0.5rem, 0.88rem);
+        }
+
+        .bento-card {
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .number-display {
+            font-weight: 900;
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-weight: 800;
+            font-size: 2.25rem;
+            color: #000000;
+            margin-bottom: 2rem;
+        }
+
+        .section-title::before {
+            counter-increment: section-counter;
+            content: counter(section-counter, cjk-ideographic) "、 ";
+        }
+
+        .tag-item {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px -3px rgba(239, 68, 68, 0.3);
+        }
+
+        .nav-button:disabled {
+            background: #e5e7eb;
+            color: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .history-link {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .history-link:hover {
+            background: rgba(239, 68, 68, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .expandable-content {
+            position: relative;
+        }
+
+        .content-preview.collapsed {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-preview.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(transparent, rgba(248, 250, 252, 0.9));
+            pointer-events: none;
+        }
+
+        .expand-btn {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .expand-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .expand-btn.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .anchor-target {
+            scroll-margin-top: 120px;
+        }
+
+        .floating-actions {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 50;
+        }
+
+        .floating-button {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            color: #ffffff;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px -5px rgba(239, 68, 68, 0.35);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .floating-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -6px rgba(239, 68, 68, 0.45);
+        }
+
+        .floating-button--hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            pointer-events: none;
+        }
+
+        .directory-wrapper {
+            position: relative;
+        }
+
+        .directory-panel {
+            position: absolute;
+            right: 0;
+            bottom: 3.5rem;
+            width: 18rem;
+            background: #ffffff;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px -15px rgba(239, 68, 68, 0.35);
+            padding: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            max-height: min(75vh, 30rem);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        .directory-panel.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .directory-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .directory-title {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: var(--directory-main-font-size);
+        }
+
+        .directory-close {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 9999px;
+            transition: color 0.2s ease;
+        }
+
+        .directory-close:hover {
+            color: #ef4444;
+        }
+
+        .directory-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .directory-list button {
+            width: 100%;
+            text-align: left;
+            background: rgba(239, 68, 68, 0.08);
+            color: #1f2937;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.55rem 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: var(--directory-main-font-size);
+        }
+
+        .directory-list button:hover {
+            background: rgba(239, 68, 68, 0.18);
+            color: #b91c1c;
+        }
+
+        .directory-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .directory-sublist {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-left: 2.5rem;
+            padding-left: 0.75rem;
+            border-left: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .directory-subitem {
+            background: rgba(239, 68, 68, 0.04);
+            padding-top: 0.45rem;
+            padding-bottom: 0.45rem;
+            font-size: var(--directory-sub-font-size);
+        }
+
+        .directory-subitem:hover {
+            background: rgba(239, 68, 68, 0.14);
+        }
+
+        .directory-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 640px) {
+            .floating-actions {
+                right: 0.75rem;
+                bottom: 1rem;
+            }
+
+            .directory-panel {
+                width: min(80vw, 15rem);
+                bottom: 3.25rem;
+                max-height: min(70vh, 20rem);
+            }
+
+            :root {
+                --directory-main-font-size: 0.8rem;
+                --directory-sub-font-size: 0.72rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- === "星火日报" 文件头区域 开始 === -->
+        <header class="w-full mb-8">
+            <div class="bento-card p-8">
+                <div class="text-center">
+                    <h1 class="text-5xl font-black text-black mb-6">
+                        星火日报
+                    </h1>
+                    <div
+                        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg mb-4">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-calendar-alt mr-2 text-[#ef4444]"></i>
+                            <span id="report-date">2026年2月15日</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-clock mr-2 text-[#ef4444]"></i>
+                            <span>00:00 - 24:00</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <a id="history-link" href="#" class="history-link">
+                            <i class="fas fa-history"></i>
+                            星火历史日报汇总
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- === "星火日报" 文件头区域 结束 === -->
+
+        <nav class="w-full mb-8 daily-nav">
+            <div class="bento-card p-4">
+                <div class="flex justify-between items-center">
+                    <button type="button" class="nav-button day-nav-prev">
+                        <i class="fas fa-chevron-left"></i>
+                        上一天
+                    </button>
+                    <div class="text-center">
+                        <span class="text-sm text-gray-600">日报导航</span>
+                    </div>
+                    <button type="button" class="nav-button day-nav-next">
+                        下一天
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- === 模块一：总消息概览 开始 === -->
+        <section id="section-overview" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">总消息概览</h2>
+            <div
+                class="bento-card p-8 bg-gradient-to-br from-[#ef4444]/20 via-[#ef4444]/10 to-[#ef4444]/5 text-center rounded-2xl">
+                <div class="number-display text-[#ef4444]">
+                    1462
+                </div>
+                <p class="text-xl font-semibold text-black mt-3">总消息数量</p>
+            </div>
+        </section>
+        <!-- === 模块一：总消息概览 结束 === -->
+        <!-- HTML注释: 此模块作为单独一行，占据整行宽度。用于展示群内讨论的热点话题。 -->
+        <!-- HTML注释: 模块二内容结构说明: -->
+        <!-- 1. 话题: 作为卡片的主标题 -->
+        <!-- 2. 关键结论: 每个话题下可以包含多个关键结论 (模板结构示例展示支持最多3个关键结论，如需更多可复制结构)；关键结论应按照话题讨论的时间线来编写。 -->
+        <!-- 3. <b>金句时刻</b>: 每个关键结论下对应约3个<b>金句时刻</b>金句必须是让人获得“啊哈”或恍然大悟的发言。 -->
+        <!-- HTML注释: "爬楼关键词"说明: 每个话题卡片中包含爬楼关键词区域，话题讨论起始句，用于用户快速定位到群聊记录中的对应讨论位置。填写时需要包含相关用户的昵称，格式示例：[用户昵称]：[关键词内容]，但不要包含微信ID。为便于定位，请勿引用图片、视频、链接、语音等非文本消息作为起始句，应顺延至其后的第一条有效文本消息。 -->
+        <!-- === 模块二：火花碰撞时刻・热点话题 开始 === -->
+        <section id="section-hot-topics" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">火花碰撞时刻・热点话题</h2>
+            <div class="space-y-8">
+
+                <!-- 热点话题卡片1 -->
+                <div class="bento-card p-6 rounded-xl"> 
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                           如何提升行动力：一场关于“出行”的心理博弈与破局
+                        </h4>
+                        <span
+                            class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            09:35 - 11:00
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                           呼  吸：我该怎么提高行动力呢？
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">行动力</span>
+                            <span class="tag-item">心理能量</span>
+                            <span class="tag-item">决策疲劳</span>
+                            <span class="tag-item">微度假</span>
+                            <span class="tag-item">AI辅助决策</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div
+                            class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br>
+                                    群成员<b>呼 吸</b>在假期中陷入了“想出门又怕折腾”的困境，提出了关于如何提高行动力的疑问。她感觉想去的目的地（如南京）路途遥远、过程繁琐，而近处又已去过，导致内心充满矛盾与消耗感，难以做出决定。<br><br>
+                                    <b>二、主要观点与讨论详情</b><br>
+                                    讨论迅速围绕“降低行动门槛”和“理解心理状态”展开，群友们从不同角度提供了建议：<br>
+                                    <ul>
+                                        <li><b>降低启动成本派</b>：<b>高强壮不喝冰露开始痛风</b>率先提出“降低启动成本”的核心思路，建议选择更容易实现的目标。<b>极品小学生</b>和<b>Geng</b>也建议就近选择人少的地方，避免节假日的人潮和高昂成本。</li>
+                                        <li><b>外部强制力派</b>：<b>Geralt</b>提出了一个有趣的方法，让朋友或家人帮忙订票，利用“沉没成本”效应迫使自己行动，他幽默地表示：“把差旅钱转我，我给你定票，你就按着时间去～不去我也不给你退钱～”</li>
+                                        <li><b>AI辅助决策与共情分析</b>：<b>呼 吸</b>分享了她与AI（DeepSeek）的对话，这段内容成为讨论的转折点。AI精准地指出了她的核心痛点是“折腾”带来的心理能量消耗，并提出了<b>“微度假”</b>（本地酒店住一晚）、<b>“城市游牧日”</b>（去新书店或猫咖）等一系列“低折腾”方案。这些建议因其深刻的共情和高度的可操作性，获得了群友们的认可。<b>呼 吸</b>自己也表示：“DeepSeek的分析给我感觉找到个拐杖一样，逐渐理清自己想要什么”。</li>
+                                        <li><b>人际连接驱动</b>：当<b>呼 吸</b>得知群友<b>Hsiaomin</b>恰好在南京附近时，她的出行意愿明显增强，表示“那有人的话我倒是可以折腾一下”。这揭示了“人际连接”在克服行动障碍中的重要作用。<b>Hsiaomin</b>也热情地发出了邀请，为大家展现了社群温暖的一面。</li>
+                                    </ul>
+                                    <b>三、结论与启发</b><br>
+                                    本次讨论从一个个人出行困扰，深化到了对行动力、心理能量管理的探讨。群友们不仅提供了实际的出行建议，更重要的是，通过共情和智慧，帮助<b>呼 吸</b>厘清了内心的真正需求。讨论最终的启发是：<br>
+                                    1. 提升行动力的关键在于<b>降低启动门槛</b>，将大目标分解为小而美的“微行动”。<br>
+                                    2. 当面临心理能量不足时，应优先选择“不折腾”的方案，将“换个环境”作为核心目的，而非完成一次完美的旅行。<br>
+                                    3. AI作为“外脑”，能够在梳理思绪、提供结构化建议方面发挥巨大作用，成为解决个人困惑的有力工具。<br>
+                                    4. 人与人之间的温暖连接是克服行动障碍的强大催化剂。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            提升行动力的核心是降低“启动成本”，当心理能量不足时，应重新定义目标，从“完成一次完美旅行”转变为“低消耗地换个环境”。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                降低启动成本。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>高强壮不喝冰露开始痛风</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                再有万全之策，也有不如意的地方，做好预期，接受他或者再调整。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>红星 RedStar</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                DeepSeek的分析给我感觉找到个拐杖一样，或者就像是思考的思路，逐渐理清自己想要什么。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>呼  吸</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 热点话题卡片2 -->
+                <div class="bento-card p-6 rounded-xl"> 
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                           当家人出现囤积行为：从识别“囤积障碍”到寻求温情解法
+                        </h4>
+                        <span
+                            class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            15:06 - 15:45
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                           恒丰周：不知道大家今天有没有时间讨论，我今天突然想起个问题来，就是老人大量的买衣服，这算不算是某种心理疾病...
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">囤积障碍</span>
+                            <span class="tag-item">心理健康</span>
+                            <span class="tag-item">家庭关系</span>
+                            <span class="tag-item">代际沟通</span>
+                            <span class="tag-item">解决方案</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div
+                            class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br>
+                                    群成员<b>恒丰周</b>分享了自己母亲的困扰：她大量购买并囤积廉价衣物，导致家中多个房间被占满，甚至影响了正常生活。他对此感到困惑，不确定这是否属于心理疾病，并希望得到群友的帮助。<br><br>
+                                    <b>二、主要观点与讨论详情</b><br>
+                                    讨论从初步的猜测迅速转向了专业的诊断和温和的建议。<br>
+                                    <ul>
+                                        <li><b>初步诊断与共鸣</b>：<b>阿南plus</b>和<b>物种多样研究员Florence</b>等群友在看到<b>恒丰周</b>发出的现场照片后，迅速指出这很可能是“囤积癖”，已经影响了正常生活，需要认真对待。</li>
+                                        <li><b>AI辅助定义</b>：<b>恒丰周</b>主动使用AI工具（豆包）查询，并分享了“囤积障碍 (Hoarding Disorder)”的医学定义，明确了这是一种正式的心理疾病，其核心是“丢弃困难”而非简单的“舍不得”。这为讨论提供了科学依据。</li>
+                                        <li><b>原因探讨</b>：群友们探讨了囤积行为背后的可能原因。<b>恒丰周</b>最初猜测与童年物质匮乏有关，但又觉得不完全是。<b>二小子</b>分享了自己同事母亲的例子，指出老人可能通过重复行为（如蒸包子）来寻找价值感。<b>AA昍</b>则从心理学角度解释，这可能是一种重复性的“筑巢行为”。</li>
+                                        <li><b>解决方案探讨</b>：
+                                            <ul>
+                                                <li><b>陪伴与沟通</b>：<b>AA昍</b>和<b>今天是叶子</b>都强调了“多陪伴、多沟通”的重要性，认为这是了解其内心真实想法和提供情感支持的基础。</li>
+                                                <li><b>物理场景切换</b>：<b>AA昍</b>提出了一个创新性的建议：“组织家人出门旅居”或“接到自己工作的城市来生活一段时间”，通过物理上更换场景，来打断在熟悉环境中的强迫性行为。</li>
+                                                <li><b>自我觉察引导</b>：他还建议<b>恒丰周</b>可以和家人散步时录制视频，这是一种帮助家人进行“自我觉察”的温和手段，能让人意识到“我在做什么”，从而减轻情绪压力。</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <b>三、结论与启发</b><br>
+                                    这次讨论为如何面对和处理家人的囤积障碍问题提供了清晰的思路。核心结论是，不应简单粗暴地指责或强制清理，而应将其视为一种需要理解和帮助的心理状况。<br><br>
+                                    最终沉淀的解决框架是：<b>首先</b>，通过陪伴和沟通建立信任，了解背后的情感需求；<b>其次</b>，可以尝试通过改变物理环境（如旅居）来打破固有的行为模式；<b>最后</b>，利用AI等工具获取科学知识，并采用录视频等温和方式引导家人自我觉察。整个过程体现了社群在面对复杂家庭问题时，集思广益、提供科学且富有人文关怀方案的强大能力。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            家人的囤积行为很可能是一种名为“囤积障碍”的心理疾病，核心是“丢弃困难”。应对的关键在于<b>陪伴、沟通</b>和<b>改变物理环境</b>，而非强制清理。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                人毕竟是动物，在熟悉的场景里会有一些重复的无意义的甚至是强迫性的筑巢行为。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                录制视频，也是一种很好的「自我觉察」的手段，让人意识到「我是谁」「我在做什么」，也可以减轻一些情绪上的压力。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                买衣服这个行为背后的原因，才是问题所在。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>今天是叶子</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- === 模块二：火花碰撞时刻・热点话题 结束 === -->
+
+        <!-- === (条件触发模块) 秉烛共谈录 · 星火深潜 开始 === -->
+        <section id="section-deep-dive" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">秉烛共谈录 · 星火深潜</h2>
+            <div class="space-y-8">
+                <div class="bento-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            一位女同志的相亲困局：从“身高180”执念到“自我认知”的破冰之旅
+                        </h4>
+                        <span
+                            class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-comments mr-1.5 text-gray-500"></i>
+                            18:56 - 20:56
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                           满满金：想问一下群里的小姐妹，谈恋爱的话，男生的身高，你们最低能接受多高呀！...但我很想找个180及以上的男朋友，是我太挑剔了吗
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">相亲</span>
+                            <span class="tag-item">择偶标准</span>
+                            <span class="tag-item">身高焦虑</span>
+                            <span class="tag-item">三观与五官</span>
+                            <span class="tag-item">实践出真知</span>
+                            <span class="tag-item">婚恋市场</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div
+                            class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题提出与背景补充</b><br>
+                                    晚间，群成员<b>满满金</b>抛出了一个经典且极具代表性的相亲困惑，点燃了长达两小时的深度讨论。她坦言自己身高165cm，对未来男友有“身高180cm及以上”的执念，但介绍的对象多不符合此标准，为此她感到纠结：“是我太挑剔了吗？”<br><br>
+                                    在后续的交流中，大家了解到<b>满满金</b>虽然相过三四次亲，但并无真正的恋爱“实战经验”，她的许多观念可能受到“纸片人”或理想化想象的影响。这个背景也成为后续讨论的核心切入点。<br><br>
+
+                                    <b>二、核心焦点与深层议题挖掘</b><br>
+                                    讨论从一个简单的身高标准，迅速深化至婚恋选择中的多个核心议题：<br>
+                                    1.  <b>“硬标准”的意义与局限</b>：身高180cm作为一个明确的“卡尺标准”，其背后反映了怎样的心理需求？坚守这一标准会错过什么？<br>
+                                    2.  <b>三观与五官的博弈</b>：在择偶中，是“三观合”更重要，还是“五官正”（生理吸引力）更优先？两者能否兼得？群内对此展开了激烈的辩论。<br>
+                                    3.  <b>理论与实践的鸿沟</b>：缺乏恋爱经验是否会导致择偶标准的理想化和不切实际？“实践出真知”在婚恋中是否为必经之路？<br>
+                                    4.  <b>相亲市场的残酷真相</b>：讨论揭示了相亲市场的现实——“优质资源不会流入（商业）市场”，各方面都完美的理想对象为何还需要相亲？这背后可能隐藏着不易察觉的问题。<br><br>
+
+                                    <b>三、多方观点流派与方案探讨</b><br>
+                                    围绕上述议题，群内形成了鲜明的观点阵营：<br><br>
+                                    <b>【现实主义劝退派】</b>：以<b>AA昍</b>、<b>Zac</b>为代表，他们直接指出了问题的核心。<br>
+                                    <b>AA昍</b>一针见血地指出：“身高180，但还是单着，并且要相亲。就好像有一个人，高考语文是满分，但总分还是没有上重点，肯定有原因的。”他进一步用雷佳音的例子说明，视觉身高与头肩比关系更大，纠结于数字意义不大。他还犀利地判断：“她肯定抢不过，她都没有战争经验，怎么可能打得赢？”<br>
+                                    <b>Zac</b>则直接发问：“要那么高干啥，给你孩子穿基因吗”，以戏谑的方式点破了对身高执念的潜在非理性因素。<br><br>
+
+                                    <b>【体验至上实践派】</b>：以<b>Suerte</b>、<b>子蟹</b>、<b>Geralt</b>为代表，他们强调“下场实践”的重要性。<br>
+                                    <b>Suerte</b>认为：“还是认识的男人太少，聊多了会自动改标准的。”<br>
+                                    <b>子蟹</b>也表示，缺乏实战经验会有很多不切实际的幻想，鼓励她“先打能打的呗”。<br>
+                                    <b>Geralt</b>更是直接建议：“不行就追，女生追男生好追”。他们共同的观点是，只有通过实际接触，才能真正了解自己想要什么，并祛除对“帅哥”或特定标准的理想化滤镜。<br><br>
+                                    <b>【标准坚守与策略派】</b>：以<b>小雪</b>为代表，她提供了截然不同的视角。<br>
+                                    <b>小雪</b>坚信“首战即决战”，认为要敢于坚持自己的标准，“想什么来什么”。她认为性吸引力是基础，“五官不行三观行的做个朋友没问题”，但找对象必须是“与的关系”，两者都要。她鼓励<b>满满金</b>积极行动，去相亲市场中寻找那个既符合标准又人品好的人，并分享了自己成功的经验。<br><br>
+                                    <b>【三观优先派】</b>：以<b>今天是叶子</b>和<b>要成为会计王的女人</b>为代表，她们在经历过恋爱后，认为三观的契合远比外表重要。<br>
+                                    <b>今天是叶子</b>说：“帅哥这东西你吃一次就知道了，和三观合比起来根本不是一个层级的事。”<br>
+                                    <b>要成为会计王的女人</b>也分享亲身经历，她正是因为与对象在重大问题上立场一致才被吸引，而外貌最初并不在她的审美点上。<br><br>
+                                    
+                                    <b>四、讨论共识与分歧总结</b><br>
+                                    尽管观点碰撞激烈，但群内还是达成了一些深层共识：<br>
+                                    •   <b>共识</b>：缺乏恋爱经验是导致当前困惑的主要原因，<b>满满金</b>需要通过“多接触、多实践”来建立更成熟的择偶观。<br>
+                                    •   <b>共识</b>：单纯执着于身高这一个“硬指标”是片面的，整体的感觉、气质以及人品更为关键。<br>
+                                    •   <b>分歧</b>：主要集中在“先筛三观还是先看五官”的顺序上。<b>小雪</b>认为五官是门槛，而<b>今天是叶子</b>则认为三观才是基石，这场辩论也揭示了不同个体在择偶策略上的根本差异。<br><br>
+                                    
+                                    <b>五、宏观影响与价值提炼（重点）</b><br>
+                                    这次讨论的价值远远超出了为<b>满满金</b>个人解惑。它深刻地揭示了当代青年在婚恋选择中的普遍困境，并从社群智慧中提炼出了宝贵的思维模型：<br><br>
+                                    1.  <b>“完美商品”警惕模型</b>：<b>AA昍</b>提出的“单科满分，总分却不高”的比喻，是一个极具穿透力的思维工具。它提醒所有人在相亲市场中，当遇到一个在某个“硬通货”指标上（如身高、颜值、学历）完美无瑕的对象时，应保持警惕，主动探寻其在其他维度（如性格、婚恋意愿、人际关系）是否存在“短板”，从而做出更全面的判断。这个模型可广泛应用于任何需要评估“人”或“机会”的场景。<br><br>
+                                    2.  <b>“实践祛魅”行动策略</b>：讨论中反复强调的“多谈、多接触”，本质上是一种“以实践破除幻想”的成长路径。对于缺乏经验的个体，与其在理论和想象中纠结，不如主动进入“市场”，通过与真实个体的互动，来校准自己的标准、认清自己的真实需求，并最终完成对“纸片人”式理想伴侣的“祛魅”。这是一个从“知道”到“做到”的必经过程。<br><br>
+                                    这场看似闲聊的讨论，实则是一场关于自我认知、决策策略和现实主义的生动教学。它告诉我们，寻找伴侣的过程，其实也是一个不断探索和认识自我的旅程。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#ef4444] hover:text-red-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            在婚恋市场，一个在某个“硬指标”（如身高180+）上完美的人仍在相亲，往往意味着其他方面可能存在不容忽视的“短板”或特殊情况。<b>应警惕“单科满分”陷阱，进行全面评估。</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                               身高180，但还是单着，并且要相亲。就好像有一个人，高考语文是满分，但总分还是没有上重点，肯定有原因的。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                各方面都优质的根本不会流入相亲市场。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>南瓜</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                她肯定抢不过，她都没有战争经验，怎么可能打得赢？
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>AA昍</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#ef4444] pl-4 py-3 bg-red-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            缺乏恋爱经验时，择偶标准容易理想化。破局的关键在于<b>“实践出真知”</b>，通过与更多真实的人接触，才能祛除幻想，认清自己的核心需求。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                还是认识的男人太少，聊多了会自动改标准的。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>Suerte</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                帅哥这东西你吃一次就知道了，和三观合比起来根本不是一个层级的事，可以说是毫无关系。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>今天是叶子</b>
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                               首战即决战。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">-
+                                                <b>小雪</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- === (条件触发模块) 秉烛共谈录 · 星火深潜 结束 === -->
+
+        <!-- === 模块四：解惑一点通・有问必答 开始 === -->
+        <section id="section-qa" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">解惑一点通・有问必答</h2>
+            <div class="space-y-8">
+                <!-- 问答卡片 1 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            飞机进入平流层自动巡航时，机长在做什么？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            AA昍：在平流层自动巡航的时候，机长一般在干什么？看书吗？
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br>
+                                    群成员<b>AA昍</b>对飞行员在自动巡航阶段的工作内容感到好奇，提出了“机长在平流层自动巡航时一般在干什么”的问题。<br><br><b>二、核心解答</b>
+                                    <br>疑似业内人士的群成员<b>已设置昵称</b>提供了权威解答。他指出，此时飞行员的主要工作是<b>监控仪表和与其他机组人员聊天</b>。看书等行为很少见，因为容易分散注意力，影响对飞行状态的监控。<br><br><b>三、补充信息</b>
+                                    <br><b>已设置昵称</b>补充说明，他个人的阅读习惯主要安排在下班后、去机场的路上以及休息日，以便能进行系统性阅读。这侧面印证了飞行员在工作期间需要保持高度的专注。另一位群友<b>运动喵（星火群尊贵年费vip）</b>则分享了自己作为乘客的经历，表示他在长途飞行中会阅读《毛选》，为这个话题增添了有趣的注脚。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">飞行员</span>
+                            <span class="tag-item">航空知识</span>
+                            <span class="tag-item">自动巡航</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 问答卡片 2 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            如何用空气炸锅做出不粘底的溏心煎蛋？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                           南瓜：空气炸锅版溏心煎蛋
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br>
+                                    群成员<b>南瓜</b>分享了自己用空气炸锅制作溏心煎蛋的成果，引发了大家的兴趣。<b>小方</b>关心无油烹饪的口感，而<b>维哈腾海特</b>则提出了一个实际操作中的痛点：“我做过两次都粘底了，碗里要喷多少油？”<br><br><b>二、核心解答</b>
+                                    <br><b>南瓜</b>分享了他的小技巧：其实<b>不需要喷很多油</b>。只需用<b>几滴油将碗底均匀抹一层</b>即可有效防粘。<br><br><b>三、结论与启发</b>
+                                    <br>这个简单的问答为群友们提供了一个实用、健康的烹饪小窍门，解决了空气炸锅爱好者在尝试新菜式时可能遇到的普遍问题，体现了群内生活经验交流的价值。
+                                </div>
+                                <button
+                                    class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                    style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">空气炸锅</span>
+                            <span class="tag-item">烹饪技巧</span>
+                            <span class="tag-item">生活窍门</span>
+                            <span class="tag-item">溏心蛋</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- === 模块四：解惑一点通・有问必答 结束 === -->
+
+        <!-- === 模块五：智慧火花匣・每日精选 开始 === -->
+        <section id="section-daily-picks" class="w-full mb-12 anchor-target">
+            <h2 class="section-title">智慧火花匣・每日精选</h2>
+            <div class="space-y-8">
+                <!-- 知识卡片 1 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        深度好文：《一人公司来了，你却要转运营？》
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            AA昍：https://i.lavayou.cn/archives/24879《A675 一人公司来了，你却要转运营？》
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b>
+                                <br>群成员<b>AA昍</b>分享了一篇引人深思的文章《A675 一人公司来了，你却要转运营？》，探讨了在个体崛起时代，个人职业路径的选择问题。<br><br><b>二、核心价值与讨论</b>
+                                <br>该文章激发了群内关于“产品”与“运营”两大职能的深入讨论。
+                                <ul>
+                                    <li><b>子蟹</b>作为产品领域的专家，认为产品岗“没啥难的”，并鼓励大家转向产品。他还分享了群主（AA昍）关于产品思维的系列笔记，认为这些内容是“真金白银地教”，并指出难点在于如何降维给普通用户理解。</li>
+                                    <li><b>一条尾巴</b>和<b>要成为会计王的女人</b>等群友则表达了对转岗产品经理的浓厚兴趣，希望能获得指导。</li>
+                                    <li>讨论中，<b>我尢啊</b>提炼出了一个极具价值的个人成长心法：“<b>我是我自己的产品，我就可以用管理产品的方式来管理我自己的时间和精力。</b>”这一观点将文章的宏大叙事内化为了可操作的个人管理哲学，获得了广泛认同。</li>
+                                </ul>
+                                <br><b>三、适用场景或补充信息</b>
+                                <br>本次分享及讨论，对于正在进行职业规划、考虑转岗，或希望建立“产品思维”来优化个人成长的同志们具有极高的参考价值。它不仅提供了外部链接资源，更在群内碰撞出了可迁移的思维模型。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">一人公司</span>
+                        <span class="tag-item">职业规划</span>
+                        <span class="tag-item">产品思维</span>
+                        <span class="tag-item">个人成长</span>
+                    </div>
+                    <div class="flex justify-end">
+                        <a href="https://i.lavayou.cn/archives/24879"
+                            target="_blank" rel="noopener noreferrer"
+                            class="text-sm font-medium text-[#4D6BFE] hover:text-blue-700 hover:underline flex items-center">
+                            阅读原文
+                            <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 知识卡片 2 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        群内学习风尚：《毛选》阅读热潮与思想交流
+                    </h4>
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            运动喵（星火群尊贵年费vip）：然后回来之后，同学们聚会，我在聚会上讲毛选，我惊讶的发现大家都是在读毛选
+                        </p>
+                    </div>
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b>
+                                <br>今日群内多次提及对《毛选》的学习与实践，形成了一股浓厚的红色学习氛围。这不仅是一本书，更演变成了一种思想交流的媒介和社群文化符号。<br><br><b>二、核心价值与讨论</b>
+                                <br>
+                                <ul>
+                                    <li><b>普遍性与共鸣</b>：<b>运动喵（星火群尊贵年费vip）</b>分享了他在同学聚会上惊奇地发现“大家都是在读毛选”的经历，并顺势推荐了“问问毛选”小程序。<b>二小子</b>也表示自己将《毛选》小卡片和工具推荐给了同学。这表明学习《毛选》已成为群内外许多同志的共同选择。</li>
+                                    <li><b>理论联系实际</b>：讨论并未停留在书本。在探讨纪检工作压力时，<b>二小子</b>引用教员关于“革命不是请客吃饭”的论述，来理解工作中的牺牲与艰难。在<b>满满金</b>的择偶困惑中，<b>AA昍</b>也建议她“听听教员怎么说，要全面地看”，将《毛选》的辩证思维应用于生活决策。</li>
+                                    <li><b>精神力量与信仰</b>：<b>二小子</b>分享了听艾跃进老师讲座的感悟，认为在面对是是非非时，坚定的信仰至关重要。<b>运动喵</b>也观察到，学习《毛选》的同学们普遍呈现出积极向上的“红色状态”。</li>
+                                </ul>
+                                <br><b>三、适用场景或补充信息</b>
+                                <br>《毛选》及其相关学习资源（如“问问毛选”、艾跃进讲座等）在群内已成为一种解决现实问题、统一思想、建立择偶标准和汲取精神力量的重要工具。这种学习风尚展现了群成员们积极探索思想武器以指导实践的精神面貌。
+                            </div>
+                            <button
+                                class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center"
+                                style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag-item">毛选</span>
+                        <span class="tag-item">思想学习</span>
+                        <span class="tag-item">理论联系实际</span>
+                        <span class="tag-item">社群文化</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- === 模块五：智慧火花匣・每日精选 结束 === -->
+
+        <nav class="w-full mt-12 daily-nav">
+            <div class="bento-card p-4">
+                <div class="flex justify-between items-center">
+                    <button type="button" class="nav-button day-nav-prev">
+                        <i class="fas fa-chevron-left"></i>
+                        上一天
+                    </button>
+                    <div class="text-center">
+                        <span class="text-sm text-gray-600">日报导航</span>
+                    </div>
+                    <button type="button" class="nav-button day-nav-next">
+                        下一天
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- === 文件底部 开始 === -->
+        <footer class="w-full mt-16">
+            <div class="bento-card p-8">
+                <div class="text-center text-gray-700 space-y-3">
+                    <div
+                        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-base">
+                        <div class="flex items-center">
+                            <i class="fas fa-database mr-2 text-[#ef4444]"></i>
+                            <span>星火燎原群聊记录</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-robot mr-2 text-[#ef4444]"></i>
+                            <span>2026-02-16 02:00:00</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                        本报告基于群聊数据自动生成，仅供参考。内容可能包含个人观点，不代表群组官方立场。
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <!-- === 文件底部 结束 === -->
+    </div>
+
+    <!-- === 浮动按钮与脚本区域 开始 === -->
+    <div class="floating-actions" aria-label="页面快捷操作">
+        <div class="directory-wrapper">
+            <button type="button" class="floating-button" id="directory-toggle" aria-expanded="false"
+                aria-controls="directory-panel" aria-label="打开内容导航">
+                <i class="fas fa-list-ul"></i>
+            </button>
+            <div class="directory-panel" id="directory-panel" role="dialog" aria-hidden="true">
+                <div class="directory-header">
+                    <span class="directory-title">内容导航</span>
+                    <button type="button" class="directory-close" id="directory-close" aria-label="关闭内容导航">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="directory-list" id="directory-list">
+                    <!-- 目录由脚本自动生成 -->
+                </div>
+            </div>
+        </div>
+        <button type="button" class="floating-button floating-button--hidden" id="scroll-top-btn" aria-label="返回顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 数字动画
+            document.querySelectorAll('.number-display').forEach(el => {
+                const finalValue = parseInt(el.textContent.replace(/,/g, ''), 10);
+                if (isNaN(finalValue)) return;
+                let current = 0;
+                const duration = 1500, frameRate = 1000 / 60, totalFrames = Math.round(duration / frameRate);
+                const increment = finalValue / totalFrames;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= finalValue) {
+                        current = finalValue;
+                        clearInterval(timer);
+                    }
+                    el.textContent = Math.floor(current).toLocaleString('en-US');
+                }, frameRate);
+            });
+
+            initDailyNavigation();
+            initExpandableContent();
+            initFloatingActions();
+
+            const historyLink = document.getElementById('history-link');
+            if (historyLink) historyLink.href = '星火历史日报汇总.html';
+        });
+
+        // 日报导航
+        async function initDailyNavigation() {
+            const currentDate = getCurrentDateFromPage();
+            if (!currentDate) return;
+            await setupNavigationButtons(currentDate);
+        }
+
+        function getCurrentDateFromPage() {
+            const dateEl = document.getElementById('report-date');
+            if (dateEl) {
+                const match = dateEl.textContent.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                if (match) return `${match[1]}-${match[2].padStart(2, '0')}-${match[3].padStart(2, '0')}`;
+            }
+            const titleMatch = document.title.match(/(\d{4}-\d{2}-\d{2})/);
+            if (titleMatch) return titleMatch[1];
+            return null;
+        }
+
+        async function setupNavigationButtons(currentDate) {
+            const prevBtns = document.querySelectorAll('.day-nav-prev');
+            const nextBtns = document.querySelectorAll('.day-nav-next');
+            const navContainers = document.querySelectorAll('.daily-nav');
+
+            const currentDateObj = new Date(currentDate);
+            const prevDate = new Date(currentDateObj); prevDate.setDate(prevDate.getDate() - 1);
+            const nextDate = new Date(currentDateObj); nextDate.setDate(nextDate.getDate() + 1);
+            const prevDateStr = formatDate(prevDate), nextDateStr = formatDate(nextDate);
+
+            const [prevExists, nextExists] = await Promise.all([checkReportExists(prevDateStr), checkReportExists(nextDateStr)]);
+
+            if (!prevExists && !nextExists) {
+                navContainers.forEach(c => c.style.display = 'none');
+                return;
+            }
+            navContainers.forEach(c => c.style.display = 'block');
+
+            prevBtns.forEach(btn => {
+                btn.disabled = !prevExists;
+                if (prevExists) btn.onclick = () => window.location.href = `星火群日报_${prevDateStr}.html`;
+            });
+            nextBtns.forEach(btn => {
+                btn.disabled = !nextExists;
+                if (nextExists) btn.onclick = () => window.location.href = `星火群日报_${nextDateStr}.html`;
+            });
+        }
+
+        async function checkReportExists(date) {
+            try {
+                const res = await fetch(`星火群日报_${date}.html`, { method: 'HEAD' });
+                return res.ok;
+            } catch { return false; }
+        }
+
+        function formatDate(date) {
+            return date.toISOString().slice(0, 10);
+        }
+
+        // 展开/收起功能
+        function initExpandableContent() {
+            document.querySelectorAll('.expandable-content').forEach(container => {
+                const preview = container.querySelector('.content-preview');
+                const btn = container.querySelector('.expand-btn');
+                const charLimit = parseInt(container.getAttribute('data-char-limit')) || 200;
+
+                if (!preview || !btn) return;
+
+                const originalHTML = preview.innerHTML;
+                let truncatedHTML = '';
+
+                // Simple text-based check for now
+                if (preview.textContent.length > charLimit) {
+                    let currentLength = 0;
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = originalHTML;
+
+                    const walker = document.createTreeWalker(tempDiv, Node.ELEMENT_NODE | Node.TEXT_NODE, null, false);
+                    let node;
+                    const nodesToKeep = [];
+                    let limitReached = false;
+
+                    while ((node = walker.nextNode()) && !limitReached) {
+                        if (node.nodeType === Node.TEXT_NODE) {
+                            if (currentLength + node.textContent.length > charLimit) {
+                                const remaining = charLimit - currentLength;
+                                const truncatedText = node.textContent.substring(0, remaining) + '...';
+                                const newNode = document.createTextNode(truncatedText);
+                                nodesToKeep.push(newNode);
+                                limitReached = true;
+                            } else {
+                                currentLength += node.textContent.length;
+                                nodesToKeep.push(node.cloneNode(true));
+                            }
+                        } else {
+                             nodesToKeep.push(node.cloneNode(false)); // clone element node without children
+                        }
+                    }
+                    
+                    // A simpler but less accurate way for HTML truncation
+                    if (preview.textContent.length > charLimit * 1.2) { // Heuristic
+                         btn.style.display = 'flex';
+                         preview.classList.add('collapsed');
+                    } else {
+                         btn.style.display = 'none';
+                    }
+
+                } else {
+                    btn.style.display = 'none';
+                }
+
+                btn.addEventListener('click', () => {
+                    preview.classList.toggle('collapsed');
+                    const isExpanded = !preview.classList.contains('collapsed');
+                    btn.classList.toggle('expanded', isExpanded);
+                    btn.querySelector('.expand-text').textContent = isExpanded ? '收起' : '展开全文';
+                });
+            });
+        }
+        
+        // 浮动操作与目录
+        function initFloatingActions() {
+            const scrollTopBtn = document.getElementById('scroll-top-btn');
+            const dirToggle = document.getElementById('directory-toggle');
+            const dirPanel = document.getElementById('directory-panel');
+            const dirClose = document.getElementById('directory-close');
+
+            if (scrollTopBtn) {
+                window.addEventListener('scroll', () => {
+                    scrollTopBtn.classList.toggle('floating-button--hidden', window.scrollY <= 240);
+                }, { passive: true });
+                scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            }
+
+            if (!dirPanel || !dirToggle) return;
+            buildDirectory();
+
+            const closePanel = () => { dirPanel.classList.remove('open'); dirToggle.setAttribute('aria-expanded', 'false'); };
+            dirToggle.addEventListener('click', (e) => { e.stopPropagation(); dirPanel.classList.toggle('open'); dirToggle.setAttribute('aria-expanded', dirPanel.classList.contains('open')); });
+            if (dirClose) dirClose.addEventListener('click', closePanel);
+
+            dirPanel.querySelectorAll('button[data-target]').forEach(item => {
+                item.addEventListener('click', () => {
+                    const targetId = item.getAttribute('data-target');
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        // A more robust scrolling that accounts for fixed headers
+                        const yOffset = -120; 
+                        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        window.scrollTo({top: y, behavior: 'smooth'});
+                    }
+                    closePanel();
+                });
+            });
+            document.addEventListener('click', (e) => { if (!dirPanel.contains(e.target) && !dirToggle.contains(e.target)) closePanel(); });
+            window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+        }
+
+        function buildDirectory() {
+            const listEl = document.getElementById('directory-list');
+            if (!listEl) return;
+            listEl.innerHTML = '';
+
+            const configs = [
+                { id: 'section-overview', icon: 'fa-chart-column' },
+                { id: 'section-hot-topics', icon: 'fa-fire' },
+                { id: 'section-deep-dive', icon: 'fa-comments' },
+                { id: 'section-qa', icon: 'fa-circle-question' },
+                { id: 'section-daily-picks', icon: 'fa-gem' }
+            ];
+            
+            const chineseNumberMap = {
+                "总消息概览": "一",
+                "火花碰撞时刻・热点话题": "二",
+                "秉烛共谈录 · 星火深潜": "三",
+                "解惑一点通・有问必答": "四",
+                "智慧火花匣・每日精选": "五"
+            };
+
+            configs.forEach(config => {
+                const section = document.getElementById(config.id);
+                if (!section) return;
+
+                const titleEl = section.querySelector('.section-title');
+                if (!titleEl) return;
+                
+                const titleText = titleEl.textContent.replace(/^[一二三四五六七八九十]、\s*/, '').trim();
+                const chineseNumber = chineseNumberMap[titleText] || '';
+
+                const itemWrapper = document.createElement('div');
+                itemWrapper.className = 'directory-item';
+
+                const entryBtn = document.createElement('button');
+                entryBtn.setAttribute('data-target', config.id);
+                entryBtn.innerHTML = `<span class="directory-icon"><i class="fas ${config.icon}"></i></span><span>${chineseNumber ? chineseNumber + '、 ' : ''}${titleText}</span>`;
+                itemWrapper.appendChild(entryBtn);
+
+                const subHeadings = section.querySelectorAll('.bento-card h4');
+                if (subHeadings.length > 0) {
+                    const sublist = document.createElement('div');
+                    sublist.className = 'directory-sublist';
+                    subHeadings.forEach((h, i) => {
+                        const card = h.closest('.bento-card');
+                        if (!card) return;
+                        if (!card.id) card.id = `${config.id}-item-${i + 1}`;
+                        card.classList.add('anchor-target');
+
+                        const subBtn = document.createElement('button');
+                        subBtn.className = 'directory-subitem';
+                        subBtn.setAttribute('data-target', card.id);
+                        subBtn.textContent = h.textContent.trim();
+                        sublist.appendChild(subBtn);
+                    });
+                    if (sublist.hasChildNodes()) itemWrapper.appendChild(sublist);
+                }
+                listEl.appendChild(itemWrapper);
+            });
+        }
+    </script>
+
+    <!-- ICP备案号等信息 -->
+    <div
+        style="text-align:center; font-size:14px; color:#888; padding:20px 0; margin-top:20px; border-top:1px solid #eee;">
+        <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#888; text-decoration:none;">
+            赣ICP备2024051762号-2
+        </a>
+    </div>
+    <div style="text-align:center; font-size:14px; color:#888; padding:10px 0;">
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36060202000451" rel="noreferrer" target="_blank"
+            style="color:#888; text-decoration:none; display:inline-flex; align-items:center; gap:5px;">
+            <img src="beian.png" alt="公安备案" style="width:20px; height:20px;">
+            <span>赣公网安备36060202000451号</span>
+        </a>
+    </div>
+</body>
+
+</html>
